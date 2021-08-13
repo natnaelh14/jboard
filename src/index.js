@@ -1,8 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import jboardData from './jboard_data';
+
+class App extends React.Component {
+  state = jboardData;
+
+  render() {
+    return this.state.columnOrder.map(columnId => {
+      const column = this.state.columns[columnId];
+      const companies = column.companyIds.map(companyId => this.state.companies[companyId])
+      //the key is important because this is how React keeps track of the list.
+      return column.title;
+    })
+  }
+}
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,7 +23,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
