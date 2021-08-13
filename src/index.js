@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import 'reset-css';
 import jboardData from './jboard_data';
 import Column from './column';
 
