@@ -14,14 +14,17 @@ export default class Company extends Component {
   render() {
     return (
       <Draggable draggableId={this.props.company.id} index={this.props.index}>
-        {(provided) => 
+        {provided => (
             <Container
-            {...provided.draggableProps}
-            {...provided.draggableProps}
-            innerRef={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              innerRef={provided.innerRef}
             >
-            {this.props.company.name}
-            </Container>}
+              {this.props.company.name}
+              <br />
+              {this.props.company.position}
+            </Container>
+        )}
       </Draggable>
     );
   }

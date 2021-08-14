@@ -28,8 +28,8 @@ export default class Column extends Component {
         <Droppable droppableId={this.props.column.id}>
           {provided => (
             <CompanyList 
-            innerRef = {provided.innerRef}
-            {...provided.droppableProps}
+              innerRef = {provided.innerRef}
+              {...provided.droppableProps}
             >
               {/* a second argument in map method is the index of an item */}
               {this.props.companies.map((company, index) => (<Company key={company.id} company={company} index={index} />))}
