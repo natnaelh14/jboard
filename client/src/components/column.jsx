@@ -31,9 +31,9 @@ export default class Column extends Component {
               innerRef = {provided.innerRef}
               {...provided.droppableProps}
             >
-              {/* a second argument in map method is the index of an item */}
-              {this.props.companies.map((company, index) => (<Company key={company.id} company={company} index={index} />))}
-              {provided.placeholder}
+                {/* a second argument in map method is the index of an item */}
+                {this.props.companies.map((company, index) => (<Company key={company.id} company={company} index={index} />))}
+                {provided.placeholder}
             </CompanyList>
           )}
         </Droppable>

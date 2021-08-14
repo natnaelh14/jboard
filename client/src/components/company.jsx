@@ -21,8 +21,6 @@ export default class Company extends Component {
               innerRef={provided.innerRef}
             >
               {this.props.company.name}
-              <br />
-              {this.props.company.position}
             </Container>
         )}
       </Draggable>
