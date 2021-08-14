@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { EntryPage, PageHeader } from './style';
+import { EntryPage } from './style';
 import EntryCard from '../components/EntryCard';
 import InputGroup from '../components/InputGroup';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import OptionList from '../components/OptionList';
+import companyLogo from '../img/logo.png';
 
 function Signup() {
   return (
       <EntryPage>
-        <PageHeader to="/">Jboard</PageHeader>
+        <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
         <EntryCard>
-            <h2>Sign up</h2>
+            <h2>Create your free account</h2>
             <form onSubmit={(e) => e.preventDefault()}>
               <InputGroup>
                 <label htmlFor="signup-name">Full Name</label>
@@ -29,10 +31,19 @@ function Signup() {
                 <label htmlFor="signup-password">Password</label>
                 <Input type="password" placeholder="Password" id="signup-password"></Input>
               </InputGroup>
+              <OptionList />
+              <br />
+              <InputGroup>
+                <label htmlFor="signup-answer">Answer</label>
+                <Input type="password" placeholder="Answer" id="signup-answer"></Input>
+              </InputGroup>
+              <Button type="click" full>Upload Resume</Button>
+              <br />
+              <br />
               <Button type="submit" full>Sign up</Button>
             </form>
             <span>
-              Already have an account?
+              Already have a Jboard account?
               <Link to='/login'>Log in</Link>
             </span>
         </EntryCard>

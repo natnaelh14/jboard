@@ -9,9 +9,3 @@ export const EntryPage = styled.div`
     background-color: #fbfbfb;
 `;
 
-export const PageHeader = styled.div`
-    font-size: 2rem;
-    font-weight: 600;
-    margin: 40px 0;
-    color: inherit;
-`;
