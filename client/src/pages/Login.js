@@ -22,6 +22,7 @@ function Login() {
             <label htmlFor="login-password" >Password</label>
             <Input type="password" placeholder="Password" id="login-password"></Input>
           </InputGroup>
+          <Button type="submit" full>Log in</Button>
         </form>
         <span>
           Don't have an account?
