@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "reset-css";
 import { DragDropContext } from "react-beautiful-dnd";
 import jboardData from "./components/jboard_data";
 import Column from "./components/column";
