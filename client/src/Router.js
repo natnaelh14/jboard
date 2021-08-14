@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Routes } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -7,15 +7,15 @@ import Signup from './pages/Signup';
 function Routes() {
     return (
         <Switch>
-            <Routes exact path  = '/'>
+            <Route exact path  = '/'>
                 <Home />
-            </Routes>
-            <Routes path = '/login'>
+            </Route>
+            <Route path = '/login'>
                 <Login />
-            </Routes>
-            <Routes path = '/signup'>
+            </Route>
+            <Route path = '/signup'>
                 <Signup />
-            </Routes>
+            </Route>
         </Switch>
     )
 }
