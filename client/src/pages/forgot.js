@@ -13,7 +13,7 @@ function Forgot() {
     <EntryPage>
       <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
       <EntryCard>
-        <h2>Log in</h2>
+        <h2>Forgot Password</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <InputGroup>
             <label htmlFor="forgot-email">What is your e-mail address?</label>
@@ -23,7 +23,7 @@ function Forgot() {
             <label htmlFor="security-question" >What is your mother's maiden name?</label>
             <Input type="text" placeholder="Answer" id="security-answer"></Input>
           </InputGroup>
-          <Button type="submit" full>Reset</Button>
+          <Button type="submit" full>Forgot Password</Button>
         </form>
         <span>
           <Link to="/login">Log in</Link>

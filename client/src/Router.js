@@ -4,6 +4,7 @@ import Forgot from './pages/forgot';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Reset from   './pages/reset';
 
 function Routes() {
     return (
@@ -19,6 +20,9 @@ function Routes() {
             </Route>
             <Route path = '/forgot'>
                 <Forgot />
+            </Route>
+            <Route path = '/reset'>
+                <Reset />
             </Route>
         </Switch>
     )
