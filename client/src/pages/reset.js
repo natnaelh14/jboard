@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { EntryPage } from './style';
+import { EntryPage, Title } from './style';
 import EntryCard from '../components/EntryCard';
 import InputGroup from '../components/InputGroup';
 import Input from '../components/Input';
@@ -13,7 +13,9 @@ function Reset() {
     <EntryPage>
       <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
       <EntryCard>
-        <h2>Reset Password</h2>
+        <Title>
+          <h2>RESET PASSWORD</h2>
+        </Title>
         <form onSubmit={(e) => e.preventDefault()}>
           <InputGroup>
             <label htmlFor="forgot-username">Username: natnael_haile</label>

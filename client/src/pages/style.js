@@ -8,3 +8,8 @@ export const EntryPage = styled.div`
     background-color: #fbfbfb;
 `;
 
+export const Title = styled.div`
+    font-size: 20px;
+    font-weight: 300;
+`;
+

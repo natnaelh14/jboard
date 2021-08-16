@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { EntryPage } from './style';
+import { EntryPage, Title } from './style';
 import EntryCard from '../components/EntryCard';
 import InputGroup from '../components/InputGroup';
 import Input from '../components/Input';
@@ -13,10 +13,12 @@ function Signup() {
       <EntryPage>
         <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
         <EntryCard>
-            <h2>Create your free account</h2>
+            <Title>
+              <h2>CREATE YOUR FREE ACCOUNT</h2>
+            </Title>
             <form onSubmit={(e) => e.preventDefault()}>
               <InputGroup>
-                <label htmlFor="signup-name">Full Name</label>
+                <label htmlFor="signup-name">Name</label>
                 <Input type="text" placeholder="Full Name" id="signup-name"></Input>
               </InputGroup>
               <InputGroup>
