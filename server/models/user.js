@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
@@ -12,7 +13,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, 'Must use a valid email address'],
+      match: [/.+@.+\..+/, 'Please enter a valid e-mail address'],
     },
     password: {
       type: String,
