@@ -8,7 +8,7 @@ import Button from '../components/Button';
 import companyLogo from '../img/logo.png';
 
 
-function Login() {
+function Forgot() {
   return (
     <EntryPage>
       <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
@@ -16,24 +16,21 @@ function Login() {
         <h2>Log in</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <InputGroup>
-            <label htmlFor="login-username">Username</label>
-            <Input type="text" placeholder="Username" id="login-username"></Input>
+            <label htmlFor="forgot-email">What is your e-mail address?</label>
+            <Input type="text" placeholder="Enter your e-mail" id="forgot-email"></Input>
           </InputGroup>
           <InputGroup>
-            <label htmlFor="login-password" >Password</label>
-            <Input type="password" placeholder="Password" id="login-password"></Input>
+            <label htmlFor="security-question" >What is your mother's maiden name?</label>
+            <Input type="text" placeholder="Answer" id="security-answer"></Input>
           </InputGroup>
-          <Button type="submit" full>Log in</Button>
+          <Button type="submit" full>Reset</Button>
         </form>
         <span>
-          <Link to="/signup">Register new account</Link>
-          <br />
-          <br />
-          <Link to="/forgot">Reset password</Link>
+          <Link to="/login">Log in</Link>
         </span>
       </EntryCard>
     </EntryPage>
   );
 }
 
-export default Login;
+export default Forgot;
