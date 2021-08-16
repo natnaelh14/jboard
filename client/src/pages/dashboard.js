@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import jboardData from "./components/jboard_data";
-import Column from "./components/column";
+import jboardData from "../jboard_data";
+import Column from "../column";
 
 class Dashboard extends Component {
   state = jboardData;

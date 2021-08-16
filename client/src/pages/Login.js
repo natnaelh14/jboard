@@ -19,11 +19,11 @@ function Login() {
         <form onSubmit={(e) => e.preventDefault()}>
           <InputGroup>
             <label htmlFor="login-username">Username</label>
-            <Input type="text" placeholder="Username" id="login-username"></Input>
+            <Input type="text" placeholder="" id="login-username"></Input>
           </InputGroup>
           <InputGroup>
             <label htmlFor="login-password" >Password</label>
-            <Input type="password" placeholder="Password" id="login-password"></Input>
+            <Input type="password" placeholder="Min 8 characters" id="login-password"></Input>
           </InputGroup>
           <Button type="submit" full>Log in</Button>
         </form>

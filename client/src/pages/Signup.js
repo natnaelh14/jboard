@@ -18,20 +18,20 @@ function Signup() {
             </Title>
             <form onSubmit={(e) => e.preventDefault()}>
               <InputGroup>
-                <label htmlFor="signup-name">Name</label>
-                <Input type="text" placeholder="Full Name" id="signup-name"></Input>
+                <label htmlFor="signup-name">Full Name</label>
+                <Input type="text" placeholder="" id="signup-name"></Input>
               </InputGroup>
               <InputGroup>
                 <label htmlFor="signup-email">Email Address</label>
-                <Input type="text" placeholder="Email Address" id="signup-email"></Input>
+                <Input type="text" placeholder="" id="signup-email"></Input>
               </InputGroup>
               <InputGroup>
                 <label htmlFor="signup-username">Username</label>
-                <Input type="text" placeholder="Username" id="signup-username"></Input>
+                <Input type="text" placeholder="" id="signup-username"></Input>
               </InputGroup>
               <InputGroup>
                 <label htmlFor="signup-password">Password</label>
-                <Input type="password" placeholder="Password" id="signup-password"></Input>
+                <Input type="password" placeholder="Min 8 characters" id="signup-password"></Input>
               </InputGroup>
               <OptionList />
               <br />
