@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
@@ -7,18 +8,19 @@ const Container = styled.div`
   border-radius: 2px;
   padding: 8px;
   margin-bottom: 8px;
-  background-color: white;
+  background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
 `;
 
 export default class Company extends Component {
   render() {
     return (
       <Draggable draggableId={this.props.company.id} index={this.props.index}>
-        {provided => (
+        {(provided, snapshot) => (
             <Container
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-              innerRef={provided.innerRef}
+              ref={provided.innerRef}
+              isDragging={snapshot.isDragging}
             >
               {this.props.company.name}
             </Container>

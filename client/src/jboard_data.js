@@ -27,18 +27,8 @@ const jboardData = {
       title: "Applied",
       companyIds: ["company-1", "company-2", "company-3", "company-4"],
     },
-    "column-2": {
-      id: "column-2",
-      title: "Priority",
-      companyIds: ["company-1", "company-2", "company-3", "company-4"],
-    },
-    "column-3": {
-      id: "column-3",
-      title: "Offer",
-      companyIds: ["company-1", "company-2", "company-3", "company-4"],
-    },
   },
-  columnOrder: ['column-1', "column-2", 'column-3'],
+  columnOrder: ['column-1',],
 };
 
 export default jboardData;

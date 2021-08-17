@@ -15,6 +15,8 @@ const Title = styled.h3`
 `;
 const CompanyList = styled.div`
   padding: 8px;
+  transition: background-color 0.2s ease;
+  background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')};
 `;
 
 export default class Column extends Component {
@@ -28,7 +30,7 @@ export default class Column extends Component {
         <Droppable droppableId={this.props.column.id}>
           {provided => (
             <CompanyList 
-              innerRef = {provided.innerRef}
+              ref = {provided.innerRef}
               {...provided.droppableProps}
             >
                 {/* a second argument in map method is the index of an item */}

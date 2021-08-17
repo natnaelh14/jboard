@@ -7,8 +7,40 @@ class Dashboard extends Component {
   state = jboardData;
 
   onDragEnd = result => {
-    // TODO: reorder our column   
-  }
+    // const { destination, source, draggableId } = result;
+
+    // if (!destination) {
+    //   return;
+    // }
+
+    // if (
+    //   destination.droppableId === source.droppableId &&
+    //   destination.index === source.index
+    // ) {
+    //   return;
+    // }
+
+    // const column = this.state.columns[source.droppableId];
+    // const newTCompanyIds = Array.from(column.companyIds);
+    // newTCompanyIds.splice(source.index, 1);
+    // newTCompanyIds.splice(destination.index, 0, draggableId);
+
+    // const newColumn = {
+    //   ...column,
+    //   companyIds: newTCompanyIds,
+    // };
+
+    // const newState = {
+    //   ...this.state,
+    //   columns: {
+    //     ...this.state.columns,
+    //     [newColumn.id]: newColumn,
+    //   },
+    // };
+
+    // this.setState(newState);
+  };  
+
   render() {
     return (
       //DragDropContext has three callbacks. the only required callback is onDragEnd.
