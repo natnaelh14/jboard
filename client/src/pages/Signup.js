@@ -12,27 +12,51 @@ import companyLogo from "../img/logo.png";
 const Signup = () => {
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [securityQues, setSecurityQues] = useState("");
+  const [securityAns, setSecurityAns] = useState("");
 
-  const handleInputChange = (e) => {
-    const file = e.target.files[0];
-    console.log('file', file)
-    const tempImageUrl = URL.createObjectURL(file);
-    setImage(tempImageUrl);
+  const userData = {
+    full_name: fullName,
+    email: email,
+    username: username,
+    password: password,
+    security_ques: securityQues,
+    security_ans: securityAns,
+    resumeUrl: url
   };
 
- const updateImage = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault(); 
+    try{
+    console.log('image', image)
+    const resumeImageUrl = URL.createObjectURL(image);
     const data = new FormData();
+    data.append('upload_preset', 'resume');
     data.append("file", image);
-    console.log('data', data)
-    await fetch(`https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`, {
-      method: "POST",
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUrl(data.url);
-      })
-      .catch((e) => console.log(e));
+    console.log("data", data);
+    const res = await axios.post(`https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`, data)
+      // .then((res) => res.json())
+      // .then((resData) => {
+      //   console.log('response data', resData)
+      //   setUrl(resData.url);
+      // })
+      // .catch((err) => console.log(err));
+      if (res) {
+        console.log(res)
+        setUrl(res.data.secure_url)
+      }
+
+     const newUser = await axios
+        .post("http://localhost:3000/signup", {...userData, resumeUrl:res.data.secure_url})
+      console.log(newUser.data)
+
+    } catch (e) {
+      console.log(e)
+    }
   };
 
   return (
@@ -49,7 +73,7 @@ const Signup = () => {
               type="text"
               placeholder=""
               id="signup-name"
-              // onChange={(e) => (this.fullName = e.target.value)}
+              onChange={(e) => setFullName(e.target.value)}
             ></Input>
           </InputGroup>
           <InputGroup>
@@ -58,7 +82,7 @@ const Signup = () => {
               type="text"
               placeholder=""
               id="signup-email"
-              // onChange={(e) => (this.email = e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             ></Input>
           </InputGroup>
           <InputGroup>
@@ -67,7 +91,7 @@ const Signup = () => {
               type="text"
               placeholder=""
               id="signup-username"
-              // onChange={(e) => (this.username = e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             ></Input>
           </InputGroup>
           <InputGroup>
@@ -76,11 +100,14 @@ const Signup = () => {
               type="password"
               placeholder="Min 8 characters"
               id="signup-password"
-              // onChange={(e) => (this.password = e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             ></Input>
           </InputGroup>
+          <p style={{ textAlign: "left" }}>Security Question</p>
+          <br />
           <OptionList
-          // onChange={(e) => (this.question = e.target.value)}
+          test={setSecurityQues}
+          // onChange={(e) => setSecurityQues(e.target.value)}
           />
           <br />
           <InputGroup>
@@ -89,18 +116,18 @@ const Signup = () => {
               type="password"
               placeholder="Answer"
               id="signup-answer"
-              // onChange={(e) => (this.answer = e.target.value)}
+              onChange={(e) => setSecurityAns(e.target.value)}
             ></Input>
           </InputGroup>
           <br />
           <br />
           <Upload>
             <label>Resume:</label>
-            <input type="file" onChange={(e) => handleInputChange(e)} />
+            <input type="file" onChange={(e) => setImage(e.target.files[0])} />
           </Upload>
           <br />
           <br />
-          <Button type="submit" onClick={updateImage}>
+          <Button type="submit" onClick={handleRegister}>
             Sign up
           </Button>
         </form>
