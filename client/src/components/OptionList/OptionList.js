@@ -24,7 +24,7 @@ function OptionList() {
   return (
     <Select
       defaultValue={options[1]}
-      label="Single select"
+      label={options}
       options={options}
       theme={(theme) => ({
         ...theme,
