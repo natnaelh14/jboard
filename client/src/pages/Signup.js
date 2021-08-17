@@ -1,7 +1,7 @@
 import { React, Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { EntryPage, Title } from "./style";
+import { EntryPage, Title, Upload } from "./style";
 import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
@@ -9,8 +9,45 @@ import Button from "../components/Button";
 import OptionList from "../components/OptionList";
 import companyLogo from "../img/logo.png";
 
+const uploadResume = async (resumeUrl) => {
+  return (
+    new Promise() <
+    string >
+    (async (resolve, reject) => {
+      const data = new FormData();
+      data.append("file", resumeUrl);
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      ).catch((e) => reject(e));
+      if (res) {
+        const { secure_url } = await res.json();
+        const photoURL = secure_url;
+        resolve(photoURL);
+      } else {
+        reject(new Error(`Error uploading resume to Cloudinary!`));
+      }
+    })
+  );
+};
+
+// onSubmit {
+// 	const imageURL = await uploadResume(image)
+//     // Wait for image to upload and then save the users info with the image url
+// }
+
 export default class Signup extends Component {
-  handleRegister = (e) => {
+
+  handleInputChange = async (e) => {
+    const file = e.target.files[0];
+    const resumeUrl = URL.createObjectURL(file);
+    console.log(resumeUrl)
+  };
+
+  handleRegister = async (e) => {
     e.preventDefault();
     const data = {
       full_name: this.fullName,
@@ -87,9 +124,12 @@ export default class Signup extends Component {
                 onChange={(e) => (this.answer = e.target.value)}
               ></Input>
             </InputGroup>
-            <Button type="click" full>
-              Upload Resume
-            </Button>
+            <br />
+            <br />
+            <Upload>
+              <label>Resume:</label>
+              <input type="file" onChange={(e) => this.handleInputChange(e)} />
+            </Upload>
             <br />
             <br />
             <Button type="submit" onClick={this.handleRegister}>
