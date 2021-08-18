@@ -1,10 +1,13 @@
 import React from 'react';
-import { StyledNavbar, NavItemLink } from './style';
+import { StyledNavbar, NavItemLink, Logo } from './style';
 
 function Navbar ({children}) {
     return (
         <StyledNavbar>
-            <NavItemLink to='/login'>Log in</NavItemLink>
+            <Logo>
+                <img src="./logo.png"/>
+            </Logo>
+            <NavItemLink to='/login' fill>Log in</NavItemLink>
             <NavItemLink to='/signup' fill>Sign up</NavItemLink>
         </StyledNavbar>
     )

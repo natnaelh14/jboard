@@ -9,7 +9,7 @@ export const StyledNavbar = styled.nav`
   height: 70px;
   padding: 0 30px;
   color: #ffffff;
-  background-color: #202023;
+  background-color: #ffffff;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 `;
 
@@ -19,10 +19,19 @@ export const NavItemLink = styled(Link)`
   ${(props) =>
     props.fill &&
     css`
-            padding: 8px 16px;
-            border-radius: 4px;
-            background-color: #2f8bfd;
-            transition: background-color 0.2s;
-            &:hover { background-color: #0072ff; }
-        `}
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #2f8bfd;
+      transition: background-color 0.2s;
+      &:hover {
+        background-color: #0072ff;
+      }
+    `}
+`;
+
+export const Logo = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100px;
+  height: 100px;
 `;

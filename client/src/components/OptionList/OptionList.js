@@ -27,13 +27,11 @@ export default class OptionList extends Component {
   handleChange = (selectedOption) => {
     this.props.test(selectedOption.value)
     this.setState({ selectedOption });
-    console.log('Option Selected', selectedOption)
   };
   render() {
     const { selectedOption }  = this.state;
     return (
       <Select
-        // defaultValue={options[1]}
         options={options}
         onChange={this.handleChange}
         value={selectedOption}

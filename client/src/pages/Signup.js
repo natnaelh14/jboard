@@ -33,32 +33,24 @@ const Signup = () => {
     e.preventDefault(); 
     try{
     console.log('image', image)
-    const resumeImageUrl = URL.createObjectURL(image);
     const data = new FormData();
     data.append('upload_preset', 'resume');
     data.append("file", image);
     console.log("data", data);
     const res = await axios.post(`https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`, data)
-      // .then((res) => res.json())
-      // .then((resData) => {
-      //   console.log('response data', resData)
-      //   setUrl(resData.url);
-      // })
-      // .catch((err) => console.log(err));
       if (res) {
         console.log(res)
         setUrl(res.data.secure_url)
       }
-
+      console.log('resume', res.data.secure_url)
      const newUser = await axios
         .post("http://localhost:3000/signup", {...userData, resumeUrl:res.data.secure_url})
-      console.log(newUser.data)
+      console.log('newUser', newUser)
 
     } catch (e) {
       console.log(e)
     }
   };
-
   return (
     <EntryPage>
       <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
