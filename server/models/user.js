@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
@@ -27,9 +26,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    resumeURL: {
-      type: mongoose.SchemaTypes.Url
-    },
+    // resumeURL: {
+    //   type: mongoose.SchemaTypes.Url
+    // },
   },
   // set this to use virtual below
   {

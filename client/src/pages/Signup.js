@@ -42,7 +42,7 @@ const Signup = () => {
         console.log(res)
         setUrl(res.data.secure_url)
       }
-      console.log('resume', res.data.secure_url)
+      console.log('resume', userData)
      const newUser = await axios
         .post("http://localhost:3000/signup", {...userData, resumeUrl:res.data.secure_url})
       console.log('newUser', newUser)

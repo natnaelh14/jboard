@@ -1,0 +1,26 @@
+[
+    {
+        "username": "lebron_james",
+        "email": "lebron.james@gmail.com",
+        "password": "0123456789",
+        "security_ques": "mother maiden name",
+        "security_ans": "james",
+        "resumeUrl": "https://res.cloudinary.com/doalzf6o2/image/upload/v1629328340/nkskikak1yxctqbql6xj.pdf"
+    },
+    {
+        "username": "kevin_durant",
+        "email": "kevin.durant@gmail.com",
+        "password": "asdfghjkl",
+        "security_ques": "mother maiden name",
+        "security_ans": "durant",
+        "resumeUrl": "https://res.cloudinary.com/doalzf6o2/image/upload/v1629328340/nkskikak1yxctqbql6xj.pdf"
+    },
+    {
+        "username": "stephen_curry",
+        "email": "stephen.curry@gmail.com",
+        "password": "qwertyuiop",
+        "security_ques": "mother maiden name",
+        "security_ans": "curry",
+        "resumeUrl": "https://res.cloudinary.com/doalzf6o2/image/upload/v1629328340/nkskikak1yxctqbql6xj.pdf"
+    }
+]

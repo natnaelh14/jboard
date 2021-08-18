@@ -7,7 +7,6 @@ const typeDefs = gql`
     email: String!
     security_ques: String!
     security_ans: String!
-    resumeURL: String!
   }
 
   type Company {
