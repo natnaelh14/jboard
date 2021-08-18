@@ -19,6 +19,17 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    security_ques: {
+      type: String,
+      required: true,
+    },
+    security_ans: {
+      type: String,
+      required: true,
+    },
+    resumeURL: {
+      type: mongoose.SchemaTypes.Url
+    },
   },
   // set this to use virtual below
   {

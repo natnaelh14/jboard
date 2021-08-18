@@ -30,7 +30,7 @@ const companySchema = new Schema({
   interview_date: {
     type: Date,
   },
-  user: { 
+  user_id: { 
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User' }
 });
