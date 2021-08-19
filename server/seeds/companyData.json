@@ -1,0 +1,52 @@
+[
+    {
+        "company_name": "Uber",
+        "job_position": "back-end developer",
+        "job_status": "applied",
+        "job_comment": "Uber’s engineers primarily write in Python, Node.js, Go, and Java.",
+        "label": "applied",
+        "offer_amount": "",
+        "application_data": "2021-08-18",
+        "interview_date": ""
+    },
+    {
+        "company_name": "Netflex",
+        "job_position": "back-end developer",
+        "job_status": "priority",
+        "job_comment": "Apple's primary programming language is Swift.",
+        "label": "priority",
+        "offer_amount": "",
+        "application_data": "",
+        "interview_date": ""
+    }
+    {
+        "company_name": "Google",
+        "job_position": "front-end developer",
+        "job_status": "interview",
+        "job_comment": "Uber’s engineers primarily write in Python, Node.js, Go, and Java.",
+        "label": "interview",
+        "offer_amount": "Google uses four key programming languages: Python, Javascript, C++ and Java",
+        "application_data": "2021-08-18",
+        "interview_date": "2021-09-01"
+    },
+    {
+        "company_name": "Apple",
+        "job_position": "full stack developer",
+        "job_status": "offer",
+        "job_comment": "Apple's primary programming language is Swift.",
+        "label": "offer",
+        "offer_amount": "90000",
+        "application_data": "2021-08-10",
+        "interview_date": "2021-08-18"
+    },
+    {
+        "company_name": "Amazon",
+        "job_position": "back-end developer",
+        "job_status": "inactive",
+        "job_comment": "Apple's primary programming language is Swift.",
+        "label": "inactive",
+        "offer_amount": "",
+        "application_data": "2021-07-10",
+        "interview_date": "2021-08-01"
+    }
+]
