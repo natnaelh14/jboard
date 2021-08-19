@@ -7,27 +7,30 @@
         "label": "applied",
         "offer_amount": "",
         "application_data": "2021-08-18",
-        "interview_date": ""
+        "interview_date": "",
+        "_id": "611ddc94ea96134536a88605"
     },
     {
-        "company_name": "Netflex",
+        "company_name": "Netflix",
         "job_position": "back-end developer",
         "job_status": "priority",
-        "job_comment": "Apple's primary programming language is Swift.",
+        "job_comment": "The core operational infrastructure of Netflix has all been built in Java.",
         "label": "priority",
         "offer_amount": "",
-        "application_data": "",
-        "interview_date": ""
-    }
+        "application_data": "2021-08-18",
+        "interview_date": "",
+        "_id": "611ddc94ea96134536a88605"
+    },
     {
         "company_name": "Google",
         "job_position": "front-end developer",
         "job_status": "interview",
-        "job_comment": "Uber’s engineers primarily write in Python, Node.js, Go, and Java.",
+        "job_comment": "Google uses four key programming languages: Python, Javascript, C++ and Java",
         "label": "interview",
-        "offer_amount": "Google uses four key programming languages: Python, Javascript, C++ and Java",
+        "offer_amount": "",
         "application_data": "2021-08-18",
-        "interview_date": "2021-09-01"
+        "interview_date": "2021-09-01",
+        "_id": "611ddc94ea96134536a88606"
     },
     {
         "company_name": "Apple",
@@ -37,16 +40,19 @@
         "label": "offer",
         "offer_amount": "90000",
         "application_data": "2021-08-10",
-        "interview_date": "2021-08-18"
+        "interview_date": "2021-08-18",
+        "_id": "611ddc94ea96134536a88607"
+        
     },
     {
         "company_name": "Amazon",
         "job_position": "back-end developer",
         "job_status": "inactive",
-        "job_comment": "Apple's primary programming language is Swift.",
+        "job_comment": "The official languages of Amazon are Python, Java, and Javascript",
         "label": "inactive",
         "offer_amount": "",
         "application_data": "2021-07-10",
-        "interview_date": "2021-08-01"
+        "interview_date": "2021-08-01",
+        "_id": "611ddc94ea96134536a88607"
     }
 ]

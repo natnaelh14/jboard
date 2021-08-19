@@ -21,7 +21,7 @@ const companySchema = new Schema({
     type: String,
   },
   offer_amount: {
-    type: Number,
+    type: Number
   },
   application_date: {
     type: Date,
@@ -29,10 +29,12 @@ const companySchema = new Schema({
   },
   interview_date: {
     type: Date,
+    default: Date.now
   },
-  user_id: { 
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User' }
+    ref: "User"
+ },
 });
 
 const Company = mongoose.model("Company", companySchema);
