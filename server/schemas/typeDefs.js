@@ -40,8 +40,6 @@
 //       security_ans: String!
 //       resumeURL: String!
 //     ): Auth
-//     # saveBook(bookData: BookInput!): User
-//     # removeBook(bookId: ID!): User
 //   }
 // `;
 

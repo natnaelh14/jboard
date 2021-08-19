@@ -1,45 +1,68 @@
-import React, { Component } from "react";
-import { Droppable } from "react-beautiful-dnd";
-import styled from "styled-components";
-import Company from "./company";
+import React from 'react';
+import styled from 'styled-components';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
+import Task from './task';
 
 const Container = styled.div`
   margin: 8px;
-  border: 2px solid red;
-  border-radius: 3px;
+  border: 1px solid lightgrey;
+  background-color: white;
+  border-radius: 2px;
+  width: 220px;
+
+  display: flex;
+  flex-direction: column;
 `;
 const Title = styled.h3`
   padding: 8px;
-  font-weight: bold;
-  text-align: center;
 `;
-const CompanyList = styled.div`
+const TaskList = styled.div`
   padding: 8px;
   transition: background-color 0.2s ease;
-  background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')};
+  background-color: ${props =>
+    props.isDraggingOver ? 'lightgrey' : 'inherit'};
+  flex-grow: 1;
+  min-height: 100px;
 `;
 
-export default class Column extends Component {
+class InnerList extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.tasks === this.props.tasks) {
+      return false;
+    }
+    return true;
+  }
+  render() {
+    return this.props.tasks.map((task, index) => (
+      <Task key={task.id} task={task} index={index} />
+    ));
+  }
+}
+
+export default class Column extends React.Component {
   render() {
     return (
-      <Container>
-        <Title>{this.props.column.title}</Title>
-        {/* Droppable has only one required prop, droppableId. it needs to unique. */}
-        {/* Droppable utilizes the render props pattern and expects it children to be a function that return a react component. */}
-        {/* Provided is an object that give you droppableProps, which we will use to designate which component we want as our droppable. */}
-        <Droppable droppableId={this.props.column.id}>
-          {provided => (
-            <CompanyList 
-              ref = {provided.innerRef}
-              {...provided.droppableProps}
-            >
-                {/* a second argument in map method is the index of an item */}
-                {this.props.companies.map((company, index) => (<Company key={company.id} company={company} index={index} />))}
-                {provided.placeholder}
-            </CompanyList>
-          )}
-        </Droppable>
-      </Container>
+      <Draggable draggableId={this.props.column.id} index={this.props.index}>
+        {provided => (
+          <Container {...provided.draggableProps} ref={provided.innerRef}>
+            <Title {...provided.dragHandleProps}>
+              {this.props.column.title}
+            </Title>
+            <Droppable droppableId={this.props.column.id} type="task">
+              {(provided, snapshot) => (
+                <TaskList
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  isDraggingOver={snapshot.isDraggingOver}
+                >
+                  <InnerList tasks={this.props.tasks} />
+                  {provided.placeholder}
+                </TaskList>
+              )}
+            </Droppable>
+          </Container>
+        )}
+      </Draggable>
     );
   }
 }

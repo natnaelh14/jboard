@@ -31,8 +31,8 @@ const companySchema = new Schema({
     type: Date,
     default: Date.now
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
+  user_id: {
+    type: Schema.Types.ObjectId,
     ref: "User"
  },
 });

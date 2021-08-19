@@ -1,13 +1,26 @@
-import React, { Component } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
-import jboardData from "../jboard_data";
-import Column from "../column";
+import React from 'react';
+import styled from 'styled-components';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import initialData from '../initial-data';
+import Column from '../column';
 
-class Dashboard extends Component {
-  state = jboardData;
+const Container = styled.div`
+  display: flex;
+`;
+
+class InnerList extends React.PureComponent {
+  render() {
+    const { column, taskMap, index } = this.props;
+    const tasks = column.taskIds.map(taskId => taskMap[taskId]);
+    return <Column column={column} tasks={tasks} index={index} />;
+  }
+}
+
+export default class Dashboard extends React.Component {
+  state = initialData;
 
   onDragEnd = result => {
-    const { destination, source, draggableId } = result;
+    const { destination, source, draggableId, type } = result;
 
     if (!destination) {
       return;
@@ -20,43 +33,99 @@ class Dashboard extends Component {
       return;
     }
 
-    const column = this.state.columns[source.droppableId];
-    const newTCompanyIds = Array.from(column.companyIds);
-    newTCompanyIds.splice(source.index, 1);
-    newTCompanyIds.splice(destination.index, 0, draggableId);
+    if (type === 'column') {
+      const newColumnOrder = Array.from(this.state.columnOrder);
+      newColumnOrder.splice(source.index, 1);
+      newColumnOrder.splice(destination.index, 0, draggableId);
 
-    const newColumn = {
-      ...column,
-      companyIds: newTCompanyIds,
+      const newState = {
+        ...this.state,
+        columnOrder: newColumnOrder,
+      };
+      this.setState(newState);
+      return;
+    }
+
+    const home = this.state.columns[source.droppableId];
+    const foreign = this.state.columns[destination.droppableId];
+
+    if (home === foreign) {
+      const newTaskIds = Array.from(home.taskIds);
+      newTaskIds.splice(source.index, 1);
+      newTaskIds.splice(destination.index, 0, draggableId);
+
+      const newHome = {
+        ...home,
+        taskIds: newTaskIds,
+      };
+
+      const newState = {
+        ...this.state,
+        columns: {
+          ...this.state.columns,
+          [newHome.id]: newHome,
+        },
+      };
+
+      this.setState(newState);
+      return;
+    }
+
+    // moving from one list to another
+    const homeTaskIds = Array.from(home.taskIds);
+    homeTaskIds.splice(source.index, 1);
+    const newHome = {
+      ...home,
+      taskIds: homeTaskIds,
+    };
+
+    const foreignTaskIds = Array.from(foreign.taskIds);
+    foreignTaskIds.splice(destination.index, 0, draggableId);
+    const newForeign = {
+      ...foreign,
+      taskIds: foreignTaskIds,
     };
 
     const newState = {
       ...this.state,
       columns: {
         ...this.state.columns,
-        [newColumn.id]: newColumn,
+        [newHome.id]: newHome,
+        [newForeign.id]: newForeign,
       },
     };
-
     this.setState(newState);
-  };  
+  };
 
   render() {
     return (
-      //DragDropContext has three callbacks. the only required callback is onDragEnd.
-      //onDragStart is called when the drag starts
-      //onDragUpdate is called when something changes during a drag
-      //onDragEnd is called at the end of the drag. it synchronously updates your state.
       <DragDropContext onDragEnd={this.onDragEnd}>
-        {this.state.columnOrder.map(columnId => {
-          const column = this.state.columns[columnId];
-          const companies = column.companyIds.map(companyId => this.state.companies[companyId]);
-          //the key is important because this is how React keeps track of the list.
-          return <Column key={column.id} column={column} companies={companies} />
-        })}
+        <Droppable
+          droppableId="all-columns"
+          direction="horizontal"
+          type="column"
+        >
+          {provided => (
+            <Container
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {this.state.columnOrder.map((columnId, index) => {
+                const column = this.state.columns[columnId];
+                return (
+                  <InnerList
+                    key={column.id}
+                    column={column}
+                    taskMap={this.state.tasks}
+                    index={index}
+                  />
+                );
+              })}
+              {provided.placeholder}
+            </Container>
+          )}
+        </Droppable>
       </DragDropContext>
     );
   }
 }
-
-export default Dashboard;

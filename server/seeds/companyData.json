@@ -8,7 +8,7 @@
         "offer_amount": "",
         "application_data": "2021-08-18",
         "interview_date": "",
-        "_id": "611ddc94ea96134536a88605"
+        "user_id": "611ddc94ea96134536a88605"
     },
     {
         "company_name": "Netflix",
@@ -19,7 +19,7 @@
         "offer_amount": "",
         "application_data": "2021-08-18",
         "interview_date": "",
-        "_id": "611ddc94ea96134536a88605"
+        "user_id": "611ddc94ea96134536a88605"
     },
     {
         "company_name": "Google",
@@ -30,7 +30,7 @@
         "offer_amount": "",
         "application_data": "2021-08-18",
         "interview_date": "2021-09-01",
-        "_id": "611ddc94ea96134536a88606"
+        "user_id": "611ddc94ea96134536a88606"
     },
     {
         "company_name": "Apple",
@@ -41,7 +41,7 @@
         "offer_amount": "90000",
         "application_data": "2021-08-10",
         "interview_date": "2021-08-18",
-        "_id": "611ddc94ea96134536a88607"
+        "user_id": "611ddc94ea96134536a88607"
         
     },
     {
@@ -53,6 +53,6 @@
         "offer_amount": "",
         "application_data": "2021-07-10",
         "interview_date": "2021-08-01",
-        "_id": "611ddc94ea96134536a88607"
+        "user_id": "611ddc94ea96134536a88607"
     }
 ]
