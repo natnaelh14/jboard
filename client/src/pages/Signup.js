@@ -32,31 +32,34 @@ const Signup = () => {
     resume_url: url,
   };
 
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  // const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleRegister = async (e) => {
-    e.preventDefault(); 
-    try{
-    //API call to upload resume and receive a pdf url file  
-    const resumeData = new FormData();
-    resumeData.append('upload_preset', 'resume');
-    resumeData.append("file", image);
-    const resumeRes = await axios.post(`https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`, resumeData)
-    if (resumeRes) {
-      setUrl({
-        url: resumeRes.data.secure_url
-      });
-    }
+    e.preventDefault();
+    try {
+      //API call to upload resume and receive a pdf url file
+      const resumeData = new FormData();
+      resumeData.append("upload_preset", "resume");
+      resumeData.append("file", image);
+      const resumeRes = await axios.post(
+        `https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`,
+        resumeData
+      );
+      if (resumeRes) {
+        setUrl({
+          url: resumeRes.data.secure_url,
+        });
+      }
       //Saving New User
-      const { data } = await addUser({
-        variables: { ...formState },
-      });
-      Auth.login(data.addUser.token);
-
+      // const { data } = await addUser({
+      //   variables: { ...formState },
+      // });
+      // Auth.login(data.addUser.token);
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   };
+
   return (
     <EntryPage>
       <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
@@ -103,9 +106,7 @@ const Signup = () => {
           </InputGroup>
           <p style={{ textAlign: "left" }}>Security Question</p>
           <br />
-          <OptionList
-          selectedQuestion={setSecurityQues}
-          />
+          <OptionList selectedQuestion={setSecurityQues} />
           <br />
           <InputGroup>
             <label htmlFor="signup-answer">Answer</label>
