@@ -4,6 +4,11 @@ const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
   {
+    full_name: {
+      type: String,
+      required: [true, "Please add a username"],
+      unique: true
+    },
     username: {
       type: String,
       required: [true, "Please add a username"],
@@ -12,13 +17,15 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: [true, "Please add an email"],
+      trim: true,
       unique: true,
       match: [/.+@.+\..+/, 'Please enter a valid e-mail address'],
     },
     password: {
       type: String,
       required: [true, "Please add a password"],
-      minlength: 8,
+      validate: [({ length }) => length >= 8, "Password should be longer."],
+      trim: true,
       select: false,
     },
     security_ques: {
@@ -29,14 +36,10 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Please add a security answer."],
     },
-    resumeUrl: {
+    resume_url: {
       type: String,
       required: [true, "Please upload your resume"],
     },
-    company: { 
-      type: Schema.Types.ObjectId,
-      ref: "Company"
-   },
   },
   {
     toJSON: {

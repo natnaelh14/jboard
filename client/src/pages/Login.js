@@ -1,8 +1,5 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
 import { EntryPage, Title } from "./style";
 import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
@@ -10,35 +7,30 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import companyLogo from "../img/logo.png";
 
-const Login = (props) => {
-  const [formState, setFormState] = useState({ username: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  // const [login, { error, data }] = useMutation(LOGIN_USER);
 
-  // update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
+  const formState = {
+    username: username,
+    password: password,
   };
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    console.log(formState);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
+      console.log('ghost', formState)
+      // const { data } = await login({
+      //   variables: { ...formState },
+      // });
 
-      Auth.login(data.login.token);
+      // Auth.login(data.login.token);
     } catch (e) {
-      console.error(e);
+      console.log('unable to log in', e)
     }
-    setFormState({
-      email: '',
-      password: '',
-    });
   };
+
     return (
       <EntryPage>
         <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
@@ -46,15 +38,14 @@ const Login = (props) => {
           <Title>
             <h2>LOG IN</h2>
           </Title>
-          <form onSubmit={handleLogin}>
+          <form onClick={handleLogin}>
             <InputGroup>
               <label htmlFor="login-username">Username</label>
               <Input
                 type="text"
                 placeholder=""
                 id="login-username"
-                value={formState.email}
-                onChange={handleChange}
+                onChange={(e) => setUsername(e.target.value)}
               ></Input>
             </InputGroup>
             <InputGroup>
@@ -63,8 +54,7 @@ const Login = (props) => {
                 type="password"
                 placeholder="Min 8 characters"
                 id="login-password"
-                value={formState.password}
-                onChange={handleChange}
+                onChange={(e) => setPassword(e.target.value)}
               ></Input>
             </InputGroup>
             <Button type="submit" >
@@ -80,6 +70,6 @@ const Login = (props) => {
         </EntryCard>
       </EntryPage>
     );
-  }
+}
 
-  export default Login;
+export default Login;

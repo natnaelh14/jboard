@@ -8,6 +8,8 @@
         "offer_amount": "",
         "application_data": "2021-08-18",
         "interview_date": "",
+        "company_logo": "https://logo.clearbit.com/uber.com",
+        "company_url": "https://uber.com",
         "user_id": "611ddc94ea96134536a88605"
     },
     {
@@ -19,6 +21,8 @@
         "offer_amount": "",
         "application_data": "2021-08-18",
         "interview_date": "",
+        "company_logo": "https://logo.clearbit.com/netflix.com",
+        "company_url": "https://netflix.com",
         "user_id": "611ddc94ea96134536a88605"
     },
     {
@@ -30,6 +34,8 @@
         "offer_amount": "",
         "application_data": "2021-08-18",
         "interview_date": "2021-09-01",
+        "company_logo": "https://logo.clearbit.com/google.com",
+        "company_url": "https://google.com",
         "user_id": "611ddc94ea96134536a88606"
     },
     {
@@ -41,6 +47,8 @@
         "offer_amount": "90000",
         "application_data": "2021-08-10",
         "interview_date": "2021-08-18",
+        "company_logo": "https://logo.clearbit.com/apple.com",
+        "company_url": "https://apple.com",
         "user_id": "611ddc94ea96134536a88607"
         
     },
@@ -53,6 +61,8 @@
         "offer_amount": "",
         "application_data": "2021-07-10",
         "interview_date": "2021-08-01",
+        "company_logo": "https://logo.clearbit.com/amazon.com",
+        "company_url": "https://amazon.com",
         "user_id": "611ddc94ea96134536a88607"
     }
 ]

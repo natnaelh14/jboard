@@ -31,6 +31,14 @@ const companySchema = new Schema({
     type: Date,
     default: Date.now
   },
+  company_logo: {
+    type: String,
+    required: true,
+  },
+  company_url: {
+    type: String,
+    required: true,
+  },
   user_id: {
     type: Schema.Types.ObjectId,
     ref: "User"

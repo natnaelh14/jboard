@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../utils/mutations";
-import Auth from "../utils/auth";
 import { EntryPage, Title, Upload } from "./style";
 import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
@@ -11,58 +8,53 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import OptionList from "../components/OptionList";
 import companyLogo from "../img/logo.png";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 const Signup = () => {
-  const [formState, setFormState] = useState({
-    full_name: "",
-    username: "",
-    email: "",
-    password: "",
-    image: "",
-    resume_url: "",
-    security_ques: "",
-    security_ans: "",
-  });
-  const [addUser, { error, data }] = useMutation(ADD_USER);
-  const handleChange = (event) => {
-    //const { name, value } = event.target;
-    const name =  event.target.name;
-    const value = (name === "image") ? event.target.files[0] : event.target.value;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [securityQues, setSecurityQues] = useState("");
+  const [securityAns, setSecurityAns] = useState("");
+
+  const formState = {
+    full_name: fullName,
+    email: email,
+    username: username,
+    password: password,
+    security_ques: securityQues,
+    security_ans: securityAns,
+    resume_url: url,
   };
-  
-  
-  const handleRegister = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-    try {
-      //API call to upload resume and receive a pdf url file
-      const urlData = new FormData();
-      urlData.append("upload_preset", "resume");
-      // urlData.append("file", image);
-      console.log("data", urlData);
-      const res = await axios.post(
-        `https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`,
-        urlData
-      );
-      if (res) {
-        console.log(res);
-        // setUrl(res.data.secure_url);
-        setFormState({
-          ...formState,
-          'resume_url': res.data.secure_url
-        });
-      }
+
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const handleRegister = async (e) => {
+    e.preventDefault(); 
+    try{
+    //API call to upload resume and receive a pdf url file  
+    const resumeData = new FormData();
+    resumeData.append('upload_preset', 'resume');
+    resumeData.append("file", image);
+    const resumeRes = await axios.post(`https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`, resumeData)
+    if (resumeRes) {
+      setUrl({
+        url: resumeRes.data.secure_url
+      });
+    }
       //Saving New User
       const { data } = await addUser({
         variables: { ...formState },
       });
       Auth.login(data.addUser.token);
+
     } catch (e) {
-      console.error(e);
+      console.log(e)
     }
   };
   return (
@@ -77,45 +69,43 @@ const Signup = () => {
             <label htmlFor="signup-name">Full Name</label>
             <Input
               type="text"
-              placeholder="Your Full Name"
+              placeholder=""
               id="signup-name"
-              value={formState.full_name}
-              onChange={handleChange}
+              onChange={(e) => setFullName(e.target.value)}
             ></Input>
           </InputGroup>
           <InputGroup>
             <label htmlFor="signup-email">Email Address</label>
             <Input
               type="text"
-              placeholder="Your email"
+              placeholder=""
               id="signup-email"
-              value={formState.email}
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
             ></Input>
           </InputGroup>
           <InputGroup>
             <label htmlFor="signup-username">Username</label>
             <Input
               type="text"
-              placeholder="Your username"
+              placeholder=""
               id="signup-username"
-              value={formState.username}
-              onChange={handleChange}
+              onChange={(e) => setUsername(e.target.value)}
             ></Input>
           </InputGroup>
           <InputGroup>
             <label htmlFor="signup-password">Password</label>
             <Input
               type="password"
-              placeholder="******"
+              placeholder="Min 8 characters"
               id="signup-password"
-              value={formState.password}
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
             ></Input>
           </InputGroup>
           <p style={{ textAlign: "left" }}>Security Question</p>
           <br />
-          <OptionList selectedQuestion={formState.security_ques} />
+          <OptionList
+          selectedQuestion={setSecurityQues}
+          />
           <br />
           <InputGroup>
             <label htmlFor="signup-answer">Answer</label>
@@ -123,15 +113,14 @@ const Signup = () => {
               type="password"
               placeholder="Answer"
               id="signup-answer"
-              value={formState.security_ans}
-              onChange={handleChange}
+              onChange={(e) => setSecurityAns(e.target.value)}
             ></Input>
           </InputGroup>
           <br />
           <br />
           <Upload>
             <label>Resume:</label>
-            <input type="file" onChange={handleChange} />
+            <input type="file" onChange={(e) => setImage(e.target.files[0])} />
           </Upload>
           <br />
           <br />
