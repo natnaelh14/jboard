@@ -25,7 +25,7 @@ export default class OptionList extends Component {
     selectedOption: null,
   };
   handleChange = (selectedOption) => {
-    this.props.test(selectedOption.value)
+    this.props.selectedQuestion(selectedOption.value)
     this.setState({ selectedOption });
   };
   render() {

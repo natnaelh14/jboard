@@ -1,6 +1,8 @@
-import { React, Component } from "react";
-import axios from "axios";
+import React,{ useState } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 import { EntryPage, Title } from "./style";
 import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
@@ -8,24 +10,35 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import companyLogo from "../img/logo.png";
 
-export default class Login extends Component {
-  handleLogin = (e) => {
-    e.preventDefault();
-    const data = {
-      username: this.username,
-      password: this.password,
-    };
-    console.log("login info", data);
-    axios
-      .post("http://localhost:3000/login", data)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+const Login = (props) => {
+  const [formState, setFormState] = useState({ username: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
-  render() {
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+    setFormState({
+      email: '',
+      password: '',
+    });
+  };
     return (
       <EntryPage>
         <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
@@ -33,14 +46,15 @@ export default class Login extends Component {
           <Title>
             <h2>LOG IN</h2>
           </Title>
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form onSubmit={handleLogin}>
             <InputGroup>
               <label htmlFor="login-username">Username</label>
               <Input
                 type="text"
                 placeholder=""
                 id="login-username"
-                onChange={(e) => (this.username = e.target.value)}
+                value={formState.email}
+                onChange={handleChange}
               ></Input>
             </InputGroup>
             <InputGroup>
@@ -49,7 +63,8 @@ export default class Login extends Component {
                 type="password"
                 placeholder="Min 8 characters"
                 id="login-password"
-                onChange={(e) => (this.password = e.target.value)}
+                value={formState.password}
+                onChange={handleChange}
               ></Input>
             </InputGroup>
             <Button type="submit" onClick={this.handleLogin}>
@@ -66,4 +81,5 @@ export default class Login extends Component {
       </EntryPage>
     );
   }
-}
+
+  export default Login;
