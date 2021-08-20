@@ -67,7 +67,7 @@ const Login = (props) => {
                 onChange={handleChange}
               ></Input>
             </InputGroup>
-            <Button type="submit" onClick={this.handleLogin}>
+            <Button type="submit" >
               Log in
             </Button>
           </form>

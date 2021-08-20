@@ -25,29 +25,37 @@ const Signup = () => {
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    //const { name, value } = event.target;
+    const name =  event.target.name;
+    const value = (name === "image") ? event.target.files[0] : event.target.value;
     setFormState({
       ...formState,
       [name]: value,
     });
   };
+  
+  
   const handleRegister = async (event) => {
     event.preventDefault();
     console.log(formState);
     try {
       //API call to upload resume and receive a pdf url file
-      // const urlData = new FormData();
-      // urlData.append("upload_preset", "resume");
+      const urlData = new FormData();
+      urlData.append("upload_preset", "resume");
       // urlData.append("file", image);
-      // console.log("data", urlData);
-      // const res = await axios.post(
-      //   `https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`,
-      //   urlData
-      // );
-      // if (res) {
-      //   console.log(res);
-      //   setUrl(res.data.secure_url);
-      // }
+      console.log("data", urlData);
+      const res = await axios.post(
+        `https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`,
+        urlData
+      );
+      if (res) {
+        console.log(res);
+        // setUrl(res.data.secure_url);
+        setFormState({
+          ...formState,
+          'resume_url': res.data.secure_url
+        });
+      }
       //Saving New User
       const { data } = await addUser({
         variables: { ...formState },
@@ -123,7 +131,7 @@ const Signup = () => {
           <br />
           <Upload>
             <label>Resume:</label>
-            {/* <input type="file" onChange={(e) => setImage(e.target.files[0])} /> */}
+            <input type="file" onChange={handleChange} />
           </Upload>
           <br />
           <br />
