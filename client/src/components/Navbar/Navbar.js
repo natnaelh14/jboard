@@ -10,16 +10,16 @@ const Navbar = () => {
     return (
       <StyledNavbar>
         <Logo>
-          <img src="./logo.png" alt="" />
+          <img src="./logo.png" alt="" to='/dashboard' />
         </Logo>
         <div>
           {Auth.loggedIn() ? (
         <>
           <NavItemLink fill>
-            {Auth.getProfile().data.username}'s profile
+            {Auth.getUser().data.username}'s profile
           </NavItemLink>
           <NavItemLink onClick={logout} fill>
-            Log in
+            Log out
           </NavItemLink>
         </>
         ) : (

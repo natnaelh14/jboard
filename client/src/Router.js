@@ -44,8 +44,8 @@ const client = new ApolloClient({
 function Routes() {
   return (
     <ApolloProvider client={client}>
-      <Switch>
-        {/* <Navbar /> */}
+      <Navbar />
+      <Switch>        
         <Route exact path="/">
           <Home />
         </Route>

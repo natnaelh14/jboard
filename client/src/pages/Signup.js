@@ -14,7 +14,6 @@ import Auth from "../utils/auth";
 
 const Signup = () => {
   const [image, setImage] = useState("");
-  const [url, setUrl] = useState("");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -29,7 +28,7 @@ const Signup = () => {
     password: password,
     security_ques: securityQues,
     security_ans: securityAns,
-    resume_url: url,
+    resume_url: '',
   };
 
   //Invoke 'use mutation' hook that was declared in the utils/mutation file.
