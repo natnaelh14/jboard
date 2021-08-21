@@ -22,6 +22,7 @@ export const ADD_USER = gql`
     $security_ans: String!
     $resume_url: String!
   ) {
+    #add user mutation call.
     addUser(
       full_name: $full_name
       username: $username

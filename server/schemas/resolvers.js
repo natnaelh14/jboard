@@ -44,20 +44,26 @@ const resolvers = {
         security_ans,
         resume_url,
       });
+      //we run our signed token and add the value of user into it.
       const token = signToken(user);
       return { token, user };
     },
     login: async (parent, { username, password }) => {
-      const user = await User.findOne({ username });
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
+      console.log(username, password);
+      try {
+        const user = await User.findOne({ username });
+        if (!user) {
+          throw new AuthenticationError("Incorrect credentials");
+        }
+        const correctPw = await user.isCorrectPassword(password);
+        if (!correctPw) {
+          throw new AuthenticationError("Incorrect credentials");
+        }
+        const token = signToken(user);
+        return { token, user };
+      } catch (e) {
+        console.log("log in error", e);
       }
-      const correctPw = await user.isCorrectPassword(password);
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-      const token = signToken(user);
-      return { token, user };
     },
   },
 };

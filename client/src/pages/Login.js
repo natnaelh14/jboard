@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Auth from '../utils/auth';
+import Auth from '../utils/auth'; //import Auth feature that we created, which will be the decoder
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import { EntryPage, Title } from "./style";
@@ -19,16 +19,16 @@ const Login = () => {
     username: username,
     password: password,
   };
-
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const { data } = await login({
         variables: { ...formState },
       });
+      console.log(data)
       Auth.login(data.login.token);
-    } catch (e) {
-      console.log('unable to log in', e)
+    } catch (error) {
+      throw error
     }
   };
 
@@ -39,7 +39,7 @@ const Login = () => {
           <Title>
             <h2>LOG IN</h2>
           </Title>
-          <form onClick={handleLogin}>
+          <form >
             <InputGroup>
               <label htmlFor="login-username">Username</label>
               <Input
@@ -58,7 +58,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               ></Input>
             </InputGroup>
-            <Button type="submit" >
+            <Button type="submit" onClick={handleLogin} >
               Log in
             </Button>
           </form>

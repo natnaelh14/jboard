@@ -32,6 +32,7 @@ const Signup = () => {
     resume_url: url,
   };
 
+  //Invoke 'use mutation' hook that was declared in the utils/mutation file.
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleRegister = async (e) => {
@@ -46,9 +47,7 @@ const Signup = () => {
         resumeData
       );
       if (resumeRes) {
-        setUrl({
-          url: resumeRes.data.secure_url,
-        });
+        formState.resume_url = resumeRes.data.secure_url
       }
       //Saving New User
       const { data } = await addUser({
