@@ -51,10 +51,10 @@ const Signup = () => {
         });
       }
       //Saving New User
-      // const { data } = await addUser({
-      //   variables: { ...formState },
-      // });
-      // Auth.login(data.addUser.token);
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.log(e);
     }

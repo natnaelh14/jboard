@@ -21,11 +21,10 @@ const Login = () => {
     e.preventDefault();
     try {
       console.log('ghost', formState)
-      // const { data } = await login({
-      //   variables: { ...formState },
-      // });
-
-      // Auth.login(data.login.token);
+      const { data } = await login({
+        variables: { ...formState },
+      });
+      Auth.login(data.login.token);
     } catch (e) {
       console.log('unable to log in', e)
     }
@@ -65,7 +64,7 @@ const Login = () => {
             <Link to="/signup">Register new account</Link>
             <br />
             <br />
-            <Link to="/forgot">Forgot Password</Link>
+            <Link to="/forgot">Reset password</Link>
           </span>
         </EntryCard>
       </EntryPage>
