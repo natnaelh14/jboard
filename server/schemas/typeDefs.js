@@ -33,28 +33,28 @@ const typeDefs = gql`
     companies: [Company]
   }
 
-    # type Auth {
-    #   token: ID!
-    #    user: User
-    # }
+     type Auth {
+       token: ID!
+        user: User
+     }
 
     type Query {
       users: [User]
-#      user(username: String!): User
-#      me: User
+      user(username: String!): User
+      me: User
     }
 
-  #  type Mutation {
-  #    login(username: String!, password: String!): Auth
-  #     addUser(
-  #      username: String!
-  #      email: String!
-  #      password: String!
-  #      security_ques: String!
-  #      security_ans: String!
-  #      resumeURL: String!
-  #    ): Auth
-  #  }
+    type Mutation {
+      login(username: String!, password: String!): Auth
+       addUser(
+        username: String!
+        email: String!
+        password: String!
+       security_ques: String!
+        security_ans: String!
+        resumeURL: String!
+      ): Auth
+    }
 `;
 
 module.exports = typeDefs;
