@@ -32,7 +32,7 @@ const Signup = () => {
     resume_url: url,
   };
 
-  // const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ const Signup = () => {
       });
       Auth.login(data.addUser.token);
     } catch (e) {
-      console.log(e);
+      console.log('unable to sign up', e);
     }
   };
 
