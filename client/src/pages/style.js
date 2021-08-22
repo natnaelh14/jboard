@@ -14,6 +14,7 @@ export const Title = styled.div`
 
 export const Message = styled.div`
     display: flex;
+    justify-content: center;
     font-size: 4vh;
     font-weight: 200;
 `;

@@ -61,7 +61,7 @@ const Login = () => {
             </Button>
           </form>
           <span>
-            <Link to="/forgot">Forgot password</Link>
+            <Link to="/forgot" style={{textDecoration: "none"}}>Forgot password?</Link>
           </span>
         </EntryCard>
       </EntryPage>

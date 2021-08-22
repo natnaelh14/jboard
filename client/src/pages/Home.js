@@ -5,7 +5,7 @@ import { Message } from "./style";
 function Home() {
   return (
       <Message>
-        <p>Job Search Reimagined</p>
+        <p>Welcome to Jboard.</p>
       </Message>
   );
 }

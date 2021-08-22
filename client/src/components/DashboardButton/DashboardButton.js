@@ -1,13 +1,19 @@
 import React from "react";
-import { HomeStyles, ButtonsWrapper } from "./style";
+import { HomeStyles, ButtonsWrapper, Button } from "./style";
 
 export default function Home() {
-    return (
-      <HomeStyles>
-        <ButtonsWrapper>
-          <button>ADD COMPANY</button>
-          <button>RESUME</button>
-        </ButtonsWrapper>
-      </HomeStyles>
-    );
-  }
+  return (
+    <ButtonsWrapper>
+      <Button>
+        <a href="#" class="animated-button thar-two">
+          ADD COMPANY
+        </a>
+      </Button>
+      <Button>
+        <a href="#" class="animated-button thar-two">
+          RESUME
+        </a>
+      </Button>
+    </ButtonsWrapper>
+  );
+}
