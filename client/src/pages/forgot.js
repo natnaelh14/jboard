@@ -8,6 +8,8 @@ import Button from "../components/Button";
 import { useQuery } from "@apollo/client";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
+import { QUERY_EMAIL } from "../utils/queries";
+
 
 const Forgot = () => {
   const [forgotEmail, setForgotEmail] = useState("");
@@ -27,14 +29,14 @@ const Forgot = () => {
     secondDisabledInput: "disabled",
     forgotButtonColor: "gray",
   };
-  const [search, { loading, data, error }] = useLazyQuery(QUERY_USER, {
-    variables: { username: "james_patrick" },
+  const [search, { loading, data, error }] = useLazyQuery(QUERY_EMAIL, {
+    variables: { email: formState.forgotEmail },
   });
 
   const handleNext = async (e) => {
     e.preventDefault();
-    await search();
-    console.log(formState.forgotEmail);
+    search();
+    console.log(data);
 
     // search();
     // if (error) return `Error! ${error.message}`;

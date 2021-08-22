@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import initialData from '../initial-data';
 import Column from '../column';
+import DashboardButton from '../components/DashboardButton';
 
 const Container = styled.div`
   display: flex;
+  justify-content: space-around;
 `;
 
 class InnerList extends React.PureComponent {
@@ -99,33 +101,37 @@ export default class Dashboard extends React.Component {
 
   render() {
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Droppable
-          droppableId="all-columns"
-          direction="horizontal"
-          type="column"
-        >
-          {provided => (
-            <Container
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {this.state.columnOrder.map((columnId, index) => {
-                const column = this.state.columns[columnId];
-                return (
-                  <InnerList
-                    key={column.id}
-                    column={column}
-                    taskMap={this.state.tasks}
-                    index={index}
-                  />
-                );
-              })}
-              {provided.placeholder}
-            </Container>
-          )}
-        </Droppable>
-      </DragDropContext>
+      <>
+        <DashboardButton />
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable
+            droppableId="all-columns"
+            direction="horizontal"
+            type="column"
+          >
+            {provided => (
+              <Container
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {this.state.columnOrder.map((columnId, index) => {
+                  const column = this.state.columns[columnId];
+                  return (
+                    <InnerList
+                      key={column.id}
+                      column={column}
+                      taskMap={this.state.tasks}
+                      index={index}
+                    />
+                  );
+                })}
+                {provided.placeholder}
+              </Container>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </>
+
     );
   }
 }

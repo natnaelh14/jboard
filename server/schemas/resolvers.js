@@ -9,7 +9,10 @@ const resolvers = {
       return await User.find({});
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("companies");
+      return User.findOne({ username })
+    },
+    email: async (parent, { email }) => {
+      return User.findOne({ email })
     },
     me: async (parent, args, context) => {
       if (context.user) {
