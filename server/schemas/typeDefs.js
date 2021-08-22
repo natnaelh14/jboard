@@ -12,7 +12,6 @@ const typeDefs = gql`
     security_ques: String!
     security_ans: String!
     resume_url: String!
-    user_id: ID!
   }
 
   type Company {

@@ -24,7 +24,6 @@ const Login = () => {
       const { data } = await login({
         variables: { ...formState },
       });
-      console.log(data);
       //this is where we pass the token we created in utils/auth.js
       Auth.login(data.login.token);
     } catch (error) {

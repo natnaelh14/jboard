@@ -1,11 +1,13 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import { Redirect } from 'react-router'
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
+import Auth from "./utils/auth";
 //setContext is function that is used to authenticate request made to the backend while user is logged in.
 import { setContext } from "@apollo/client/link/context";
 import Forgot from "./pages/forgot";
@@ -47,19 +49,19 @@ function Routes() {
       <Navbar />
       <Switch>        
         <Route exact path="/">
-          <Home />
+          {Auth.loggedIn() ? <Redirect to="/dashboard" /> : <Home /> }
         </Route>
         <Route exact path="/dashboard">
-          <Dashboard />
+          {Auth.loggedIn() ? <Dashboard /> : <Redirect to="/" /> }
         </Route>
         <Route exact path="/login">
-          <Login />
+          {Auth.loggedIn() ? <Redirect to="/dashboard" /> : <Login /> }
         </Route>
         <Route exact path="/signup">
-          <Signup />
+          {Auth.loggedIn() ? <Redirect to="/dashboard" /> : <Signup /> }
         </Route>
         <Route exact path="/forgot">
-          <Forgot />
+          {Auth.loggedIn() ? <Redirect to="/dashboard" /> : <Forgot /> }
         </Route>
         <Route exact path="/reset">
           <Reset />

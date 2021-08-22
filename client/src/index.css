@@ -1,22 +1,21 @@
-/* html, body {
+html, body {
     height: 100%;
 }
 
 body {
-    background: linear-gradient(#ffffff, #fce8de);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: linear-gradient(#ffffff, #eeb7bb);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-} */
+    background-size: cover;
+    overflow:auto;
+}
 
-html {
+/* html {
     height: 100%
 }
 body {
     background-image:url("./img/background.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-}
+} */
