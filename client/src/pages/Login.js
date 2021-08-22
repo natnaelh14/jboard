@@ -8,7 +8,6 @@ import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import companyLogo from "../img/logo.png";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -25,6 +24,7 @@ const Login = () => {
       const { data } = await login({
         variables: { ...formState },
       });
+      console.log(data);
       //this is where we pass the token we created in utils/auth.js
       Auth.login(data.login.token);
     } catch (error) {
@@ -34,7 +34,6 @@ const Login = () => {
 
     return (
       <EntryPage>
-        <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
         <EntryCard>
           <Title>
             <h2>LOG IN</h2>
@@ -66,7 +65,7 @@ const Login = () => {
             <Link to="/signup">Register new account</Link>
             <br />
             <br />
-            <Link to="/forgot">Reset password</Link>
+            <Link to="/forgot">Forgot password</Link>
           </span>
         </EntryCard>
       </EntryPage>

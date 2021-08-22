@@ -7,7 +7,6 @@ import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import OptionList from "../components/OptionList";
-import companyLogo from "../img/logo.png";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -60,7 +59,6 @@ const Signup = () => {
 
   return (
     <EntryPage>
-      <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
       <EntryCard>
         <Title>
           <h2>CREATE YOUR FREE ACCOUNT</h2>

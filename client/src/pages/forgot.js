@@ -5,15 +5,11 @@ import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import companyLogo from "../img/logo.png";
-import { useQuery } from '@apollo/client';
-import { useLazyQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
-import { QUERY_EMAIL } from "../utils/queries";
-
 
 const Forgot = () => {
-
   const [forgotEmail, setForgotEmail] = useState("");
   const [forgotAnswer, setForgotAnswer] = useState("");
   const [firstDisabledInput, setFirstDisabledInput] = useState("");
@@ -23,21 +19,24 @@ const Forgot = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const formState = {
-    forgotEmail, 
+    forgotEmail,
     forgotAnswer,
     firstDisabledInput,
     nextButtonColor,
     errorMessage,
-    secondDisabledInput: 'disabled',
-    forgotButtonColor: 'gray'
+    secondDisabledInput: "disabled",
+    forgotButtonColor: "gray",
   };
-  const [search, { loading, data, error }] = useLazyQuery(QUERY_EMAIL, {
-    variables: { email: formState.forgotEmail}
+  const [search, { loading, data, error }] = useLazyQuery(QUERY_USER, {
+    variables: { username: "james_patrick" },
   });
-  
+
   const handleNext = async (e) => {
     e.preventDefault();
-    search();
+    await search();
+    console.log(data);
+
+    // search();
     // if (error) return `Error! ${error.message}`;
   };
 
@@ -47,7 +46,6 @@ const Forgot = () => {
 
   return (
     <EntryPage>
-      <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
       <EntryCard>
         <Title>
           <h2>FORGOT PASSWORD</h2>

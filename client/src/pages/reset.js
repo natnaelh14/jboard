@@ -5,7 +5,6 @@ import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import companyLogo from "../img/logo.png";
 
 const Reset = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -23,7 +22,6 @@ const Reset = () => {
 
   return (
     <EntryPage>
-      <img src={companyLogo} alt="jboard logo" height="200px" width="200px" />
       <EntryCard>
         <Title>
           <h2>RESET PASSWORD</h2>
