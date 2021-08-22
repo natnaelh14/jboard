@@ -5,19 +5,19 @@ import Task from './task';
 
 const Container = styled.div`
   margin: 8px;
-  border: 1px solid lightgrey;
+  border: 2px solid lightgrey;
   background-color: rgb(240 243 245);
   border-radius: 2px;
   width: 250px;
-  height: 600px;
-
+  height: 700px;
   display: flex;
   flex-direction: column;
 `;
 const Title = styled.h3`
   padding: 8px;
   text-align: center;
-  background-color: #EDF3F7;
+  font-weight: bold;
+  background-color: #ffaea6;
 `;
 const TaskList = styled.div`
   padding: 8px;

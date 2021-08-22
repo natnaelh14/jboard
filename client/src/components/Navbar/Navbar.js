@@ -7,7 +7,6 @@ import LogoImage from "./logo.png";
 
 const Navbar = () => {
   const [showNav, SetshowNav] = useState(false);
-  // console.log('werwrwewerqwerwre', Auth.getUser().data)
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
