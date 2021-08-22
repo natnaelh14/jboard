@@ -62,9 +62,6 @@ const Login = () => {
             </Button>
           </form>
           <span>
-            <Link to="/signup">Register new account</Link>
-            <br />
-            <br />
             <Link to="/forgot">Forgot password</Link>
           </span>
         </EntryCard>

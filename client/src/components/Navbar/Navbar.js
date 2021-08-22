@@ -14,9 +14,9 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-background ">
       <div className="navbar-main">
-        <a href="#about">
-          <img className="navbar-logo" src={LogoImage} alt="logo" href='#intro' />
-        </a>
+        <Link to='/'>
+          <img className="navbar-logo" src={LogoImage} alt="logo" />
+        </Link>
         {Auth.loggedIn() ? (
         <>
           <ul className="navbar-list-desktop">
@@ -41,10 +41,10 @@ const Navbar = () => {
             }
           >
             <li>
-              <Link><a  >{Auth.getUser().data.username}</a></Link>
+              <a>{Auth.getUser().data.username}</a>
             </li>
             <li>
-              <Link><a onClick={logout} >Logout</a></Link>
+              <Link onClick={logout} >Logout</Link>
             </li>
           </ul>
         </>
@@ -52,10 +52,10 @@ const Navbar = () => {
         <>
           <ul className="navbar-list-desktop">
             <li>
-              <Link><a to="/login" >Log in</a></Link> 
+              <Link to="/login" >Log in</Link> 
             </li>
             <li>
-              <Link><a to="/signup" >Sign up</a></Link>
+              <Link to="/signup" >Sign up</Link>
             </li>
           </ul>
           <span
@@ -72,10 +72,10 @@ const Navbar = () => {
             }
           >
             <li>
-              <Link><a to="/login" >Log in</a></Link> 
+              <Link to="/login" >Log in</Link> 
             </li>
             <li>
-              <Link><a to="/signup" >Sign up</a></Link>
+              <Link to="/signup" >Sign up</Link>
             </li>
           </ul>
         </>

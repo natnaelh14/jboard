@@ -1,7 +1,22 @@
-html {
+/* html, body {
+    height: 100%;
+}
+
+body {
     background: linear-gradient(#ffffff, #fce8de);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+} */
+
+html {
+    height: 100%
+}
+body {
+    background-image:url("./img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }

@@ -125,10 +125,6 @@ const Signup = () => {
             Sign up
           </Button>
         </form>
-        <span>
-          Already have a Jboard account?
-          <Link to="/login">Log in</Link>
-        </span>
       </EntryCard>
     </EntryPage>
   );

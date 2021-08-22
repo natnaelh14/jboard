@@ -1,8 +1,12 @@
 import React from "react";
+import { Message } from "./style";
+
 
 function Home() {
   return (
-      <p>You are logged out</p>
+      <Message>
+        <p>Job Search Reimagined</p>
+      </Message>
   );
 }
 

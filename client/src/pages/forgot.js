@@ -34,7 +34,7 @@ const Forgot = () => {
   const handleNext = async (e) => {
     e.preventDefault();
     await search();
-    console.log(data);
+    console.log(formState.forgotEmail);
 
     // search();
     // if (error) return `Error! ${error.message}`;
@@ -92,9 +92,6 @@ const Forgot = () => {
             Forgot Password
           </Button>
         </form>
-        <span>
-          <Link to="/login">Log in</Link>
-        </span>
       </EntryCard>
     </EntryPage>
   );

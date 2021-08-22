@@ -5,12 +5,17 @@ export const EntryPage = styled.div`
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #fbfbfb;
 `;
 
 export const Title = styled.div`
     font-size: 20px;
     font-weight: 300;
+`;
+
+export const Message = styled.div`
+    display: flex;
+    font-size: 4vh;
+    font-weight: 200;
 `;
 
 export const Upload = styled.div`

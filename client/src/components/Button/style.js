@@ -7,7 +7,7 @@ export const StyledButton = styled.button`
     border-radius: 4px;
     padding: 8px 16px;
     outline: none;
-    background-color: #409ae2;
+    background-color: #f47881;
     color: #ffffff;
     font-size: 0.875rem;
     font-weight: 500;
@@ -15,5 +15,5 @@ export const StyledButton = styled.button`
     letter-spacing: 0.02857rem;
     cursor: pointer;
     transition: all 0.2s;
-    &:hover {background-color: #0072ff}
+    &:hover {background-color: #f6a2a6}
 `;
