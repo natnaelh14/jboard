@@ -12,6 +12,18 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const EMAIL_VERIFY = gql`
+  mutation verifyEmail($email: String!) {
+    verifyEmail(email: $email) {
+      token
+      user {
+        _id
+        security_ques
+      }
+    }
+  }
+`;
+
 export const ADD_USER = gql`
   mutation addUser(
     $full_name: String!

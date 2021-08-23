@@ -1,4 +1,5 @@
-/* html, body {
+html, body {
+    font-family: 'Bebas Neue', cursive;
     height: 100%;
 }
 
@@ -9,7 +10,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
     overflow:auto;
-} */
+}
 
 /* html {
     height: 100%

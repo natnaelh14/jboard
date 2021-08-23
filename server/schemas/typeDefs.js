@@ -46,7 +46,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    login(username: String!, password: String!): Auth
+    login(username: String!, password: String!):Auth
     addUser(
       full_name: String!
       username: String!
@@ -55,7 +55,8 @@ const typeDefs = gql`
       security_ques: String!
       security_ans: String!
       resume_url: String!
-    ): Auth
+    ):Auth
+    verifyEmail(email: String!): Auth
   }
 `;
 

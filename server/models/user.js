@@ -35,6 +35,7 @@ const userSchema = new Schema(
     security_ans: {
       type: String,
       required: [true, "Please add a security answer."],
+      select: false
     },
     resume_url: {
       type: String,
@@ -57,7 +58,7 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.methods.isCorrectPassword = async function (password) {
-  return bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
 const User = model('User', userSchema);

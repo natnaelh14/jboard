@@ -9,7 +9,8 @@ import { useQuery } from "@apollo/client";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 import { QUERY_EMAIL } from "../utils/queries";
-
+import {EMAIL_VERIFY} from '../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 const Forgot = () => {
   const [forgotEmail, setForgotEmail] = useState("");
@@ -29,14 +30,19 @@ const Forgot = () => {
     secondDisabledInput: "disabled",
     forgotButtonColor: "gray",
   };
-  const [search, { loading, data, error }] = useLazyQuery(QUERY_EMAIL, {
-    variables: { email: formState.forgotEmail },
-  });
+  // const [search, { loading, data, error }] = useLazyQuery(QUERY_EMAIL, {
+  //   variables: { email: formState.forgotEmail },
+  // });
+
+  const [verifyEmail, { error, data }] = useMutation(EMAIL_VERIFY);
 
   const handleNext = async (e) => {
     e.preventDefault();
-    search();
-    console.log(data);
+    // search();
+    const { data } = await verifyEmail({
+      variables: {...formState, forgotEmail},
+    });
+    console.log("WOOWWWWWWW", data);
 
     // search();
     // if (error) return `Error! ${error.message}`;

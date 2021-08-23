@@ -12,7 +12,7 @@ const resolvers = {
       return User.findOne({ username })
     },
     email: async (parent, { email }) => {
-      return User.findOne({ email })
+      return await User.findOne({ email })
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -54,22 +54,40 @@ const resolvers = {
     login: async (parent, { username, password }) => {
       try {
         // Look up the user by the provided username. Since the `username` field is unique, we know that only one person will exist with that username
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ username }).select('+password');
         if (!user) {
           throw new AuthenticationError("Incorrect credentials");
         }
-        // If there is a user found, execute the `isCorrectPassword` instance method and check if the correct password was provided
-        // const correctPw = await user.isCorrectPassword(password);
-        // console.log(correctPw)
-        // // if (!correctPw) {
-        // //   throw new AuthenticationError("Incorrect credentials");
-        // // }
+        //If there is a user found, execute the `isCorrectPassword` instance method and check if the correct password was provided
+        const correctPw = await user.isCorrectPassword(password);
+        console.log(correctPw)
+        if (!correctPw) {
+          throw new AuthenticationError("Incorrect credentials");
+        }
         const token = signToken(user);
         return { token, user };
       } catch (e) {
         console.log("log in error", e);
       }
     },
+    verifyEmail: async (parent,{email}) => {
+      console.log('verify email')
+      try {
+        const user = await User.findOne({ email })
+        if (!user) {
+          throw new AuthenticationError("Incorrect credentials");
+        }
+        // const correctPw = await user.isCorrectPassword(password);
+        // console.log(correctPw)
+        // if (!correctPw) {
+        //   throw new AuthenticationError("Incorrect credentials");
+        // }
+        const token = signToken(user);
+        return { token, user };
+      } catch (e) {
+        console.log("log in error", e);
+      }
+    }
   },
 };
 
