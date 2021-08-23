@@ -77,11 +77,6 @@ const resolvers = {
         if (!user) {
           throw new AuthenticationError("Incorrect credentials");
         }
-        // const correctPw = await user.isCorrectPassword(password);
-        // console.log(correctPw)
-        // if (!correctPw) {
-        //   throw new AuthenticationError("Incorrect credentials");
-        // }
         const token = signToken(user);
         return { token, user };
       } catch (e) {

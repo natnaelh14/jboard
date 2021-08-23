@@ -3,20 +3,24 @@ import Select from "react-select";
 
 const options = [
   {
-    value: "Where were you born?",
-    label: "Where were you born?",
+    value: "Applied",
+    label: "Applied",
   },
   {
-    value: "What is your mother's maiden name?",
-    label: "What is your mother's maiden name?",
+    value: "Priority",
+    label: "Priority",
   },
   {
-    value: "What is your favorite sports team?",
-    label: "What is your favorite sports team?",
+    value: "Interview",
+    label: "Interview",
   },
   {
-    value: "What is the make of your first car?",
-    label: "What is the make of your first car?",
+    value: "Offer",
+    label: "Offer",
+  },
+  {
+    value: "Inactive",
+    label: "Inactive",
   },
 ];
 

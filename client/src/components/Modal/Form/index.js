@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import StatusOptionList from '../../StatusOptionList'
 
  export const Form = ({ onSubmit }) => {
+  const [applicationDate, setApplicationDate] = useState(new Date());
+  const [interviewDate, setInterviewDate] = useState(new Date());
   return (
     <form onSubmit={onSubmit}>
       <div className="form-group">
@@ -13,7 +18,7 @@ import React from 'react';
       </div>
       <div className="form-group">
         <label htmlFor="name">Job Status</label>
-        <input className="form-control" id="name" />
+        <StatusOptionList />
       </div>
       <div className="form-group">
         <label htmlFor="name">Job Comment</label>
@@ -24,16 +29,16 @@ import React from 'react';
         <input className="form-control" id="name" />
       </div>
       <div className="form-group">
-        <label htmlFor="name">Offer Amount</label>
+        <label htmlFor="number">Offer Amount</label>
         <input className="form-control" id="name" />
       </div>
       <div className="form-group">
         <label htmlFor="name">Application Date</label>
-        <input className="form-control" id="name" />
+        <DatePicker selected={applicationDate} onChange={(date) => setApplicationDate(date)} />
       </div>
       <div className="form-group">
         <label htmlFor="name">Interview Date</label>
-        <input className="form-control" id="name" />
+        <DatePicker selected={interviewDate} onChange={(date) => setInterviewDate(date)} />
       </div>
       <div className="form-group">
         <button className="form-control btn btn-primary" type="submit">

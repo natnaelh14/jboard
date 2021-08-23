@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal } from '../Modal';
+import { Modal } from '../Modal/index';
 import TriggerButton from '../TriggerButton';
 
 class ModalContainer extends Component {
@@ -12,7 +12,7 @@ class ModalContainer extends Component {
   };
   closeModal = () => {
     this.setState({ isShown: false });
-    this.Trigger.focus();
+    this.TriggerButton.focus();
     this.toggleScrollLock();
   };
   onKeyDown = (event) => {

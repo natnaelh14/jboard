@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import initialData from '../initial-data';
 import Column from '../column';
-import ModalContainer from '../components/Modal/ModalContainer'
+import ModalContainer from '../components/Modal/ModalContainer';
+import './Modal.css';
 
 const Container = styled.div`
   display: flex;
