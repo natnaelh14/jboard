@@ -1,3 +1,9 @@
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 .modal-button {
     text-decoration: none;
     text-align: center;

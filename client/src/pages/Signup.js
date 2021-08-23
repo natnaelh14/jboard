@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { EntryPage, Title, Upload } from "./style";
 import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
@@ -61,7 +60,7 @@ const Signup = () => {
     <EntryPage>
       <EntryCard>
         <Title>
-          <h2>CREATE YOUR FREE ACCOUNT</h2>
+          <h2>CREATE ACCOUNT</h2>
         </Title>
         <form onSubmit={(e) => e.preventDefault()}>
           <InputGroup>

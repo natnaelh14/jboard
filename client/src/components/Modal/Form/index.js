@@ -6,6 +6,8 @@ import StatusOptionList from '../../StatusOptionList'
  export const Form = ({ onSubmit }) => {
   const [applicationDate, setApplicationDate] = useState(new Date());
   const [interviewDate, setInterviewDate] = useState(new Date());
+  const [optionList, setOptionList] = useState(new Date());
+
   return (
     <form onSubmit={onSubmit}>
       <div className="form-group">
@@ -18,7 +20,7 @@ import StatusOptionList from '../../StatusOptionList'
       </div>
       <div className="form-group">
         <label htmlFor="name">Job Status</label>
-        <StatusOptionList />
+        <StatusOptionList selectedStatus={setOptionList} />
       </div>
       <div className="form-group">
         <label htmlFor="name">Job Comment</label>
