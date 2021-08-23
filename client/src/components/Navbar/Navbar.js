@@ -20,7 +20,10 @@ const Navbar = () => {
         {Auth.loggedIn() ? (
         <>
           <ul className="navbar-list-desktop">
-          <li>
+            <li>
+              <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
+            </li>
+            <li>
               <Link><a  >{Auth.getUser().data.username}</a></Link>
             </li>
             <li>
@@ -40,6 +43,9 @@ const Navbar = () => {
                 : "navbar-list-mobile"
             }
           >
+            <li>
+              <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
+            </li>
             <li>
               <a>{Auth.getUser().data.username}</a>
             </li>

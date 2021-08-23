@@ -3,14 +3,14 @@ html, body {
     height: 100%;
 }
 
-body {
+/* body {
     background: linear-gradient(#ffffff, #d39b9f);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     overflow:auto;
-}
+} */
 
 /* html {
     height: 100%

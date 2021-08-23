@@ -7,7 +7,6 @@ const userSchema = new Schema(
     full_name: {
       type: String,
       required: [true, "Please add a username"],
-      unique: true
     },
     username: {
       type: String,

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import initialData from '../initial-data';
 import Column from '../column';
-import DashboardButton from '../components/DashboardButton';
+import ModalContainer from '../components/Modal/ModalContainer'
 
 const Container = styled.div`
   display: flex;
@@ -19,6 +19,8 @@ class InnerList extends React.PureComponent {
 }
 
 export default class Dashboard extends React.Component {
+  //MODAL INFORMATION
+
   state = initialData;
 
   onDragEnd = result => {
@@ -102,7 +104,7 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <>
-        <DashboardButton />
+        <ModalContainer triggerText= "ADD JOB" />
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable
             droppableId="all-columns"
