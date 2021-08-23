@@ -1,16 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { EntryPage, Title } from "./style";
 import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { useQuery } from "@apollo/client";
-import { useLazyQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
-import { QUERY_EMAIL } from "../utils/queries";
-import {EMAIL_VERIFY} from '../utils/mutations';
-import { useMutation } from '@apollo/client';
+import { EMAIL_VERIFY } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 const Forgot = () => {
   const [forgotEmail, setForgotEmail] = useState("");
@@ -20,6 +15,7 @@ const Forgot = () => {
   const [secondDisabledInput, setSecondDisabledInput] = useState(true);
   const [forgotButtonColor, setForgotButtonColor] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [errorTwoMessage, setErrorTwoMessage] = useState("");
   const [security_question, setSecurityQuestion] = useState("");
 
   const formState = {
@@ -28,40 +24,56 @@ const Forgot = () => {
     firstDisabledInput,
     nextButtonColor,
     errorMessage,
+    errorTwoMessage,
     secondDisabledInput,
-    forgotButtonColor: "gray",
-    security_question
+    forgotButtonColor,
+    security_question,
   };
-  // const [search, { loading, data, error }] = useLazyQuery(QUERY_EMAIL, {
-  //   variables: { email: formState.forgotEmail },
-  // });
-
+  useEffect(() => {
+    setForgotButtonColor('gray')
+  }, []);
   const [verifyEmail, { error, data }] = useMutation(EMAIL_VERIFY);
 
   const handleNext = async (e) => {
+    e.preventDefault();
     try {
-      
-      e.preventDefault();
-    
       const { data } = await verifyEmail({
-        variables: { forgotEmail},
+        variables: { forgotEmail },
       });
-  
-      setFirstDisabledInput(true)
-      setSecurityQuestion(data.verifyEmail.user.security_ques)
-      setSecondDisabledInput(false)
-      console.log({secondDisabledInput, b:formState.secondDisabledInput})
+      if (data) {
+        setForgotButtonColor("")
+        setFirstDisabledInput(true);
+        setSecurityQuestion(data.verifyEmail.user.security_ques);
+        setSecondDisabledInput(false);
+        setNextButtonColor("gray")
+      }
     } catch (error) {
-      setForgotEmail('')
-      setSecurityQuestion('')
-      setSecondDisabledInput(true)
-      setFirstDisabledInput(false)
+      setForgotEmail("");
+      setSecurityQuestion("");
+      setForgotButtonColor('gray')
+      setSecondDisabledInput(true);
+      setFirstDisabledInput(false);
+      setErrorMessage("Invalid email input");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
     }
-    
   };
 
   const handleForgot = async (e) => {
     e.preventDefault();
+    try {
+      if ((formState.forgotAnswer).toLowerCase().trim() === data.verifyEmail.user.security_ans) {
+        window.location.assign('/reset');
+      } else {
+        throw error;
+      }
+    } catch (e) {
+      setErrorTwoMessage("Invalid Security Answer");
+      setTimeout(() => {
+        setErrorTwoMessage("");
+      }, 2000);
+    }
   };
 
   return (
@@ -89,12 +101,17 @@ const Forgot = () => {
           >
             Next
           </Button>
+          <br />
+          <br />
+          <p style={{"color": "rgb(249 143 134)", "fontSize": "1.2rem"}}>{formState.errorMessage}</p>
         </form>
         <br />
         <br />
         <form>
           <InputGroup>
-            <label htmlFor="security-question">{formState.security_question}</label>
+            <label htmlFor="security-question" >
+              {formState.security_question}
+            </label>
             <Input
               type="text"
               placeholder="Answer"
@@ -111,6 +128,9 @@ const Forgot = () => {
           >
             Forgot Password
           </Button>
+          <br />
+          <br />
+          <p style={{"color": "rgb(249 143 134)", "fontSize": "1.2rem"}}>{formState.errorTwoMessage}</p>
         </form>
       </EntryCard>
     </EntryPage>

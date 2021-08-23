@@ -14,18 +14,3 @@ export const QUERY_USER = gql`
     }
   }
 `;
-
-export const QUERY_EMAIL = gql`
-  query email($email: String!) {
-    email(email: $email) {
-      _id
-      full_name
-      username
-      email
-      password
-      security_ques
-      security_ans
-      resume_url
-    }
-  }
-`;

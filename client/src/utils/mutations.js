@@ -19,6 +19,7 @@ export const EMAIL_VERIFY = gql`
       user {
         _id
         security_ques
+        security_ans
       }
     }
   }

@@ -24,7 +24,7 @@ const Navbar = () => {
               <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
             </li>
             <li>
-              <Link><a  >{Auth.getUser().data.username}</a></Link>
+              <Link><a  >{Auth.getUser().data.full_name}</a></Link>
             </li>
             <li>
               <Link><a onClick={logout} >Logout</a></Link>

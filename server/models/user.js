@@ -34,7 +34,7 @@ const userSchema = new Schema(
     security_ans: {
       type: String,
       required: [true, "Please add a security answer."],
-      select: false
+      // select: false
     },
     resume_url: {
       type: String,
