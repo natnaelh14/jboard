@@ -56,6 +56,18 @@ const typeDefs = gql`
       security_ans: String!
       resume_url: String!
     ):Auth
+    addCompany(
+      company_name: String!
+      job_position: String!
+      job_status: String!
+      job_comment: String
+      label: String
+      offer_amount: Int
+      application_date: ISODate
+      interview_date: ISODate
+      company_url: String!
+      company_logo: String!
+    ):Auth
     verifyEmail(email: String!): Auth
   }
 `;

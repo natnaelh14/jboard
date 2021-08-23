@@ -21,10 +21,10 @@ const Navbar = () => {
         <>
           <ul className="navbar-list-desktop">
             <li>
-              <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
+              <a  >{Auth.getUser().data.full_name}</a>
             </li>
             <li>
-              <a  >{Auth.getUser().data.full_name}</a>
+              <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
             </li>
             <li>
               <Link><a onClick={logout} >Logout</a></Link>
@@ -44,10 +44,10 @@ const Navbar = () => {
             }
           >
             <li>
-              <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
+              <a>{Auth.getUser().data.full_name}</a>
             </li>
             <li>
-              <a>{Auth.getUser().data.full_name}</a>
+              <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
             </li>
             <li>
               <Link onClick={logout} >Logout</Link>

@@ -52,9 +52,6 @@ const Reset = () => {
             Reset Password
           </Button>
         </form>
-        <span>
-          <Link to="/login">Log in</Link>
-        </span>
       </EntryCard>
     </EntryPage>
   );

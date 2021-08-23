@@ -20,12 +20,12 @@ const Signup = () => {
   const [securityAns, setSecurityAns] = useState("");
 
   const formState = {
-    full_name: fullName,
+    full_name: fullName.toUpperCase(),
     email: email,
-    username: username,
-    password: password,
+    username: username.trim(),
+    password: password.trim(),
     security_ques: securityQues,
-    security_ans: securityAns,
+    security_ans: securityAns.toLowerCase().trim(),
     resume_url: '',
   };
 

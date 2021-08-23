@@ -53,3 +53,38 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_COMPANY = gql`
+  mutation addCompany(
+    $company_name: String!
+    $job_position: String!
+    $job_status: String!
+    $job_comment: String!
+    $label: String!
+    $offer_amount: String!
+    $company_logo: String!
+    $company_url: String!
+    $application_date: String!
+    $interview_date: String!
+  ) {
+    #add company mutation call.
+    addCompany(
+      company_name: $company_name
+      job_position: $job_position
+      job_status: $job_status
+      job_comment: $job_comment
+      label: $label
+      offer_amount: $offer_amount
+      company_logo: $company_logo
+      company_url: $company_url
+      application_date: $application_date
+      interview_date: $interview_date
+    ) {
+      token
+      #user {
+      #  _id
+      #  username
+     # }
+    }
+  }
+`;
