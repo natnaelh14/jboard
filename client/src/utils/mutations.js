@@ -13,8 +13,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const EMAIL_VERIFY = gql`
-  mutation verifyEmail($email: String!) {
-    verifyEmail(email: $email) {
+  mutation verifyEmail($forgotEmail: String!) {
+    verifyEmail(email: $forgotEmail) {
       token
       user {
         _id
