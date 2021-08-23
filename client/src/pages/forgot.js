@@ -17,9 +17,10 @@ const Forgot = () => {
   const [forgotAnswer, setForgotAnswer] = useState("");
   const [firstDisabledInput, setFirstDisabledInput] = useState("");
   const [nextButtonColor, setNextButtonColor] = useState("");
-  const [secondDisabledInput, setSecondDisabledInput] = useState("");
+  const [secondDisabledInput, setSecondDisabledInput] = useState(true);
   const [forgotButtonColor, setForgotButtonColor] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [security_question, setSecurityQuestion] = useState("");
 
   const formState = {
     forgotEmail,
@@ -27,8 +28,9 @@ const Forgot = () => {
     firstDisabledInput,
     nextButtonColor,
     errorMessage,
-    secondDisabledInput: "disabled",
+    secondDisabledInput,
     forgotButtonColor: "gray",
+    security_question
   };
   // const [search, { loading, data, error }] = useLazyQuery(QUERY_EMAIL, {
   //   variables: { email: formState.forgotEmail },
@@ -37,15 +39,25 @@ const Forgot = () => {
   const [verifyEmail, { error, data }] = useMutation(EMAIL_VERIFY);
 
   const handleNext = async (e) => {
-    e.preventDefault();
-    // search();
-    const { data } = await verifyEmail({
-      variables: {...formState, forgotEmail},
-    });
-    console.log("WOOWWWWWWW", data);
-
-    // search();
-    // if (error) return `Error! ${error.message}`;
+    try {
+      
+      e.preventDefault();
+    
+      const { data } = await verifyEmail({
+        variables: { forgotEmail},
+      });
+  
+      setFirstDisabledInput(true)
+      setSecurityQuestion(data.verifyEmail.user.security_ques)
+      setSecondDisabledInput(false)
+      console.log({secondDisabledInput, b:formState.secondDisabledInput})
+    } catch (error) {
+      setForgotEmail('')
+      setSecurityQuestion('')
+      setSecondDisabledInput(true)
+      setFirstDisabledInput(false)
+    }
+    
   };
 
   const handleForgot = async (e) => {
@@ -82,7 +94,7 @@ const Forgot = () => {
         <br />
         <form>
           <InputGroup>
-            <label htmlFor="security-question"></label>
+            <label htmlFor="security-question">{formState.security_question}</label>
             <Input
               type="text"
               placeholder="Answer"
