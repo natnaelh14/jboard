@@ -12,8 +12,17 @@ export const Title = styled.div`
     font-weight: 300;
 `;
 
+export const HomeImage = styled.img`
+    height:700px;
+    width: 50%;
+    @media only screen and (max-width:900px) {
+        display: none;
+}
+`;
+
 export const Message = styled.div`
     display: flex;
+    flex-direction: row;
     justify-content: center;
     font-size: 4vh;
     font-weight: 200;
