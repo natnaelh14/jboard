@@ -14,12 +14,16 @@ const Container = styled.div`
 export default class Task extends React.Component {
   render() {
     return (
+      //Draggable takes in two required props, draggableId which we will pass in our task.id and an index.
       <Draggable draggableId={this.props.task.id} index={this.props.index}>
         {(provided, snapshot) => (
           <Container
+      //These props need to be applied to the component that we want to move around in response to user input.
             {...provided.draggableProps}
+      //These props need to be applied to the component that we want to use to be able to control the entire component.
             {...provided.dragHandleProps}
             ref={provided.innerRef}
+      //We use snapshot to change the background color of our task as it drags.
             isDragging={snapshot.isDragging}
           >
             {this.props.task.content}

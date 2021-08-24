@@ -10,14 +10,15 @@ const Reset = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  if (newPassword === confirmPassword) {
-    var formState = {
+    const formState = {
       new_password: newPassword,
     };
-  }
+
   const handleReset = (e) => {
     e.preventDefault();
+    if (newPassword === confirmPassword) {
     console.log(formState);
+    }
   };
 
   return (

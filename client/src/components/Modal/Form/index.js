@@ -14,6 +14,7 @@ export const Form = ({ onSubmit }) => {
   const [offerAmount, setOfferAmount] = useState("");
   const [applicationDate, setApplicationDate] = useState(new Date());
   const [interviewDate, setInterviewDate] = useState(new Date());
+  const [errorMessage, setErrorMessage] = useState("");
 
   const formState = {
     company_name: companyName,
@@ -40,6 +41,8 @@ export const Form = ({ onSubmit }) => {
       if (resData) {
         formState.company_url = resData[0].domain;
         formState.company_logo = resData[0].logo;
+      } else {
+        throw error;
       }
       console.log(formState)
       //Saving New Company
@@ -48,7 +51,11 @@ export const Form = ({ onSubmit }) => {
       // });
       console.log(formState);
     } catch (error) {
-      throw error;
+      setErrorMessage("Please complete the form");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000)
+      return;
     }
   };
 
@@ -95,6 +102,7 @@ export const Form = ({ onSubmit }) => {
         <label htmlFor="number">Offer Amount</label>
         <input
           onChange={(e) => setOfferAmount(e.target.value)}
+          type="number"
           className="form-control"
           id="name"
         />
@@ -125,6 +133,7 @@ export const Form = ({ onSubmit }) => {
           Submit
         </button>
       </div>
+      <p style={{"color": "rgb(249 143 134)", "fontSize": "1.2rem"}} >{formState.errorMessage}</p>
     </form>
   );
 };
