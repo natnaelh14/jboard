@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
+import { Button } from 'react-bootstrap';
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -26,14 +27,19 @@ export default class Task extends React.Component {
       //We use snapshot to change the background color of our task as it drags.
             isDragging={snapshot.isDragging}
           >
-            {this.props.task.content}
+            <div style={{"display": "flex", "flexDirection": "columns"}}>
+              <div style={{"display": "flex", "flex": "1"}} >
+                <img  src="https://logo.clearbit.com/uber.com" alt="..." height="50" />
+              </div>
+              <div>
+                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.content}</p>
+                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.position}</p>
+              </div>
+            </div>
             <br />
-            {this.props.task.position}
-            <br />
-            <br />
-            <button type='button' style={{backgroundColor: '#F7CA18', borderRadius: '25px' }} onClick={() => {console.log('info')}}>Info</button>
+            <Button variant="warning" size="sm" onClick={() => {console.log('info')}} >Info</Button>
             &nbsp; &nbsp;
-            <button type='button' style={{backgroundColor: '#F7CA18', borderRadius: '25px' }} onClick={() => {console.log('delete')}}>Delete</button>
+            <Button variant="danger" size="sm" onClick={() => {console.log('delete')}} >Remove</Button>
           </Container>
         )}
       </Draggable>
