@@ -69,6 +69,7 @@ const typeDefs = gql`
       company_logo: String!
     ):Auth
     verifyEmail(email: String!): Auth
+    updatePassword(username: String!, password: String!): User
   }
 `;
 

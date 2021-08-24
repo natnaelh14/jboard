@@ -37,6 +37,15 @@ export const EMAIL_VERIFY = gql`
   }
 `;
 
+export const UPDATE_PASSWORD = gql`
+  mutation updatePassword($username:String!, $password: String!) {
+    updatePassword(username: $username, password: $password) {
+        _id
+        username
+    }
+  }
+`;
+
 export const ADD_USER = gql`
   mutation addUser(
     $full_name: String!

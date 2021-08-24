@@ -2,6 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const User = require("../models/user");
 const Company = require("../models/company");
 const { signToken } = require("../utils/auth");
+const bcrypt = require("bcrypt");
 
 const resolvers = {
   Query: {
@@ -82,6 +83,18 @@ const resolvers = {
       } catch (e) {
         console.log("log in error", e);
       }
+    },
+    updatePassword: async (parent, {username, password }) => {
+      // Find and update the matching using using the destructured args
+       const user = await User.findOneAndUpdate(
+        { username }, 
+        { password:await bcrypt.hash(password, 10)
+        },
+        // Return the newly updated object instead of the original
+        { new: true }
+      );
+      console.log("test", user)
+        return user
     }
   },
 };
