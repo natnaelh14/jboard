@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
@@ -54,18 +53,6 @@ userSchema.pre("save", async function (next) {
   }
   next();
 });
-
-// userSchema.pre("findOneAndUpdate", async function (next) {
-//   try {
-//     if (this.password) {
-//       const saltRounds = 10;
-//       this.password = await bcrypt.hash(this.password, saltRounds);
-//     }
-//     next();
-//   } catch (err) {
-//     return next(err);
-//   }
-// });
 
 userSchema.methods.isCorrectPassword = async function (password) {
   return await bcrypt.compare(password, this.password);

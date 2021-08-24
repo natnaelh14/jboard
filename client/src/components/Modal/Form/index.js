@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ADD_COMPANY } from "../../../utils/mutations";
 import StatusOptionList from "../../StatusOptionList";
 import { useMutation } from "@apollo/client";
 import Swal from 'sweetalert2';
@@ -30,7 +29,6 @@ export const Form = ({ onSubmit }) => {
     company_url:""
   };
 
-  const [addCompany, { error, data }] = useMutation(ADD_COMPANY);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -45,15 +43,9 @@ export const Form = ({ onSubmit }) => {
         formState.company_logo = resData[0].logo;
       } 
       else {
-        throw error;
+        throw Error;
       }
       console.log(formState)
-      Swal.fire("Good job!", "You clicked the button!", "success");
-      //Saving New Company
-      // const { data } = await addCompany({
-      //   variables: { ...formState },
-      // });
-      console.log(formState);
       //pop up message for successfully saving job info
       Swal.fire({
         position: 'center',
