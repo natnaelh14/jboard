@@ -64,7 +64,7 @@ function Routes() {
           {Auth.loggedIn() ? <Redirect to="/dashboard" /> : <Forgot /> }
         </Route>
         <Route exact path="/reset">
-          <Reset />
+          {Auth.loggedIn() ? <Reset /> : <Redirect to="/" /> } 
         </Route>
       </Switch>
     </ApolloProvider>

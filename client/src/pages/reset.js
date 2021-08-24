@@ -5,6 +5,8 @@ import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import Auth from '../utils/auth';
+
 
 const Reset = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -29,7 +31,7 @@ const Reset = () => {
         </Title>
         <form onClick={handleReset}>
           <InputGroup>
-            <label htmlFor="forgot-username">Username: natnael_haile</label>
+            <label htmlFor="forgot-username">Username: {Auth.getUser().data.username}</label>
           </InputGroup>
           <InputGroup>
             <label htmlFor="reset-password">New Password</label>

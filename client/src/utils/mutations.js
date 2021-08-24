@@ -12,6 +12,18 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const RESET_PASSWORD = gql`
+  mutation reset($username: String!, $password: String!) {
+    reset(username: $username, password: $password) {
+      token
+      user {
+        _id
+        username
+      }
+    }
+  }
+`;
+
 export const EMAIL_VERIFY = gql`
   mutation verifyEmail($forgotEmail: String!) {
     verifyEmail(email: $forgotEmail) {

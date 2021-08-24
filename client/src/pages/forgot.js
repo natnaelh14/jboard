@@ -6,6 +6,7 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { EMAIL_VERIFY } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
+import Auth from '../utils/auth'; //import Auth feature that we created, which will be the decoder
 
 const Forgot = () => {
   const [forgotEmail, setForgotEmail] = useState("");
@@ -62,8 +63,10 @@ const Forgot = () => {
 
   const handleForgot = async (e) => {
     e.preventDefault();
+    
     try {
       if ((formState.forgotAnswer).toLowerCase().trim() === data.verifyEmail.user.security_ans) {
+        Auth.login(data.verifyEmail.token);
         window.location.assign('/reset');
       } else {
         throw error;

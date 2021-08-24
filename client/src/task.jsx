@@ -4,12 +4,12 @@ import { Draggable } from "react-beautiful-dnd";
 import { Button } from 'react-bootstrap';
 
 const Container = styled.div`
-  border: 1px solid lightgrey;
+  border: 1px solid darkgrey;
   border-radius: 2px;
   padding: 10px;
   height: 130px;
   background-color: ${(props) =>
-    props.isDragging ? "rgb(249 143 134)" : "white"};
+    props.isDragging ? "rgb(249 143 134)" : "#ece8dd"};
 `;
 
 export default class Task extends React.Component {

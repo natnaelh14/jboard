@@ -20,8 +20,11 @@ const Navbar = () => {
         {Auth.loggedIn() ? (
         <>
           <ul className="navbar-list-desktop">
-            <li>
+            <li class="dropdown" >
               <a  >{Auth.getUser().data.full_name}</a>
+              <div class="dropdown-content">
+                <a href="/reset" >Update Password</a>
+              </div>  
             </li>
             <li>
               <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
@@ -48,6 +51,9 @@ const Navbar = () => {
             </li>
             <li>
               <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
+            </li>
+            <li>
+              <Link to='/reset' >Update Password</Link>
             </li>
             <li>
               <Link onClick={logout} >Logout</Link>
