@@ -20,17 +20,17 @@ const Navbar = () => {
         {Auth.loggedIn() ? (
         <>
           <ul className="navbar-list-desktop">
-            <li class="dropdown" >
-              <a  >{Auth.getUser().data.full_name}</a>
-              <div class="dropdown-content">
+            <li className="dropdown" >
+              <span  >{Auth.getUser().data.full_name}</span>
+              <div className="dropdown-content">
                 <a href="/reset" >Update Password</a>
               </div>  
             </li>
             <li>
-              <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
+              <a href={Auth.getUser().data.resume_url} target="_blank" rel="noopener noreferrer" >Resume</a>
             </li>
             <li>
-              <Link><a onClick={logout} >Logout</a></Link>
+              <span onClick={logout} >Logout</span>
             </li>
           </ul>
           <span
@@ -47,16 +47,16 @@ const Navbar = () => {
             }
           >
             <li>
-              <a>{Auth.getUser().data.full_name}</a>
+              <span>{Auth.getUser().data.full_name}</span>
             </li>
             <li>
-              <a href={Auth.getUser().data.resume_url} target="_blank" >Resume</a>
+              <a href={Auth.getUser().data.resume_url} target="_blank" rel="noopener noreferrer" >Resume</a>
             </li>
             <li>
               <Link to='/reset' >Update Password</Link>
             </li>
             <li>
-              <Link onClick={logout} >Logout</Link>
+              <button onClick={logout} >Logout</button>
             </li>
           </ul>
         </>

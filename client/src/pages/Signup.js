@@ -9,6 +9,7 @@ import OptionList from "../components/OptionList";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
+import Swal from 'sweetalert2';
 
 const Signup = () => {
   const [image, setImage] = useState("");
@@ -26,7 +27,7 @@ const Signup = () => {
     password: password.trim(),
     security_ques: securityQues,
     security_ans: securityAns.toLowerCase().trim(),
-    resume_url: '',
+    resume_url: "",
   };
 
   //Invoke 'use mutation' hook that was declared in the utils/mutation file.
@@ -44,15 +45,23 @@ const Signup = () => {
         resumeData
       );
       if (resumeRes) {
-        formState.resume_url = resumeRes.data.secure_url
+        formState.resume_url = resumeRes.data.secure_url;
       }
       //Saving New User
       const { data } = await addUser({
         variables: { ...formState },
       });
       Auth.login(data.addUser.token);
+
     } catch (e) {
-      console.log('unable to sign up', e);
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Unable to sign up, Please review your input.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log("unable to sign up", e);
     }
   };
 

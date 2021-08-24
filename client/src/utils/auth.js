@@ -1,6 +1,18 @@
 //Use this to decode a token and get the user's information out of it.
 import decode from 'jwt-decode';
+import Swal from "sweetalert2";
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "center",
+  showConfirmButton: false,
+  timer: 1000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
 //Create a new class to instantiate for a user.
 class AuthService {
   //Get user data from JSON web token by decoding it.
@@ -31,9 +43,13 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  login(idToken) {
+  async login(idToken) {
     //Saves users token to localStorage and reloads the application for logged in status to take effect.
     localStorage.setItem('id_token', idToken);
+    await Toast.fire({
+      icon: "success",
+      title: "Logged in successfully",
+    });
     window.location.assign('/dashboard');
   }
 

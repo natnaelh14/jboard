@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ADD_COMPANY } from "../../../utils/mutations";
 import StatusOptionList from "../../StatusOptionList";
 import { useMutation } from "@apollo/client";
+import Swal from 'sweetalert2';
 
 export const Form = ({ onSubmit }) => {
   const [companyName, setCompanyName] = useState("");
@@ -36,21 +37,40 @@ export const Form = ({ onSubmit }) => {
     try {
       const company = formState.company_name;
       let issuesURL = `https://autocomplete.clearbit.com/v1/companies/suggest?query=${company}`;
+      if (!issuesURL) return
       const response = await fetch(issuesURL);
       const resData = await response.json();
       if (resData) {
         formState.company_url = resData[0].domain;
         formState.company_logo = resData[0].logo;
-      } else {
+      } 
+      else {
         throw error;
       }
       console.log(formState)
+      Swal.fire("Good job!", "You clicked the button!", "success");
       //Saving New Company
       // const { data } = await addCompany({
       //   variables: { ...formState },
       // });
       console.log(formState);
+      //pop up message for successfully saving job info
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Job added',
+        showConfirmButton: false,
+        timer: 1500
+      })
     } catch (error) {
+      //error message on form registration.
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Unable to add company, Please review your input.',
+        showConfirmButton: false,
+        timer: 1500
+      })
       setErrorMessage("Please complete the form");
       setTimeout(() => {
         setErrorMessage("");
@@ -61,9 +81,10 @@ export const Form = ({ onSubmit }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <p style={{ textAlign: "center", fontWeight: "bold" }}>NEW COMPANY</p>
+      <p style={{ textAlign: "center", fontWeight: "bold" }}>ADD JOB</p>
+      <p style={{"color": "rgb(249 143 134)", "fontSize": "1.2rem"}} >{formState.errorMessage}</p>
       <div className="form-group">
-        <label htmlFor="name">Company Name</label>
+        <label htmlFor="text">Company Name</label>
         <input
           onChange={(e) => setCompanyName(e.target.value)}
           className="form-control"
@@ -71,7 +92,7 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="name">Job Position</label>
+        <label htmlFor="text">Job Position</label>
         <input
           onChange={(e) => setJobPosition(e.target.value)}
           className="form-control"
@@ -79,11 +100,11 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="name">Job Status</label>
+        <label htmlFor="text">Job Status</label>
         <StatusOptionList selectedStatus={setOptionList} />
       </div>
       <div className="form-group">
-        <label htmlFor="name">Job Comment</label>
+        <label htmlFor="text">Job Comment</label>
         <input
           onChange={(e) => setJobComment(e.target.value)}
           className="form-control"
@@ -91,7 +112,7 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="name">Label</label>
+        <label htmlFor="text">Label</label>
         <input
           onChange={(e) => setLabel(e.target.value)}
           className="form-control"
@@ -108,7 +129,7 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="name">Application Date</label>
+        <label htmlFor="date">Application Date</label>
         <DatePicker
           selected={applicationDate}
           dateFormat="MM/dd/yyyy"
@@ -116,7 +137,7 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="name">Interview Date</label>
+        <label htmlFor="date">Interview Date</label>
         <DatePicker
           selected={interviewDate}
           dateFormat="MM/dd/yyyy"
@@ -133,7 +154,6 @@ export const Form = ({ onSubmit }) => {
           Submit
         </button>
       </div>
-      <p style={{"color": "rgb(249 143 134)", "fontSize": "1.2rem"}} >{formState.errorMessage}</p>
     </form>
   );
 };
