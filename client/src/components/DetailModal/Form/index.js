@@ -7,31 +7,41 @@ import Swal from "sweetalert2";
 import { ADD_JOB } from "../../../utils/mutations";
 import { MixedCheckbox } from "@reach/checkbox";
 
-export const Form = ({ onSubmit }) => {
-  const [companyName, setCompanyName] = useState("");
-  const [jobPosition, setJobPosition] = useState("");
-  const [optionList, setOptionList] = useState("");
-  const [jobComment, setJobComment] = useState("");
-  const [jobLabel, setLabel] = useState("");
-  const [offerAmount, setOfferAmount] = useState("");
-  const [applicationDate, setApplicationDate] = useState(new Date());
-  const [interviewDate, setInterviewDate] = useState(new Date());
+export const Form = ({ onSubmit, job_details }) => {
+  // const [companyName, setCompanyName] = useState(job_details?.company_name?? "");
+  const [jobPosition, setJobPosition] = useState(
+    job_details?.job_position ?? ""
+  );
+  // const [companyLogo, setCompanyLogo] = useState(job_details?.company_logo??"");
+  const [companyUrl, setCompanyUrl] = useState(job_details?.company_url ?? "");
+  const [optionList, setOptionList] = useState(job_details?.job_status ?? "");
+  const [jobComment, setJobComment] = useState(job_details?.job_comment ?? "");
+  const [jobLabel, setLabel] = useState(job_details?.job_label ?? "");
+  const [offerAmount, setOfferAmount] = useState(
+    job_details?.offer_amount ?? ""
+  );
+  const [applicationDate, setApplicationDate] = useState(
+    job_details?.application_date ?? new Date()
+  );
+  const [interviewDate, setInterviewDate] = useState(
+    job_details?.interview_date ?? new Date()
+  );
   const [addJob, { error, data }] = useMutation(ADD_JOB);
 
   const formState = {
-    company_name: companyName,
+    company_name: job_details.company_name,
     job_position: jobPosition,
     job_status: optionList,
     job_comment: jobComment,
     label: jobLabel,
     offer_amount: Number.parseInt(offerAmount),
-    applicationDate,
-    interviewDate,
-    company_logo: "",
-    company_url: "",
+    applicationDate: applicationDate,
+    interviewDate: interviewDate,
+    company_logo: job_details.company_logo,
+    company_url: companyUrl,
   };
 
-  const handleRegister = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
       {
@@ -39,19 +49,6 @@ export const Form = ({ onSubmit }) => {
           ? (formState.label = "favorite")
           : (formState.label = "");
       }
-      const company = formState.company_name;
-      let issuesURL = `https://autocomplete.clearbit.com/v1/companies/suggest?query=${company}`;
-      if (!issuesURL) return;
-      const response = await fetch(issuesURL);
-      const resData = await response.json();
-      if (resData) {
-        formState.company_url = resData[0].domain;
-        formState.company_logo = resData[0].logo;
-      } else {
-        throw Error;
-      }
-      console.log(formState);
-
       try {
         let { data } = await addJob({
           variables: { ...formState },
@@ -83,21 +80,23 @@ export const Form = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={onSubmit} >
-      <div class="avatar" >
-        <img
-          src="https://logo.clearbit.com/amazon.com"
-          alt="Avatar"
-          className="center-block"
-        />
+    <form onSubmit={onSubmit}>
+      <div class="avatar">
+        <a
+          href={`https://www.${formState.company_url}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          <img
+            src={formState.company_logo}
+            alt="Avatar"
+            className="center-block"
+          />
+        </a>
       </div>
       <div className="form-group">
-        <label htmlFor="text">Company Name</label>
-        <input
-          onChange={(e) => setCompanyName(e.target.value)}
-          className="form-control"
-          id="name"
-        />
+        <h1 className="text-center">{formState.company_name}</h1>
       </div>
       <div className="form-group">
         <label htmlFor="text">Job Position</label>
@@ -105,6 +104,7 @@ export const Form = ({ onSubmit }) => {
           onChange={(e) => setJobPosition(e.target.value)}
           className="form-control"
           id="name"
+          value={formState.job_position}
         />
       </div>
       <div className="form-group">
@@ -112,11 +112,21 @@ export const Form = ({ onSubmit }) => {
         <StatusOptionList selectedStatus={setOptionList} />
       </div>
       <div className="form-group">
+        <label htmlFor="text">Job Url</label>
+        <input
+          onChange={(e) => setCompanyUrl(e.target.value)}
+          className="form-control"
+          id="name"
+          value={formState.company_url}
+        />
+      </div>
+      <div className="form-group">
         <label htmlFor="text">Job Comment</label>
         <input
           onChange={(e) => setJobComment(e.target.value)}
           className="form-control"
           id="name"
+          value={formState.job_comment}
         />
       </div>
       <div className="form-group">
@@ -126,6 +136,7 @@ export const Form = ({ onSubmit }) => {
           type="number"
           className="form-control"
           id="name"
+          value={formState.offer_amount}
         />
       </div>
       <div className="form-group">
@@ -159,20 +170,10 @@ export const Form = ({ onSubmit }) => {
       <div className="form-group">
         <button
           className="form-control btn btn-primary"
-          onClick={console.log("Hello")}
+          onClick={handleUpdate}
           type="submit"
         >
-          EDIT
-        </button>
-      </div>
-      <br />
-      <div className="form-group">
-        <button
-          className="form-control btn btn-primary"
-          onClick={handleRegister}
-          type="submit"
-        >
-          Submit
+          UPDATE
         </button>
       </div>
     </form>

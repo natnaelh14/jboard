@@ -3,7 +3,14 @@ import { Modal } from '../Modal/index';
 import TriggerButton from '../TriggerButton';
 
 export default class DetailModal extends Component {
-  state = { isShown: false };
+  
+  state 
+  constructor(props){
+    super(props)
+    this.state = { isShown: false };
+  }
+
+  
   showModal = () => {
     this.setState({ isShown: true }, () => {
       this.closeButton.focus();
@@ -38,13 +45,15 @@ export default class DetailModal extends Component {
         />
         {this.state.isShown ? (
           <Modal
-            onSubmit={this.props.onSubmit}
+            // onSubmit={this.props.onSubmit}
             modalRef={(n) => (this.modal = n)}
             buttonRef={(n) => (this.closeButton = n)}
             closeModal={this.closeModal}
             onKeyDown={this.onKeyDown}
-            onClickOutside={this.onClickOutside}
-          />
+            onClickOutside={this.onClickOutside}>
+              {this.props.children}
+            </Modal>
+          
         ) : null}
       </React.Fragment>
     );

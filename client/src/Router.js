@@ -12,7 +12,7 @@ import Auth from "./utils/auth";
 import { setContext } from "@apollo/client/link/context";
 import Forgot from "./pages/forgot";
 import Home from "./pages/Home";
-import Dashboard from "./pages/dashboard";
+// import Dashboard from "./pages/dashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Reset from "./pages/reset";

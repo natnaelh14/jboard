@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 import { Button } from 'react-bootstrap';
 import DetailModal from "./components/DetailModal/DetailModal/index";
+import Form from "./components/DetailModal/Form";
 
 const Container = styled.div`
   border: 1px solid darkgrey;
@@ -10,7 +11,7 @@ const Container = styled.div`
   padding: 10px;
   height: 130px;
   background-color: ${(props) =>
-    props.isDragging ? "rgb(249 143 134)" : "#fdeab0"};
+    props.isDragging ? "rgb(249 143 134)" : "white" };
 `;
 
 export default class Task extends React.Component {
@@ -30,16 +31,18 @@ export default class Task extends React.Component {
           >
             <div style={{"display": "flex", "flexDirection": "columns"}}>
               <div style={{"display": "flex", "flex": "1"}} >
-                <img  src="https://logo.clearbit.com/uber.com" alt="..." height="50" />
+              <a href={`https://www.${this.props.task.company_url}`} target="_blank" rel="noopener noreferrer" ><img  src={this.props.task.company_logo} alt="logo" height="50" /></a>
               </div>
               <div>
-                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.content}</p>
-                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.position}</p>
+                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.company_name}</p>
+                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.job_position}</p>
               </div>
             </div>
             <br />
             <div style={{"display": "flex", "flexDirection": "columns"}}>
-              <DetailModal triggerText="INFO" />
+              <DetailModal triggerText="INFO">
+              <Form onSubmit={()=>{}} job_details={this.props.task}/>
+              </DetailModal>
               &nbsp; &nbsp;
               <Button variant="danger" size="sm" onClick={() => {console.log('delete')}} >Remove</Button>
             </div>
