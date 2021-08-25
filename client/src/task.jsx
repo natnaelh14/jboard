@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 import { Button } from 'react-bootstrap';
+import DetailModal from "./components/DetailModal/DetailModal/index";
 
 const Container = styled.div`
   border: 1px solid darkgrey;
@@ -37,9 +38,11 @@ export default class Task extends React.Component {
               </div>
             </div>
             <br />
-            <Button variant="warning" size="sm" onClick={() => {console.log('info')}} >Info</Button>
-            &nbsp; &nbsp;
-            <Button variant="danger" size="sm" onClick={() => {console.log('delete')}} >Remove</Button>
+            <div style={{"display": "flex", "flexDirection": "columns"}}>
+              <DetailModal triggerText="INFO" />
+              &nbsp; &nbsp;
+              <Button variant="danger" size="sm" onClick={() => {console.log('delete')}} >Remove</Button>
+            </div>
           </Container>
         )}
       </Draggable>
