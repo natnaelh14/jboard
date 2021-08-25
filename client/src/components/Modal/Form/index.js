@@ -3,8 +3,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import StatusOptionList from "../../StatusOptionList";
 import { useMutation } from "@apollo/client";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { ADD_JOB } from "../../../utils/mutations";
+import { MixedCheckbox} from "@reach/checkbox";
 
 export const Form = ({ onSubmit }) => {
   const [companyName, setCompanyName] = useState("");
@@ -16,7 +17,7 @@ export const Form = ({ onSubmit }) => {
   const [applicationDate, setApplicationDate] = useState(new Date());
   const [interviewDate, setInterviewDate] = useState(new Date());
   const [errorMessage, setErrorMessage] = useState("");
-  const [addJob,{error,data}] = useMutation(ADD_JOB)
+  const [addJob, { error, data }] = useMutation(ADD_JOB);
 
   const formState = {
     company_name: companyName,
@@ -27,58 +28,56 @@ export const Form = ({ onSubmit }) => {
     offer_amount: Number.parseInt(offerAmount),
     applicationDate,
     interviewDate,
-    company_logo:"",
-    company_url:""
+    company_logo: "",
+    company_url: "",
   };
-
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      {(formState.label) ? formState.label="favorite" : formState.label=""}
       const company = formState.company_name;
       let issuesURL = `https://autocomplete.clearbit.com/v1/companies/suggest?query=${company}`;
-      if (!issuesURL) return
+      if (!issuesURL) return;
       const response = await fetch(issuesURL);
       const resData = await response.json();
       if (resData) {
         formState.company_url = resData[0].domain;
         formState.company_logo = resData[0].logo;
-      } 
-      else {
+      } else {
         throw Error;
       }
-      console.log(formState)
+      console.log(formState);
 
-     try {
-      let {data} = await addJob({
-        variables: {...formState}
-      })
-      console.log('created job', data)
-
-     } catch (error) {
-      console.log('addjob mutation failed', error)       
-     }
+      try {
+        let { data } = await addJob({
+          variables: { ...formState },
+        });
+        console.log("created job", data);
+      } catch (error) {
+        console.log("addjob mutation failed", error);
+      }
       //pop up message for successfully saving job info
       Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Job added',
+        position: "center",
+        icon: "success",
+        title: "Job added",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
     } catch (error) {
       //error message on form registration.
       Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Unable to add company, Please review your input.',
+        position: "center",
+        icon: "error",
+        title: "Unable to add company, Please review your input.",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       setErrorMessage("Please complete the form");
       setTimeout(() => {
         setErrorMessage("");
-      }, 2000)
+      }, 2000);
       return;
     }
   };
@@ -86,7 +85,9 @@ export const Form = ({ onSubmit }) => {
   return (
     <form onSubmit={onSubmit}>
       <p style={{ textAlign: "center", fontWeight: "bold" }}>ADD JOB</p>
-      <p style={{"color": "rgb(249 143 134)", "fontSize": "1.2rem"}} >{formState.errorMessage}</p>
+      <p style={{ color: "rgb(249 143 134)", fontSize: "1.2rem" }}>
+        {formState.errorMessage}
+      </p>
       <div className="form-group">
         <label htmlFor="text">Company Name</label>
         <input
@@ -115,13 +116,15 @@ export const Form = ({ onSubmit }) => {
           id="name"
         />
       </div>
-      <div className="form-group">
-        <label htmlFor="text">Label</label>
-        <input
-          onChange={(e) => setLabel(e.target.value)}
-          className="form-control"
-          id="name"
-        />
+      <div className="form-group form-check">
+        <label>Favorite</label>
+        <MixedCheckbox
+            value="favorite"
+            checked={jobLabel}
+            onChange={(event) => {
+              setLabel(event.target.checked);
+            }}
+          />
       </div>
       <div className="form-group">
         <label htmlFor="number">Offer Amount</label>

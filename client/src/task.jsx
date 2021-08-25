@@ -9,7 +9,7 @@ const Container = styled.div`
   padding: 10px;
   height: 130px;
   background-color: ${(props) =>
-    props.isDragging ? "rgb(249 143 134)" : "#ece8dd"};
+    props.isDragging ? "rgb(249 143 134)" : "#fdeab0"};
 `;
 
 export default class Task extends React.Component {

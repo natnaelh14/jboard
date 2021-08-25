@@ -20,7 +20,7 @@ export default function JobsDashboard() {
   }, []);
 
   const job_columns_order = [
-    "other",
+    "favorite",
     "applied",
     "interview",
     "inactive",

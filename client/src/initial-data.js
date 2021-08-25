@@ -106,13 +106,13 @@ const initialData = {
   columns: {
     "column-1": {
       id: "column-1",
-      title: "APPLIED",
+      title: "FAVORITE",
       //the array helps with ownership, the second benefit is maintain order.
       taskIds: ["task-1", "task-2", "task-3", "task-4"],
     },
     "column-2": {
       id: "column-2",
-      title: "PRIORITY",
+      title: "APPLIED",
       taskIds: ["task-5", "task-6", "task-7", "task-8"],
     },
     "column-3": {

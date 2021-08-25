@@ -7,10 +7,6 @@ const options = [
     label: "Applied",
   },
   {
-    value: "Priority",
-    label: "Priority",
-  },
-  {
     value: "Interview",
     label: "Interview",
   },

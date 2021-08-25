@@ -23,15 +23,6 @@ async function startApolloServer() {
   server.applyMiddleware({ app });
 
   db.once("open", () => {
-    process.once("SIGINT", function (_code) {
-      console.log("SIGINT received...");
-      app.close();
-    });
-
-    process.once("SIGTERM", function (_code) {
-      console.log("SIGTERM received...");
-      app.close();
-    });
     new Promise((resolve) => app.listen(PORT, resolve));
     console.log(`API server running on port ${PORT}!`);
     console.log(

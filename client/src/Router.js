@@ -54,7 +54,7 @@ function Routes() {
           {Auth.loggedIn() ? <Redirect to="/dashboard" /> : <Home /> }
         </Route>
         <Route exact path="/dashboard">
-          {Auth.loggedIn() ? <JobsDashboard /> : <Redirect to="/" /> }
+          {Auth.loggedIn() ? <Dashboard /> : <Redirect to="/" /> }
         </Route>
         <Route exact path="/login">
           {Auth.loggedIn() ? <Redirect to="/dashboard" /> : <Login /> }
