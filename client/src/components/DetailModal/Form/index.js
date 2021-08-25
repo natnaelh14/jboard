@@ -7,13 +7,13 @@ import Swal from "sweetalert2";
 import { ADD_JOB } from "../../../utils/mutations";
 import { MixedCheckbox } from "@reach/checkbox";
 
-export const Form = ({ onSubmit }) => {
-  const [companyName, setCompanyName] = useState("");
-  const [jobPosition, setJobPosition] = useState("");
-  const [optionList, setOptionList] = useState("");
-  const [jobComment, setJobComment] = useState("");
-  const [jobLabel, setLabel] = useState("");
-  const [offerAmount, setOfferAmount] = useState("");
+export const Form = ({ onSubmit , job_details}) => {
+  const [companyName, setCompanyName] = useState(job_details?.company_name?? "");
+  const [jobPosition, setJobPosition] = useState(job_details?.job_position??"");
+  const [optionList, setOptionList] = useState(job_details?.job_status??"");
+  const [jobComment, setJobComment] = useState(job_details?.job_comment??"");
+  const [jobLabel, setLabel] = useState(job_details?.job_label??"");
+  const [offerAmount, setOfferAmount] = useState(job_details?.offer_amount??"");
   const [applicationDate, setApplicationDate] = useState(new Date());
   const [interviewDate, setInterviewDate] = useState(new Date());
   const [addJob, { error, data }] = useMutation(ADD_JOB);
@@ -96,7 +96,7 @@ export const Form = ({ onSubmit }) => {
         <input
           onChange={(e) => setCompanyName(e.target.value)}
           className="form-control"
-          id="name"
+          id="name" value={formState.company_name}
         />
       </div>
       <div className="form-group">
@@ -104,7 +104,7 @@ export const Form = ({ onSubmit }) => {
         <input
           onChange={(e) => setJobPosition(e.target.value)}
           className="form-control"
-          id="name"
+          id="name" value={formState.job_position}
         />
       </div>
       <div className="form-group">
@@ -116,7 +116,7 @@ export const Form = ({ onSubmit }) => {
         <input
           onChange={(e) => setJobComment(e.target.value)}
           className="form-control"
-          id="name"
+          id="name" value={formState.job_comment}
         />
       </div>
       <div className="form-group">
@@ -125,7 +125,7 @@ export const Form = ({ onSubmit }) => {
           onChange={(e) => setOfferAmount(e.target.value)}
           type="number"
           className="form-control"
-          id="name"
+          id="name" value={formState.offer_amount}
         />
       </div>
       <div className="form-group">

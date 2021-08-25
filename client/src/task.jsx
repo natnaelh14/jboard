@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 import { Button } from 'react-bootstrap';
 import DetailModal from "./components/DetailModal/DetailModal/index";
+import Form from "./components/DetailModal/Form";
 
 const Container = styled.div`
   border: 1px solid darkgrey;
@@ -39,7 +40,9 @@ export default class Task extends React.Component {
             </div>
             <br />
             <div style={{"display": "flex", "flexDirection": "columns"}}>
-              <DetailModal triggerText="INFO" />
+              <DetailModal triggerText="INFO">
+              <Form onSubmit={()=>{}} job_details={this.props.task}/>
+              </DetailModal>
               &nbsp; &nbsp;
               <Button variant="danger" size="sm" onClick={() => {console.log('delete')}} >Remove</Button>
             </div>
