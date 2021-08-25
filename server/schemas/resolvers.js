@@ -95,6 +95,7 @@ const resolvers = {
         return { token, user };
       } catch (e) {
         console.log("log in error", e);
+        throw new Error(e)
       }
     },
     verifyEmail: async (parent, { email }) => {
