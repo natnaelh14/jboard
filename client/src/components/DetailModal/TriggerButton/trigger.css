@@ -1,0 +1,40 @@
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.modal-button {
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    color: #000;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    border: 2px solid #f7ca18;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+  .modal-button:hover {
+    color: #000 !important;
+    background-color: transparent;
+    text-shadow: ntwo;
+  }
+  .modal-button:hover:before {
+    top: 0%;
+    bottom: auto;
+    height: 100%;
+  }
+  .modal-button:before {
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 0px;
+    width: 100%;
+    z-index: -1;
+    content: "";
+    color: #000 !important;
+    background: #f7ca18;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
