@@ -4,95 +4,84 @@ import { QUERY_JOBS } from "../utils/queries";
 import Dashboard from "../pages/dashboard";
 
 export default function JobsDashboard() {
-  const { error, data, loading } = useQuery(QUERY_JOBS, {
-    variables: {
-      jobsFilters: {},
-    },
-  });
-  const [initial_state, setInitialState] = useState(null);
+	const { error, data, loading } = useQuery(QUERY_JOBS, {
+		variables: {
+			jobsFilters: {},
+		},
+	});
 
-  useEffect(() => {
-    reloadJobs();
+	const job_columns_order = ["favorite", "applied", "interview", "inactive", "offer"];
 
-    // return () => {
-    //   cleanup;
-    // };
-  }, []);
+	const showDashboard = (data) => {
+		try {
+			console.log("data from apollo server", data);
 
-  const job_columns_order = [
-    "favorite",
-    "applied",
-    "interview",
-    "inactive",
-    "offer",
-  ];
-  const reloadJobs = async () => {
-    try {
-      if (!loading) {
-        console.log("data from apollo server", data);
-        const jobs = data.jobs;
-        const _initial_state = reduceJobsToTask(jobs);
-        setInitialState(_initial_state);
-        console.log({ initial_state });
-      }
-    } catch (error) {
-      console.log("failed to reloadJobs", error);
-    }
-  };
+			const _initial_state = reduceJobsToTask(data.jobs);
 
-  const reduceJobsToTask = (jobs) => {
-    return jobs.reduce(
-      (initial_state, job) => {
-        let temp_task = {};
-        temp_task[job._id] = job;
-        initial_state.tasks = Object.assign(initial_state.tasks, temp_task);
+			return makeDashboard(_initial_state, job_columns_order);
+		} catch (error) {
+			console.log("failed to reloadJobs", error);
+			return <p>jobsDashboard failed to load</p>;
+		}
+	};
 
-        //check column does not exist
-        if (!Object.keys(initial_state.columns).includes(job.job_status)) {
-          initial_state.columns[job.job_status] = makeColumn(job.job_status);
-        }
+	const reduceJobsToTask = (jobs) => {
+		let columns = job_columns_order.reduce((columns_map, col_name) => {
+			columns_map[col_name] = makeColumn(col_name);
+			return columns_map;
+		}, {});
 
-        //add the job._id to taskIds
-        initial_state.columns[job.job_status].taskIds.push(job._id);
+		return jobs.reduce(
+			(initial_state, job) => {
+				let temp_task = {};
+				temp_task[job._id] = job;
+				initial_state.tasks = Object.assign(initial_state.tasks, temp_task);
 
-        return initial_state;
-      },
-      { tasks: {}, columns: {} }
-    );
-  };
+        //add job to column taskIds
+        initial_state.columns[job.job_status.toLowerCase()].taskIds.push(job._id)
 
-  const makeColumn = (key) => {
-    return {
-      id: key,
-      title: key,
-      //the array helps with ownership, the second benefit is maintain order.
-      taskIds: [],
-    };
-  };
-  const updateJob = () => {
-    //   code to update job
-  };
-  const deleteJob = () => {
-    //   code to update job
-  };
+				return initial_state;
+			},
+			{ tasks: {}, columns }
+		);
+	};
 
-  const getJobDetail = () => {
-    ///job details
-  };
+	const makeColumn = (key) => {
+		return {
+			id: key.toLowerCase(),
+			title: key.toLowerCase(),
+			//the array helps with ownership, the second benefit is maintain order.
+			taskIds: [],
+		};
+	};
+	const updateJob = () => {
+		//   code to update job
+	};
+	const deleteJob = () => {
+		//   code to update job
+	};
 
-  const showDashboard = (show) => {
-      console.log('initial state')
-    if (!show) return;
-    else
-      return (
-        <>
-          <Dashboard
-            initial_state={initial_state}
-            columnOrder={job_columns_order}
-          ></Dashboard>
-        </>
-      );
-  };
+	const getJobDetail = () => {
+		///job details
+	};
 
-  return <>{showDashboard(initial_state)}</>;
+	const makeDashboard = (initial_state, job_columns_order) => {
+		return (
+			<>
+				<Dashboard initial_state={initial_state} columnOrder={job_columns_order}></Dashboard>
+			</>
+		);
+	};
+
+	if (loading) {
+		console.log("jobDashboard loading...");
+		return <p>Loading.....</p>;
+	}
+
+	if (error) {
+		console.log("error loading jobDashboard");
+		return <p>JobsDashboard failed to load</p>;
+	}
+
+	return showDashboard(data);
 }
