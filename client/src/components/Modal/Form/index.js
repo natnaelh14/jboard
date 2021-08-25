@@ -16,7 +16,6 @@ export const Form = ({ onSubmit }) => {
   const [offerAmount, setOfferAmount] = useState("");
   const [applicationDate, setApplicationDate] = useState(new Date());
   const [interviewDate, setInterviewDate] = useState(new Date());
-  const [errorMessage, setErrorMessage] = useState("");
   const [addJob, { error, data }] = useMutation(ADD_JOB);
 
   const formState = {
@@ -57,16 +56,17 @@ export const Form = ({ onSubmit }) => {
       } catch (error) {
         console.log("addjob mutation failed", error);
       }
-      //pop up message for successfully saving job info
-      Swal.fire({
+      //Pop up message for successfully saving job info
+      await Swal.fire({
         position: "center",
         icon: "success",
         title: "Job added",
         showConfirmButton: false,
         timer: 1500,
       });
+      window.location.assign("/dashboard");  
     } catch (error) {
-      //error message on form registration.
+      //Error message on form registration.
       Swal.fire({
         position: "center",
         icon: "error",
@@ -74,11 +74,7 @@ export const Form = ({ onSubmit }) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      setErrorMessage("Please complete the form");
-      setTimeout(() => {
-        setErrorMessage("");
-      }, 2000);
-      return;
+      // return;
     }
   };
 
@@ -116,16 +112,6 @@ export const Form = ({ onSubmit }) => {
           id="name"
         />
       </div>
-      <div className="form-group form-check">
-        <label>Favorite</label>
-        <MixedCheckbox
-            value="favorite"
-            checked={jobLabel}
-            onChange={(event) => {
-              setLabel(event.target.checked);
-            }}
-          />
-      </div>
       <div className="form-group">
         <label htmlFor="number">Offer Amount</label>
         <input
@@ -150,6 +136,17 @@ export const Form = ({ onSubmit }) => {
           dateFormat="MM/dd/yyyy"
           onChange={(date) => setInterviewDate(date)}
         />
+      </div>
+      <br />
+      <div className="form-group form-check">
+        <label>Favorite</label>&nbsp;&nbsp;
+        <MixedCheckbox
+            value="favorite"
+            checked={jobLabel}
+            onChange={(event) => {
+              setLabel(event.target.checked);
+            }}
+          />
       </div>
       <br />
       <div className="form-group">
