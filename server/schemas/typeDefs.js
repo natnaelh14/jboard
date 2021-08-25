@@ -66,6 +66,18 @@ const typeDefs = gql`
     ): Auth
     verifyEmail(email: String!): Auth
     updatePassword(username: String!, password: String!): User
+    updateJob(
+      company_name: String!
+      job_position: String!
+      job_status: String!
+      job_comment: String
+      label: String
+      offer_amount: Int!
+      application_date: ISODate
+      interview_date: ISODate
+      company_url: String
+      company_logo: String
+    ):Job
     addJob(
       company_name: String!
       job_position: String!
@@ -77,7 +89,6 @@ const typeDefs = gql`
       interview_date: ISODate
       company_url: String
       company_logo: String
-      
     ): Job
   }
 `;

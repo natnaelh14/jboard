@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import initialData from "../initial-data";
+// import initialData from "../initial-data";
 import Column from "../column";
 import ModalContainer from "../components/Modal/ModalContainer";
 import "./Modal.css";

@@ -78,16 +78,15 @@ export const ADD_USER = gql`
 export const ADD_JOB = gql`
   mutation Mutation(
     $company_name: String!
-      $job_position: String!
-      $job_status: String!
-      $job_comment: String
-      $label: String
-      $offer_amount: Int!
-      $application_date: ISODate
-      $interview_date: ISODate
-      $company_url: String
-      $company_logo: String
-
+    $job_position: String!
+    $job_status: String!
+    $job_comment: String
+    $label: String
+    $offer_amount: Int!
+    $application_date: ISODate
+    $interview_date: ISODate
+    $company_url: String
+    $company_logo: String
   ) {
     addJob(
       company_name: $company_name
@@ -115,4 +114,33 @@ export const ADD_JOB = gql`
       label
     }
   }
+`;
+
+export const UPDATE_JOB = gql`
+mutation updateJob(
+  $company_name: String!
+  $job_position: String!
+  $job_status: String!
+  $job_comment: String
+  $label: String
+  $offer_amount: Int!
+  $application_date: ISODate
+  $interview_date: ISODate
+  $company_url: String
+  $company_logo: String
+) {
+  updateJob(_id: $_id) {
+    _id
+    company_name
+    job_position
+    job_status
+    job_comment
+    label
+    offer_amount
+    application_date
+    interview_date
+    company_url
+    company_logo
+  }
+}
 `;

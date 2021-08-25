@@ -81,9 +81,6 @@ export const Form = ({ onSubmit }) => {
   return (
     <form onSubmit={onSubmit}>
       <p style={{ textAlign: "center", fontWeight: "bold" }}>ADD JOB</p>
-      <p style={{ color: "rgb(249 143 134)", fontSize: "1.2rem" }}>
-        {formState.errorMessage}
-      </p>
       <div className="form-group">
         <label htmlFor="text">Company Name</label>
         <input
@@ -141,8 +138,6 @@ export const Form = ({ onSubmit }) => {
       <div className="form-group form-check">
         <label>Favorite</label>&nbsp;&nbsp;
         <MixedCheckbox
-            value="favorite"
-            checked={jobLabel}
             onChange={(event) => {
               setLabel(event.target.checked);
             }}

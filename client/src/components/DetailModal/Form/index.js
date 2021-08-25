@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import StatusOptionList from "../../StatusOptionList";
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
-import { ADD_JOB } from "../../../utils/mutations";
+import { UPDATE_JOB } from "../../../utils/mutations";
 import { MixedCheckbox } from "@reach/checkbox";
 
 export const Form = ({ onSubmit, job_details }) => {
@@ -26,7 +26,7 @@ export const Form = ({ onSubmit, job_details }) => {
   const [interviewDate, setInterviewDate] = useState(
     job_details?.interview_date ?? new Date()
   );
-  const [addJob, { error, data }] = useMutation(ADD_JOB);
+  const [updateJob, { error, data }] = useMutation(UPDATE_JOB);
 
   const formState = {
     company_name: job_details.company_name,
@@ -40,6 +40,7 @@ export const Form = ({ onSubmit, job_details }) => {
     company_logo: job_details.company_logo,
     company_url: companyUrl,
   };
+  console.log("ABBBBBBBAAAAAAAA", formState);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -50,7 +51,7 @@ export const Form = ({ onSubmit, job_details }) => {
           : (formState.label = "");
       }
       try {
-        let { data } = await addJob({
+        let { data } = await updateJob({
           variables: { ...formState },
         });
         console.log("created job", data);
@@ -81,19 +82,14 @@ export const Form = ({ onSubmit, job_details }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div class="avatar">
-        <a
-          href={`https://www.${formState.company_url}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {" "}
-          <img
-            src={formState.company_logo}
-            alt="Avatar"
-            className="center-block"
-          />
-        </a>
+      <div class="avatar text-center" >
+          <a
+            href={`https://www.${formState.company_url}/careers`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={formState.company_logo} alt="Avatar" />
+          </a>
       </div>
       <div className="form-group">
         <h1 className="text-center">{formState.company_name}</h1>
@@ -159,8 +155,6 @@ export const Form = ({ onSubmit, job_details }) => {
       <div className="form-group form-check">
         <label>Favorite</label>&nbsp;&nbsp;
         <MixedCheckbox
-          value="favorite"
-          checked={jobLabel}
           onChange={(event) => {
             setLabel(event.target.checked);
           }}

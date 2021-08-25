@@ -37,10 +37,6 @@ const resolvers = {
         // if (filters?.user_ids) {
         //   _filters.push({user_id: {$in : filters.user_ids}});
         // }
-      
-
-       
-
         console.log(_filters)
         return Job.find(..._filters);
       } catch (error) {
@@ -155,6 +151,26 @@ const resolvers = {
 
         return job;
       } catch (error) {}
+    },
+    updateJob: async (parent, { username, password }) => {
+      // Find and update the matching using using the destructured args
+      const user = await User.findOneAndUpdate(
+        { _id,},
+        { company_name,
+          job_position,
+          job_comment,
+          label,
+          offer_amount,
+          application_date,
+          interview_date,
+          company_logo,
+          company_url,
+          job_status,},
+        // Return the newly updated object instead of the original
+        { new: true }
+      );
+      console.log("test", user);
+      return user;
     },
   },
 };
