@@ -14,23 +14,19 @@ const typeDefs = gql`
     resume_url: String!
   }
 
-  type Company {
+  type Job {
     _id: ID!
     company_name: String!
     job_position: String!
     job_status: String!
     job_comment: String
     label: String
-    offer_amount: Int
+    offer_amount: Int!
     application_date: ISODate
     interview_date: ISODate
-    company_url: String!
-    company_logo: String!
-    user_id: [ID]
-  }
-
-  type Query {
-    companies: [Company]
+    company_url: String
+    company_logo: String
+    user_id: ID!
   }
 
   type Auth {
@@ -38,15 +34,27 @@ const typeDefs = gql`
     user: User
   }
 
+  input JobFilterInput {
+    company_names: [String]
+    ids: [ID]
+    job_status: [String],
+    job_positions: [String]
+    user_ids: [ID]
+    
+    
+
+  }
+
   type Query {
     users: [User]
     user(username: String!): User
     me: User
     email: User
+    jobs(filters: JobFilterInput):[Job]
   }
 
   type Mutation {
-    login(username: String!, password: String!):Auth
+    login(username: String!, password: String!): Auth
     addUser(
       full_name: String!
       username: String!
@@ -55,9 +63,22 @@ const typeDefs = gql`
       security_ques: String!
       security_ans: String!
       resume_url: String!
-    ):Auth
+    ): Auth
     verifyEmail(email: String!): Auth
     updatePassword(username: String!, password: String!): User
+    addJob(
+      company_name: String!
+      job_position: String!
+      job_status: String!
+      job_comment: String
+      label: String
+      offer_amount: Int!
+      application_date: ISODate
+      interview_date: ISODate
+      company_url: String
+      company_logo: String
+      
+    ): Job
   }
 `;
 

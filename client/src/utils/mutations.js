@@ -76,3 +76,23 @@ export const ADD_USER = gql`
 `;
 
 
+export const ADD_JOB = gql`
+mutation Mutation($addJobCompanyName: String!, $addJobJobPosition: String!, $addJobJobStatus: String!, $addJobOfferAmount: Int!, $addJobUserId: ID!) {
+  addJob(company_name: $addJobCompanyName, job_position: $addJobJobPosition, job_status: $addJobJobStatus, offer_amount: $addJobOfferAmount, user_id: $addJobUserId) {
+    _id
+    company_name
+    job_position
+    job_status
+    offer_amount
+    company_url
+    company_logo
+    user_id
+    application_date
+    interview_date
+    job_comment
+    label
+  }
+}
+`;
+
+

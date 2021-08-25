@@ -1,16 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const companySchema = new Schema({
+const jobSchema = new Schema({
   company_name: {
     type: String,
     required: true,
   },
   job_position: {
-    type: String,
-    required: true,
-  },
-  job_status: {
     type: String,
     required: true,
   },
@@ -21,7 +17,8 @@ const companySchema = new Schema({
     type: String,
   },
   offer_amount: {
-    type: Number
+    type: Number,
+    required: true
   },
   application_date: {
     type: Date,
@@ -33,18 +30,22 @@ const companySchema = new Schema({
   },
   company_logo: {
     type: String,
-    required: true,
+
   },
   company_url: {
+    type: String,
+  },
+  job_status: {
     type: String,
     required: true,
   },
   user_id: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
+    required: true
  },
 });
 
-const Company = mongoose.model("Company", companySchema);
+const Job = mongoose.model("Job", jobSchema);
 
-module.exports = Company;
+module.exports = Job;
