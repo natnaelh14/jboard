@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import StatusOptionList from "../../StatusOptionList";
 import { useMutation } from "@apollo/client";
 import Swal from 'sweetalert2';
+import { ADD_JOB } from "../../../utils/mutations";
 
 export const Form = ({ onSubmit }) => {
   const [companyName, setCompanyName] = useState("");
@@ -15,6 +16,7 @@ export const Form = ({ onSubmit }) => {
   const [applicationDate, setApplicationDate] = useState(new Date());
   const [interviewDate, setInterviewDate] = useState(new Date());
   const [errorMessage, setErrorMessage] = useState("");
+  const [addJob,{error,data}] = useMutation(ADD_JOB)
 
   const formState = {
     company_name: companyName,
@@ -22,7 +24,7 @@ export const Form = ({ onSubmit }) => {
     job_status: optionList,
     job_comment: jobComment,
     label: jobLabel,
-    offer_amount: offerAmount,
+    offer_amount: Number.parseInt(offerAmount),
     applicationDate,
     interviewDate,
     company_logo:"",
@@ -46,6 +48,16 @@ export const Form = ({ onSubmit }) => {
         throw Error;
       }
       console.log(formState)
+
+     try {
+      let {data} = await addJob({
+        variables: {...formState}
+      })
+      console.log('created job', data)
+
+     } catch (error) {
+      console.log('addjob mutation failed', error)       
+     }
       //pop up message for successfully saving job info
       Swal.fire({
         position: 'center',

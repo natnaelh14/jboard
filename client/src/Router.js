@@ -18,6 +18,7 @@ import Signup from "./pages/Signup";
 import Reset from "./pages/reset";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer/Footer";
+import JobsDashboard from "./components/JobsDashboard";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -53,7 +54,7 @@ function Routes() {
           {Auth.loggedIn() ? <Redirect to="/dashboard" /> : <Home /> }
         </Route>
         <Route exact path="/dashboard">
-          {Auth.loggedIn() ? <Dashboard /> : <Redirect to="/" /> }
+          {Auth.loggedIn() ? <JobsDashboard /> : <Redirect to="/" /> }
         </Route>
         <Route exact path="/login">
           {Auth.loggedIn() ? <Redirect to="/dashboard" /> : <Login /> }
