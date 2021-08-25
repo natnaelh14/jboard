@@ -32,8 +32,8 @@ export default class Task extends React.Component {
                 <img  src="https://logo.clearbit.com/uber.com" alt="..." height="50" />
               </div>
               <div>
-                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.content}</p>
-                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.position}</p>
+                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.company_name}</p>
+                <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.job_position}</p>
               </div>
             </div>
             <br />

@@ -23,15 +23,15 @@ class InnerList extends React.PureComponent {
 
 export default class Dashboard extends React.Component {
 
-  // constructor(props, context){
-  //   super(props)
-  //   this.state = {...this.props.initial_state, columnOrder: this.props.columnOrder}
-  //   console.log('props.initial_state', this.props.initial_state)
-  // }
+  constructor(props, context){
+    super(props)
+    this.state = {...this.props.initial_state, columnOrder: this.props.columnOrder}
+    console.log('props.initial_state', this.props.initial_state)
+  }
   
   //MODAL INFORMATION
   //we are setting the initial state to be initial data.
-  state = initialData;
+  // state = initialData;
   //it is onDragEnd responsibility to synchronously update your state to reflect the drag and drop result.
   onDragEnd = (result) => {
     const { destination, source, draggableId, type } = result;
