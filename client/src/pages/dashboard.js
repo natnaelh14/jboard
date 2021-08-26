@@ -116,7 +116,7 @@ export default class Dashboard extends React.Component {
     };
     this.setState(newState);
 
-    //get the column and add to task.job_status
+    //This is updating the the column that job is removed and added using job-status.
     let temp_task = Object.assign(this.state.tasks[moved_task], {job_status: foreign.title})
     temp_task.update(temp_task)
   };

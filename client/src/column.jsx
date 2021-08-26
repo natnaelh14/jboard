@@ -18,15 +18,15 @@ const Title = styled.h3`
   text-align: center;
   font-weight: bold;
   background-color: #ffaea6;
-  border: 3px solid #fff0ef;
+  border: 3px solid #9e5041;
 
 `;
 const TaskList = styled.div`
   padding: 8px;
   transition: background-color 0.2s ease;
-  border: 3px solid #fff0ef;
+  border: 3px solid #e8c8c5;
   background-color: ${(props) =>
-    props.isDraggingOver ? "#a2a2a2" : "#e6e6e6"};
+    props.isDraggingOver ? "#fff4d4" : "#fff7f7"};
   flex-grow: 1;
   min-height: 100px;
 `;
