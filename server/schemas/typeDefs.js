@@ -77,7 +77,9 @@ const typeDefs = gql`
       interview_date: ISODate
       company_url: String
       company_logo: String
-    ):Job
+      _id: ID!
+    ):Job!
+    deleteJob(_id:ID!): Job!
     addJob(
       company_name: String!
       job_position: String!
@@ -89,7 +91,7 @@ const typeDefs = gql`
       interview_date: ISODate
       company_url: String
       company_logo: String
-    ): Job
+    ): Job!
   }
 `;
 

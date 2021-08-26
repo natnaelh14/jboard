@@ -24,6 +24,21 @@ export default class OptionList extends Component {
   state = {
     selectedOption: null,
   };
+  
+  constructor(props) {
+    super(props)
+
+    let _start_option= {
+      value: props.selectedOption ?? '',
+      label: props.selectedOption ?? '',
+    }
+
+    this.setState({selectedOption : _start_option},()=>{
+      console.log(_start_option,this.state.selectedOption,options)
+
+    })
+
+  }
   handleChange = (selectedOption) => {
     this.props.selectedStatus(selectedOption.value)
     this.setState({ selectedOption });

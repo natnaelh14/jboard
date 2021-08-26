@@ -30,7 +30,7 @@ export const Form = ({ onSubmit, job_details }) => {
   const [updateJob, { error, data }] = useMutation(UPDATE_JOB);
 
   const formState = {
-    id_: job_details._id,
+    _id: job_details._id,
     company_name: job_details.company_name,
     job_position: jobPosition,
     job_status: optionList,
@@ -50,9 +50,11 @@ export const Form = ({ onSubmit, job_details }) => {
           : (formState.label = "");
       console.log("THIS IS THE ID", job_details._id)
       console.log("FORMSTATE", formState);
-        let { data } = await updateJob({
-          variables: { ...formState },
-        });
+        // let { data } = await updateJob({
+        //   variables: { ...formState },
+        // });
+
+        job_details.update(formState)
         console.log("created job", data);
       //Pop up message for successfully saving job info
       await Swal.fire({
@@ -64,6 +66,7 @@ export const Form = ({ onSubmit, job_details }) => {
       });
       // window.location.assign("/dashboard");
     } catch (error) {
+      console.log(error)
       //Error message on form registration.
       Swal.fire({
         position: "center",
@@ -100,7 +103,7 @@ export const Form = ({ onSubmit, job_details }) => {
       </div>
       <div className="form-group">
         <label htmlFor="text">Job Status</label>
-        <StatusOptionList placeholder={formState.job_position} selectedStatus={setOptionList} />
+        <StatusOptionList placeholder={formState.job_position} selectedStatus={setOptionList} selectedOption={formState.job_status}/>
       </div>
       <div className="form-group">
         <label htmlFor="text">Job Url</label>

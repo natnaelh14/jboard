@@ -18,7 +18,7 @@ export default class Task extends React.Component {
   render() {
     return (
       //Draggable takes in two required props, draggableId which we will pass in our task.id and an index.
-      <Draggable draggableId={this.props.task.id} index={this.props.index}>
+      <Draggable draggableId={this.props.task._id} index={this.props.index}>
         {(provided, snapshot) => (
           <Container
       //These props need to be applied to the component that we want to move around in response to user input.
@@ -44,7 +44,7 @@ export default class Task extends React.Component {
               <Form onSubmit={()=>{}} job_details={this.props.task}/>
               </DetailModal>
               &nbsp; &nbsp;
-              <Button variant="danger" size="sm" onClick={() => {console.log('delete')}} >Remove</Button>
+              <Button variant="danger" size="sm" onClick={() =>{this.props.task.delete()}} >Remove</Button>
             </div>
           </Container>
         )}

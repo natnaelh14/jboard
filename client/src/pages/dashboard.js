@@ -93,7 +93,7 @@ export default class Dashboard extends React.Component {
     // Moving from one list to another
     //We need to create a startTaskIds array and a newHome column and remove the dragged taskId from teh old array.
     const homeTaskIds = Array.from(home.taskIds);
-    homeTaskIds.splice(source.index, 1);
+    let moved_task = homeTaskIds.splice(source.index, 1);
     const newHome = {
       ...home,
       taskIds: homeTaskIds,
@@ -115,6 +115,10 @@ export default class Dashboard extends React.Component {
       },
     };
     this.setState(newState);
+
+    //get the column and add to task.job_status
+    let temp_task = Object.assign(this.state.tasks[moved_task], {job_status: foreign.title})
+    temp_task.update(temp_task)
   };
 
   render() {

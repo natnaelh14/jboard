@@ -38,7 +38,7 @@ class InnerList extends React.Component {
   render() {
     return this.props.tasks.map((task, index) => (
       //we are passing index to the task component.
-      <Task key={task.id} task={task} index={index} />
+      <Task key={task._id} task={task} index={index} />
     ));
   }
 }

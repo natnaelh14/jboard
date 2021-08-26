@@ -117,25 +117,52 @@ export const ADD_JOB = gql`
 `;
 
 export const UPDATE_JOB = gql`
-mutation updateJob($_id: ID!) {
-  updateJob(_id: $_id) {
-    _id
-    company_name
-    job_position
-    job_status
-    job_comment
-    label
-    offer_amount
-    application_date
-    interview_date
-    company_url
-    company_logo
+  mutation UpdateJobMutation(
+    $company_name: String!
+    $job_position: String!
+    $job_status: String!
+    $job_comment: String
+    $label: String
+    $offer_amount: Int!
+    $application_date: ISODate
+    $interview_date: ISODate
+    $company_url: String
+    $company_logo: String
+    $_id: ID!
+  ) {
+    updateJob(
+      company_name: $company_name
+      job_position: $job_position
+      job_status: $job_status
+      job_comment: $job_comment
+      label: $label
+      offer_amount: $offer_amount
+      application_date: $application_date
+      interview_date: $interview_date
+      company_url: $company_url
+      company_logo: $company_logo
+      _id: $_id
+    ) {
+      _id
+      company_name
+      job_position
+      job_status
+      job_comment
+      label
+      offer_amount
+      application_date
+      interview_date
+      company_url
+      company_logo
+      user_id
+    }
   }
-}
 `;
 
-const DELETE_JOB = gql`
-  mutation deleteJob($_id: ID!){
-    deleteJob(id: $id)
+export const DELETE_JOB = gql`
+  mutation DeleteJobMutation($deleteJobId: ID!) {
+    deleteJob(_id: $deleteJobId) {
+      _id
+    }
   }
 `;

@@ -150,7 +150,17 @@ const resolvers = {
         return job;
       } catch (error) {}
     },
-    updateJob: async (parent, { _id }) => {
+    updateJob: async (parent, {company_name,
+      job_position,
+      job_comment,
+      label,
+      offer_amount,
+      application_date,
+      interview_date,
+      company_logo,
+      company_url,
+      job_status,
+      _id}) => {
       // Find and update the matching using using the destructured args
       const job = await Job.findOneAndUpdate(
         { _id },
@@ -165,20 +175,23 @@ const resolvers = {
           company_logo,
           company_url,
           job_status,
-        },
+        }
+        ,
         // Return the newly updated object instead of the original
         { new: true }
       );
       console.log("test", job);
       return job;
     },
-    // deleteJob: async (parent, { _id }) => {
-    //   try {
-    //     await Job.findOneAndRemove({ _id });
-    //   } catch (e) {
-    //     console.log("unable to delete job", e);
-    //   }
-    // },
+    deleteJob: async (parent, { _id }) => {
+      try {
+        return await Job.findOneAndRemove({ _id });
+    
+      } catch (e) {
+        console.log("unable to delete job", e);
+        return e
+      }
+    },
   },
 };
 
