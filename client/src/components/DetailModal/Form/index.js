@@ -21,13 +21,8 @@ export const Form = ({ onSubmit, job_details }) => {
   const [offerAmount, setOfferAmount] = useState(
     job_details?.offer_amount ?? ""
   );
-  const [applicationDate, setApplicationDate] = useState(
-    job_details?.application_date ?? new Date()
-  );
-  const [interviewDate, setInterviewDate] = useState(
-    job_details?.interview_date ?? new Date()
-  );
-  const [updateJob, { error, data }] = useMutation(UPDATE_JOB);
+  const [applicationDate, setApplicationDate] = useState(new Date());
+  const [interviewDate, setInterviewDate] = useState(new Date());
 
   const formState = {
     _id: job_details._id,
@@ -50,12 +45,8 @@ export const Form = ({ onSubmit, job_details }) => {
           : (formState.label = "");
       console.log("THIS IS THE ID", job_details._id)
       console.log("FORMSTATE", formState);
-        // let { data } = await updateJob({
-        //   variables: { ...formState },
-        // });
 
         job_details.update(formState)
-        console.log("created job", data);
       //Pop up message for successfully saving job info
       await Swal.fire({
         position: "center",
