@@ -25,11 +25,11 @@ export default function JobsDashboard() {
   );
 
   const job_columns_order = [
-    "favorite",
+    "wish list",
     "applied",
     "interview",
-    "inactive",
     "offer",
+    "inactive",
   ];
 
   const showDashboard = (data) => {

@@ -3,6 +3,10 @@ import Select from "react-select";
 
 const options = [
   {
+    value: "Wish List",
+    label: "Wish List",
+  },
+  {
     value: "Applied",
     label: "Applied",
   },

@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import './home.css'
+import {Link} from "react-router-dom";
 
 const DetailsContainer = styled.div`
   height: 100%;
@@ -33,7 +35,7 @@ const SubHeader = styled.h3`
 const Text = styled.p`
   color: #000;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 1.1rem;
 `;
 
 export function HomeCard() {
@@ -41,12 +43,15 @@ export function HomeCard() {
     <DetailsContainer>
       <InnerContainer>
         <Header>Welcome to JBoard</Header>
-        <SubHeader>Job Application Tracker</SubHeader>
+        <SubHeader>A Job Application Tracker</SubHeader>
         <Text>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s,
         </Text>
+        <Link to="/signup"><button class="glow-on-hover" type="button">SIGN UP FOR FREE</button></Link>
+
+        
       </InnerContainer>
     </DetailsContainer>
   );

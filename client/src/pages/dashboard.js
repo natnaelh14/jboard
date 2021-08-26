@@ -130,7 +130,7 @@ export default class Dashboard extends React.Component {
         {/* This droppable is to move columns horizontally */}
           <Droppable
             droppableId="all-columns"//this id has no functionality
-            direction="horizontal"
+            direction="horzontal"
             type="column"
           >
             {(provided) => (

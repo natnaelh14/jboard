@@ -24,6 +24,9 @@ export const Form = ({ onSubmit, job_details }) => {
   const [applicationDate, setApplicationDate] = useState(new Date());
   const [interviewDate, setInterviewDate] = useState(new Date());
 
+  console.log("APP", job_details?.application_date)
+  console.log("int", job_details?.interview_date)
+
   const formState = {
     _id: job_details._id,
     company_name: job_details.company_name,
@@ -32,8 +35,8 @@ export const Form = ({ onSubmit, job_details }) => {
     job_comment: jobComment,
     label: jobLabel,
     offer_amount: offerAmount,
-    applicationDate: applicationDate,
-    interviewDate: interviewDate,
+    application_date: applicationDate,
+    interview_date: interviewDate,
     company_logo: job_details.company_logo,
     company_url: companyUrl,
   };
@@ -131,6 +134,7 @@ export const Form = ({ onSubmit, job_details }) => {
         <label htmlFor="date">Application Date</label>
         <DatePicker
           selected={applicationDate}
+          defaultValue={formState.application_date}
           dateFormat="MM/dd/yyyy"
           className="border-warning dateInput"
           onChange={(date) => setApplicationDate(date)}
@@ -141,6 +145,7 @@ export const Form = ({ onSubmit, job_details }) => {
         <DatePicker
           selected={interviewDate}
           dateFormat="MM/dd/yyyy"
+          defaultValue={formState.interview_date}
           className="border-warning dateInput"
           onChange={(date) => setInterviewDate(date)}
         />

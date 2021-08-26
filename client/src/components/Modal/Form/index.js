@@ -26,8 +26,8 @@ export const Form = ({ onSubmit }) => {
     job_comment: jobComment,
     label: jobLabel,
     offer_amount: offerAmount,
-    applicationDate,
-    interviewDate,
+    application_date: applicationDate,
+    interview_date:interviewDate ,
     company_logo: "",
     company_url: "",
   };
@@ -104,7 +104,7 @@ export const Form = ({ onSubmit }) => {
         <label htmlFor="text">Job Status</label>
         <StatusOptionList selectedStatus={setOptionList} />
       </div>
-      <div className="form-group" border-warning>
+      <div className="form-group">
         <label htmlFor="text">Job Comment</label>
         <input
           onChange={(e) => setJobComment(e.target.value)}

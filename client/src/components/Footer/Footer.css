@@ -7,6 +7,7 @@
   flex-direction: column;
   justify-content: center;
   background-image: linear-gradient(white, #fadedc);
+  position:sticky;
 }
 
 /* #email-address a{

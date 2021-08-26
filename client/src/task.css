@@ -1,0 +1,12 @@
+.btn-outline-danger {
+    border-color: #ffaea6;
+    
+}
+.btn-outline-danger:hover {
+    background-color: #fd7467;
+}
+
+.badge {
+    color: black;
+    background-color: #ff5252;
+}

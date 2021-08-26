@@ -53,7 +53,7 @@ export default class Column extends React.Component {
         {(provided) => (
           <Container {...provided.draggableProps} ref={provided.innerRef}>
             <Title {...provided.dragHandleProps}>
-              {this.props.column.title}
+              {this.props.column.title.toUpperCase()}
             </Title>
             <Droppable droppableId={this.props.column.id} type="task">
               {/* Provided is the first prop to our function. it gives us droppableProps which we will use to designate which component we want as our droppable. */}
