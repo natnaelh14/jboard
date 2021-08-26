@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { UPDATE_JOB } from "../../../utils/mutations";
 import { MixedCheckbox } from "@reach/checkbox";
+import './form.css';
 
 export const Form = ({ onSubmit, job_details }) => {
   // const [companyName, setCompanyName] = useState(job_details?.company_name?? "");
@@ -29,35 +30,30 @@ export const Form = ({ onSubmit, job_details }) => {
   const [updateJob, { error, data }] = useMutation(UPDATE_JOB);
 
   const formState = {
+    id_: job_details._id,
     company_name: job_details.company_name,
     job_position: jobPosition,
     job_status: optionList,
     job_comment: jobComment,
     label: jobLabel,
-    offer_amount: Number.parseInt(offerAmount),
+    offer_amount: offerAmount,
     applicationDate: applicationDate,
     interviewDate: interviewDate,
     company_logo: job_details.company_logo,
     company_url: companyUrl,
   };
-  console.log("ABBBBBBBAAAAAAAA", formState);
-
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      {
         formState.label
           ? (formState.label = "favorite")
           : (formState.label = "");
-      }
-      try {
+      console.log("THIS IS THE ID", job_details._id)
+      console.log("FORMSTATE", formState);
         let { data } = await updateJob({
           variables: { ...formState },
         });
         console.log("created job", data);
-      } catch (error) {
-        console.log("addjob mutation failed", error);
-      }
       //Pop up message for successfully saving job info
       await Swal.fire({
         position: "center",
@@ -66,20 +62,18 @@ export const Form = ({ onSubmit, job_details }) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      window.location.assign("/dashboard");
+      // window.location.assign("/dashboard");
     } catch (error) {
       //Error message on form registration.
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Unable to add company, Please review your input.",
+        title: "Unable to update job, Please review your input.",
         showConfirmButton: false,
         timer: 1500,
       });
-      // return;
     }
   };
-
   return (
     <form onSubmit={onSubmit}>
       <div class="avatar text-center" >
@@ -92,26 +86,28 @@ export const Form = ({ onSubmit, job_details }) => {
           </a>
       </div>
       <div className="form-group">
-        <h1 className="text-center">{formState.company_name}</h1>
+        <h1 className="text-center title">{formState.company_name}</h1>
       </div>
       <div className="form-group">
         <label htmlFor="text">Job Position</label>
         <input
           onChange={(e) => setJobPosition(e.target.value)}
-          className="form-control"
+          className="form-control border-warning"
+          autoComplete="off"
           id="name"
           value={formState.job_position}
         />
       </div>
       <div className="form-group">
         <label htmlFor="text">Job Status</label>
-        <StatusOptionList selectedStatus={setOptionList} />
+        <StatusOptionList placeholder={formState.job_position} selectedStatus={setOptionList} />
       </div>
       <div className="form-group">
         <label htmlFor="text">Job Url</label>
         <input
           onChange={(e) => setCompanyUrl(e.target.value)}
-          className="form-control"
+          className="form-control border-warning"
+          autoComplete="off"
           id="name"
           value={formState.company_url}
         />
@@ -120,7 +116,8 @@ export const Form = ({ onSubmit, job_details }) => {
         <label htmlFor="text">Job Comment</label>
         <input
           onChange={(e) => setJobComment(e.target.value)}
-          className="form-control"
+          className="form-control border-warning"
+          autoComplete="off"
           id="name"
           value={formState.job_comment}
         />
@@ -128,9 +125,10 @@ export const Form = ({ onSubmit, job_details }) => {
       <div className="form-group">
         <label htmlFor="number">Offer Amount</label>
         <input
-          onChange={(e) => setOfferAmount(e.target.value)}
+          onChange={(e) => setOfferAmount(parseInt(e.target.value))}
           type="number"
-          className="form-control"
+          className="form-control border-warning"
+          autoComplete="off"
           id="name"
           value={formState.offer_amount}
         />
@@ -140,6 +138,7 @@ export const Form = ({ onSubmit, job_details }) => {
         <DatePicker
           selected={applicationDate}
           dateFormat="MM/dd/yyyy"
+          className="border-warning dateInput"
           onChange={(date) => setApplicationDate(date)}
         />
       </div>
@@ -148,11 +147,12 @@ export const Form = ({ onSubmit, job_details }) => {
         <DatePicker
           selected={interviewDate}
           dateFormat="MM/dd/yyyy"
+          className="border-warning dateInput"
           onChange={(date) => setInterviewDate(date)}
         />
       </div>
       <br />
-      <div className="form-group form-check">
+      <div className="form-group">
         <label>Favorite</label>&nbsp;&nbsp;
         <MixedCheckbox
           onChange={(event) => {
@@ -163,7 +163,8 @@ export const Form = ({ onSubmit, job_details }) => {
       <br />
       <div className="form-group">
         <button
-          className="form-control btn btn-primary"
+          className="form-control btn"
+          style={{"backgroundColor": "rgb(249 143 134)"}}
           onClick={handleUpdate}
           type="submit"
         >

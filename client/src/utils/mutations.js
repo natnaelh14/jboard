@@ -117,18 +117,7 @@ export const ADD_JOB = gql`
 `;
 
 export const UPDATE_JOB = gql`
-mutation updateJob(
-  $company_name: String!
-  $job_position: String!
-  $job_status: String!
-  $job_comment: String
-  $label: String
-  $offer_amount: Int!
-  $application_date: ISODate
-  $interview_date: ISODate
-  $company_url: String
-  $company_logo: String
-) {
+mutation updateJob($_id: ID!) {
   updateJob(_id: $_id) {
     _id
     company_name
@@ -143,4 +132,10 @@ mutation updateJob(
     company_logo
   }
 }
+`;
+
+const DELETE_JOB = gql`
+  mutation deleteJob($_id: ID!){
+    deleteJob(id: $id)
+  }
 `;

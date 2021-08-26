@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { ADD_JOB } from "../../../utils/mutations";
 import { MixedCheckbox} from "@reach/checkbox";
+import './form.css';
 
 export const Form = ({ onSubmit }) => {
   const [companyName, setCompanyName] = useState("");
@@ -24,7 +25,7 @@ export const Form = ({ onSubmit }) => {
     job_status: optionList,
     job_comment: jobComment,
     label: jobLabel,
-    offer_amount: Number.parseInt(offerAmount),
+    offer_amount: offerAmount,
     applicationDate,
     interviewDate,
     company_logo: "",
@@ -70,7 +71,7 @@ export const Form = ({ onSubmit }) => {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Unable to add company, Please review your input.",
+        title: "Unable to add job, Please review your input.",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -80,12 +81,13 @@ export const Form = ({ onSubmit }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <p style={{ textAlign: "center", fontWeight: "bold" }}>ADD JOB</p>
+      <h1 className="text-center title">ADD JOB</h1>
       <div className="form-group">
         <label htmlFor="text">Company Name</label>
         <input
           onChange={(e) => setCompanyName(e.target.value)}
-          className="form-control"
+          className="form-control border-warning"
+          autoComplete="off"
           id="name"
         />
       </div>
@@ -93,28 +95,31 @@ export const Form = ({ onSubmit }) => {
         <label htmlFor="text">Job Position</label>
         <input
           onChange={(e) => setJobPosition(e.target.value)}
-          className="form-control"
+          className="form-control border-warning"
+          autoComplete="off"
           id="name"
         />
       </div>
-      <div className="form-group">
+      <div className="form-group border-warning" >
         <label htmlFor="text">Job Status</label>
         <StatusOptionList selectedStatus={setOptionList} />
       </div>
-      <div className="form-group">
+      <div className="form-group" border-warning>
         <label htmlFor="text">Job Comment</label>
         <input
           onChange={(e) => setJobComment(e.target.value)}
-          className="form-control"
+          className="form-control border-warning"
+          autoComplete="off"
           id="name"
         />
       </div>
       <div className="form-group">
         <label htmlFor="number">Offer Amount</label>
         <input
-          onChange={(e) => setOfferAmount(e.target.value)}
+          onChange={(e) => setOfferAmount(parseInt(e.target.value))}
           type="number"
-          className="form-control"
+          className="form-control border-warning"
+          autoComplete="off"
           id="name"
         />
       </div>
@@ -122,6 +127,7 @@ export const Form = ({ onSubmit }) => {
         <label htmlFor="date">Application Date</label>
         <DatePicker
           selected={applicationDate}
+          className="border-warning dateInput"
           dateFormat="MM/dd/yyyy"
           onChange={(date) => setApplicationDate(date)}
         />
@@ -130,12 +136,13 @@ export const Form = ({ onSubmit }) => {
         <label htmlFor="date">Interview Date</label>
         <DatePicker
           selected={interviewDate}
+          className="border-warning dateInput"
           dateFormat="MM/dd/yyyy"
           onChange={(date) => setInterviewDate(date)}
         />
       </div>
       <br />
-      <div className="form-group form-check">
+      <div className="form-group">
         <label>Favorite</label>&nbsp;&nbsp;
         <MixedCheckbox
             onChange={(event) => {
@@ -146,8 +153,9 @@ export const Form = ({ onSubmit }) => {
       <br />
       <div className="form-group">
         <button
-          className="form-control btn btn-primary"
+          className="form-control btn"
           onClick={handleRegister}
+          style={{"backgroundColor": "rgb(249 143 134)"}}
           type="submit"
         >
           Submit

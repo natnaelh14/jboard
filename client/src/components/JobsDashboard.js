@@ -40,6 +40,8 @@ export default function JobsDashboard() {
         //add job to column taskIds
         initial_state.columns[job.job_status.toLowerCase()].taskIds.push(job._id)
 
+		// initial_state.columnOrder = job_columns_order
+
 				return initial_state;
 			},
 			{ tasks: {}, columns }

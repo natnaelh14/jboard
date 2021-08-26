@@ -12,40 +12,37 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username });
     },
-    jobs: async (parent,{ filters },context) => {
-      console.log('handling jobs filter')
+    jobs: async (parent, { filters }, context) => {
+      console.log("handling jobs filter");
       try {
-        
         let _filters = [];
-          _filters.push({user_id: {$in : [context.user._id]}});
-        
+        _filters.push({ user_id: { $in: [context.user._id] } });
 
         if (filters?.ids) {
-          _filters.push({_id: {$in : filters.ids}});
+          _filters.push({ _id: { $in: filters.ids } });
         }
-       
-       
+
         if (filters?.company_names) {
-          _filters.push({company_name: {$in : filters.company_names}});
+          _filters.push({ company_name: { $in: filters.company_names } });
         }
         if (filters?.job_positions) {
-          _filters.push({job_position: {$in : filters.positions}});
+          _filters.push({ job_position: { $in: filters.positions } });
         }
         if (filters?.job_status) {
-          _filters.push({job_status: {$in : filters.job_status}});
+          _filters.push({ job_status: { $in: filters.job_status } });
         }
         // if (filters?.user_ids) {
         //   _filters.push({user_id: {$in : filters.user_ids}});
         // }
-        console.log(_filters)
+        console.log(_filters);
         return Job.find(..._filters);
       } catch (error) {
-        console.log('failed to get jobs', error)
+        console.log("failed to get jobs", error);
       }
     },
-    me: (parent,args,context) =>{
-      return context.user
-    }
+    me: (parent, args, context) => {
+      return context.user;
+    },
   },
 
   Mutation: {
@@ -91,7 +88,7 @@ const resolvers = {
         return { token, user };
       } catch (e) {
         console.log("log in error", e);
-        throw new Error(e)
+        throw new Error(e);
       }
     },
     verifyEmail: async (parent, { email }) => {
@@ -132,7 +129,8 @@ const resolvers = {
         company_logo,
         company_url,
         job_status,
-      }, context
+      },
+      context
     ) => {
       try {
         let job = await Job.create({
@@ -152,11 +150,12 @@ const resolvers = {
         return job;
       } catch (error) {}
     },
-    updateJob: async (parent, { username, password }) => {
+    updateJob: async (parent, { _id }) => {
       // Find and update the matching using using the destructured args
-      const user = await User.findOneAndUpdate(
-        { _id,},
-        { company_name,
+      const job = await Job.findOneAndUpdate(
+        { _id },
+        {
+          company_name,
           job_position,
           job_comment,
           label,
@@ -165,13 +164,21 @@ const resolvers = {
           interview_date,
           company_logo,
           company_url,
-          job_status,},
+          job_status,
+        },
         // Return the newly updated object instead of the original
         { new: true }
       );
-      console.log("test", user);
-      return user;
+      console.log("test", job);
+      return job;
     },
+    // deleteJob: async (parent, { _id }) => {
+    //   try {
+    //     await Job.findOneAndRemove({ _id });
+    //   } catch (e) {
+    //     console.log("unable to delete job", e);
+    //   }
+    // },
   },
 };
 
