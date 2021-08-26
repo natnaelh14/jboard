@@ -6,7 +6,7 @@ import DetailModal from "./components/DetailModal/DetailModal/index";
 import Form from "./components/DetailModal/Form";
 
 const Container = styled.div`
-  border: 1px solid darkgrey;
+  border: 3px solid #fff0ef;
   border-radius: 2px;
   padding: 10px;
   height: 130px;

@@ -1,6 +1,5 @@
 import React from 'react';
 import './trigger.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 
 const TriggerButton = ({ triggerText, buttonRef, showModal }) => {

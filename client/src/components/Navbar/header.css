@@ -2,12 +2,12 @@
   position: sticky;
   top: 0;
   z-index: 10000;
-  background-image: white;
-  border: 1px solid lightgray;
+  background-image: linear-gradient(#fff0ef, white);
   padding: 5px 0;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   display: block;
+  flex-wrap: wrap;
 }
 
 .navbar-main {

@@ -5,8 +5,8 @@ import Task from "./task";
 
 const Container = styled.div`
   margin: 8px;
-  border: 2px solid lightgrey;
-  background-color: rgb(240 243 245);
+  border: 3px solid #fff0ef;
+  background-color: #fff0ef;
   border-radius: 2px;
   width: 250px;
   height: 750px;
@@ -18,12 +18,15 @@ const Title = styled.h3`
   text-align: center;
   font-weight: bold;
   background-color: #ffaea6;
+  border: 3px solid #fff0ef;
+
 `;
 const TaskList = styled.div`
   padding: 8px;
   transition: background-color 0.2s ease;
+  border: 3px solid #fff0ef;
   background-color: ${(props) =>
-    props.isDraggingOver ? "#bfd6f2" : "rgb(254 239 220)"};
+    props.isDraggingOver ? "#a2a2a2" : "#e6e6e6"};
   flex-grow: 1;
   min-height: 100px;
 `;
