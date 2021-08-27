@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { ADD_JOB } from "../../../utils/mutations";
 import { MixedCheckbox} from "@reach/checkbox";
+import { QUERY_JOBS } from "../../../utils/queries";
 import './form.css';
 
 export const Form = ({ onSubmit }) => {
@@ -17,7 +18,7 @@ export const Form = ({ onSubmit }) => {
   const [offerAmount, setOfferAmount] = useState("");
   const [applicationDate, setApplicationDate] = useState(new Date());
   const [interviewDate, setInterviewDate] = useState(new Date());
-  const [addJob, { error, data }] = useMutation(ADD_JOB);
+  const [addJob, { error, data }] = useMutation(ADD_JOB, { refetchQueries:[QUERY_JOBS]});
 
   const formState = {
     company_name: companyName,
@@ -58,7 +59,6 @@ export const Form = ({ onSubmit }) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      window.location.assign("/dashboard");  
     } catch (error) {
       //Error message on form registration.
       Swal.fire({
@@ -135,9 +135,9 @@ export const Form = ({ onSubmit }) => {
       <br />
       <div className="form-group">
         <label htmlFor="fav_input">Favorite</label>&nbsp;&nbsp;
-        <MixedCheckbox
+        <MixedCheckbox id="fav_input"
           onChange={(event) => {
-            setLabel(event.target.checked);
+            setLabel(event.target.checked ? 'favorite':'');
           }}
         />
       </div>

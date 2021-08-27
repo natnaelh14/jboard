@@ -22,10 +22,10 @@ class InnerList extends React.PureComponent {
 
 export default class Dashboard extends React.Component {
 
-  constructor(props, context){
-    super(props)
-    this.state = {...this.props.initial_state, columnOrder: this.props.columnOrder}
-  }
+  // constructor(props, context){
+  //   super(props)
+  //   // this.props = {...this.props.initial_state, columnOrder: this.props.columnOrder}
+  // }
   
   //MODAL INFORMATION
   //we are setting the initial state to be initial data.
@@ -46,20 +46,20 @@ export default class Dashboard extends React.Component {
     }
     //this is for reordering a column.
     if (type === "column") {
-      const newColumnOrder = Array.from(this.state.columnOrder);
+      const newColumnOrder = Array.from(this.props.columnOrder);
       newColumnOrder.splice(source.index, 1);
       newColumnOrder.splice(destination.index, 0, draggableId);
       //We create a new column and a new state and save those in a constant.
       const newState = {
-        ...this.state,
+        ...this.props,
         columnOrder: newColumnOrder,
       };
-      this.setState(newState);
+      this.props.updateProps(newState);
       return;
     }
     //we are looking up the column for the state
-    const home = this.state.columns[source.droppableId];
-    const foreign = this.state.columns[destination.droppableId];
+    const home = this.props.columns[source.droppableId];
+    const foreign = this.props.columns[destination.droppableId];
 
       //which means the movement is in the same column
     if (home === foreign) {
@@ -78,14 +78,14 @@ export default class Dashboard extends React.Component {
       };
 
       const newState = {
-        ...this.state,
+        ...this.props,
         columns: {
-          ...this.state.columns,
+          ...this.props.columns,
           [newHome.id]: newHome,
         },
       };
 
-      this.setState(newState);
+      this.props.updateProps(newState);
       return;
     }
 
@@ -106,18 +106,18 @@ export default class Dashboard extends React.Component {
     };
     //Finally, we need to create a newState updating the new column's map and taskIds.
     const newState = {
-      ...this.state,
+      ...this.props,
       columns: {
-        ...this.state.columns,
+        ...this.props.columns,
         [newHome.id]: newHome,
         [newForeign.id]: newForeign,
       },
     };
-    this.setState(newState);
-
-    //This is updating the the column that job is removed and added using job-status.
-    let temp_task = Object.assign(this.state.tasks[moved_task], {job_status: foreign.title})
+    
+    // This is updating the the column that job is removed and added using job-status.
+    let temp_task = Object.assign(this.props.tasks[moved_task], {job_status: foreign.title})
     temp_task.update(temp_task)
+    this.props.updateProps(newState);
   };
 
   render() {
@@ -134,14 +134,14 @@ export default class Dashboard extends React.Component {
           >
             {(provided) => (
               <Container {...provided.droppableProps} ref={provided.innerRef}>
-                {this.state.columnOrder.map((columnId, index) => {
-                  const column = this.state.columns[columnId];
+                {this.props.columnOrder.map((columnId, index) => {
+                  const column = this.props.columns[columnId];
                   return (
                     <InnerList
                       //we have to give a key to the column bc this is how react keeps track of the list.
                       key={column.id}
                       column={column}
-                      taskMap={this.state.tasks}
+                      taskMap={this.props.tasks}
                       index={index}
                     />
                   );

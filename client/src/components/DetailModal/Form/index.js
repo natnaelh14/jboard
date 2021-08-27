@@ -51,7 +51,7 @@ export const Form = ({ onSubmit, job_details }) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      window.location.assign("/dashboard");
+      // window.location.assign("/dashboard");
     } catch (error) {
       //Error message on form registration.
       Swal.fire({
