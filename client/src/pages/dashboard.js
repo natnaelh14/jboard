@@ -126,6 +126,7 @@ export default class Dashboard extends React.Component {
             droppableId="all-columns"//this id has no functionality
             direction="horzontal"
             type="column"
+            model="virtual"
           >
             {(provided) => (
               <Container {...provided.droppableProps} ref={provided.innerRef}>
