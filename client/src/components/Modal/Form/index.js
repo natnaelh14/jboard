@@ -32,10 +32,12 @@ export const Form = ({ onSubmit }) => {
     company_url: "",
   };
 
+
+  console.table(formState)
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      {(formState.label) ? formState.label="favorite" : formState.label=""}
+      // {(formState.label) ? formState.label="favorite" : formState.label=""}
       const company = formState.company_name;
       let issuesURL = `https://autocomplete.clearbit.com/v1/companies/suggest?query=${company}`;
       if (!issuesURL) return;
@@ -134,12 +136,12 @@ export const Form = ({ onSubmit }) => {
       </div>
       <br />
       <div className="form-group">
-        <label>Favorite</label>&nbsp;&nbsp;
+        <label for="fav_input">Favorite</label>&nbsp;&nbsp;
         <MixedCheckbox
-            onChange={(event) => {
-              setLabel(event.target.checked);
-            }}
-          />
+          onChange={(event) => {
+            setLabel(event.target.checked);
+          }}
+        />
       </div>
       <br />
       <div className="form-group">

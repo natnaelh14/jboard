@@ -25,35 +25,31 @@ const options = [
 ];
 
 export default class OptionList extends Component {
-  state = {
-    selectedOption: null,
-  };
-  
+  state
   constructor(props) {
     super(props)
+    
+    // find index of SelectOption
+    let [selected_status] = options.filter((option)=>option.label.toLowerCase().trim().includes(props.selectedOption.toLowerCase().trim() ??''))
+    debugger
 
-    let _start_option= {
-      value: props.selectedOption ?? '',
-      label: props.selectedOption ?? '',
-    }
-
-    this.setState({selectedOption : _start_option},()=>{
-      console.log(_start_option,this.state.selectedOption,options)
-
-    })
-
+    this.state = {selectedOption: selected_status ?? {
+      value: "Wish List",
+      label: "Wish List",
+    }}
+    
   }
   handleChange = (selectedOption) => {
     this.props.selectedStatus(selectedOption.value)
     this.setState({ selectedOption });
   };
   render() {
-    const { selectedOption }  = this.state;
+    // const { selectedOption }  = this.state;
     return (
       <Select
         options={options}
         onChange={this.handleChange}
-        value={selectedOption}
+        value={this.state.selectedOption}
         theme={(theme) => ({
           ...theme,
           borderRadius: 0,
