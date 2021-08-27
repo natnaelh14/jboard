@@ -37,12 +37,16 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
+
+
+const connectToDevTools = process.env.REACT_APP_PRODUCTION == 'false' //enable apollo devtools if  production is set to false
 //ApolloClient gives us access to the database.
 const client = new ApolloClient({
   //new instance of ApolloClient
   // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(), //new instance of InMemoryCache
+  connectToDevTools
 });
 
 function Routes() {

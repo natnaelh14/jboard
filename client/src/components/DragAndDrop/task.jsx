@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 import { Button } from 'react-bootstrap';
-import DetailModal from "./components/DetailModal/DetailModal/index";
-import Form from "./components/DetailModal/Form";
+import DetailModal from "../DetailModal/DetailModal/index";
+import Form from "../DetailModal/Form";
 import './task.css';
 import { Badge } from 'reactstrap';
 

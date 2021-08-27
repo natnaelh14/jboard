@@ -3,25 +3,7 @@ html, body {
     height: 100%;
 }
 
-/* body {
-    background: linear-gradient(#ffffff, #d39b9f);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    overflow:auto;
-} */
-
-/* html {
-    height: 100%
-}
-body {
-    background-image:url("./img/background.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-} */
-
 [data-rbd-droppable-context-id="1"] {
-    overflow-anchor: initial;
-    overflow-y: auto;
+    overflow-anchor: initial !important;
+    overflow-y: auto !important;
 }
