@@ -21,11 +21,6 @@ class InnerList extends React.PureComponent {
 }
 
 export default class Dashboard extends React.Component {
-
-  // constructor(props, context){
-  //   super(props)
-  //   // this.props = {...this.props.initial_state, columnOrder: this.props.columnOrder}
-  // }
   
   //MODAL INFORMATION
   //we are setting the initial state to be initial data.

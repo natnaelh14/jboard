@@ -39,7 +39,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 
-const connectToDevTools = process.env.REACT_APP_PRODUCTION == 'false' //enable apollo devtools if  production is set to false
+const connectToDevTools = process.env.REACT_APP_PRODUCTION === 'false' //enable apollo devtools if  production is set to false
 //ApolloClient gives us access to the database.
 const client = new ApolloClient({
   //new instance of ApolloClient
