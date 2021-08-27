@@ -34,7 +34,7 @@ export default class Task extends React.Component {
           >
             <div style={{"display": "flex", "flexDirection": "columns"}}>
               <div style={{"display": "flex", "flex": "1"}} >
-              <a href={`https://www.${this.props.task.company_url}/careers`} target="_blank" rel="noopener noreferrer" ><img  src={this.props.task.company_logo} alt="logo" width="50" height="50" /></a>
+              <a href={this.props.task.company_url} target="_blank" rel="noopener noreferrer" ><img  src={this.props.task.company_logo} alt="logo" width="50" height="50" /></a>
               </div>
               <div>
                 <p style={{"textAlign": "right", "padding": "0px", "margin": "0px", "fontSize": "1.2rem", "fontWeight": "bold"}} >{this.props.task.company_name.toUpperCase()}</p>

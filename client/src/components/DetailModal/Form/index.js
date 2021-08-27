@@ -75,7 +75,7 @@ export const Form = ({ onSubmit, job_details }) => {
     <form onSubmit={onSubmit}>
       <div class="avatar text-center" >
           <a
-            href={`https://www.${formState.company_url}/careers`}
+            href={formState.company_url}
             target="_blank"
             rel="noopener noreferrer"
           >

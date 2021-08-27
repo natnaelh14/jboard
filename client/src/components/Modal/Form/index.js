@@ -42,21 +42,14 @@ export const Form = ({ onSubmit }) => {
       const response = await fetch(issuesURL);
       const resData = await response.json();
       if (resData) {
-        formState.company_url = resData[0].domain;
+        formState.company_url = `https://www.${resData[0].domain}/careers`;
         formState.company_logo = resData[0].logo;
       } else {
         throw Error;
       }
-      console.log(formState);
-
-      try {
-        let { data } = await addJob({
+       await addJob({
           variables: { ...formState },
         });
-        console.log("created job", data);
-      } catch (error) {
-        console.log("addjob mutation failed", error);
-      }
       //Pop up message for successfully saving job info
       await Swal.fire({
         position: "center",
@@ -75,10 +68,8 @@ export const Form = ({ onSubmit }) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      // return;
     }
   };
-
   return (
     <form onSubmit={onSubmit}>
       <h1 className="text-center title">ADD JOB</h1>
