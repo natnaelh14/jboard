@@ -8,6 +8,8 @@
   justify-content: center;
   background-image: linear-gradient(white, #fadedc);
   position:sticky;
+  width: 100%;
+  min-width: 1200px;
 }
 
 /* #email-address a{

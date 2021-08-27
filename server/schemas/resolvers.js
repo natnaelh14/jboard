@@ -13,7 +13,7 @@ const resolvers = {
       return User.findOne({ username });
     },
     jobs: async (parent, { filters }, context) => {
-      console.log("handling jobs filter");
+      //Handling Jobs Filter
       try {
         let _filters = [];
         _filters.push({ user_id: { $in: [context.user._id] } });
@@ -31,13 +31,9 @@ const resolvers = {
         if (filters?.job_status) {
           _filters.push({ job_status: { $in: filters.job_status } });
         }
-        // if (filters?.user_ids) {
-        //   _filters.push({user_id: {$in : filters.user_ids}});
-        // }
-        console.log(_filters);
         return Job.find(..._filters);
-      } catch (error) {
-        console.log("failed to get jobs", error);
+      } catch (e) {
+        throw e
       }
     },
     me: (parent, args, context) => {
@@ -80,19 +76,16 @@ const resolvers = {
         }
         //If there is a user found, execute the `isCorrectPassword` instance method and check if the correct password was provided
         const correctPw = await user.isCorrectPassword(password);
-        console.log(correctPw);
         if (!correctPw) {
           throw new AuthenticationError("Incorrect credentials");
         }
         const token = signToken(user);
         return { token, user };
       } catch (e) {
-        console.log("log in error", e);
         throw new Error(e);
       }
     },
     verifyEmail: async (parent, { email }) => {
-      console.log("verify email");
       try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -101,7 +94,7 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       } catch (e) {
-        console.log("log in error", e);
+        throw e;
       }
     },
     updatePassword: async (parent, { username, password }) => {
@@ -112,7 +105,6 @@ const resolvers = {
         // Return the newly updated object instead of the original
         { new: true }
       );
-      console.log("test", user);
       return user;
     },
 
@@ -180,7 +172,6 @@ const resolvers = {
         // Return the newly updated object instead of the original
         { new: true }
       );
-      console.log("test", job);
       return job;
     },
     deleteJob: async (parent, { _id }) => {
@@ -188,7 +179,6 @@ const resolvers = {
         return await Job.findOneAndRemove({ _id });
     
       } catch (e) {
-        console.log("unable to delete job", e);
         return e
       }
     },

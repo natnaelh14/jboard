@@ -117,7 +117,7 @@ export default class Dashboard extends React.Component {
 
   render() {
     return (
-      <>
+      <div style={{minWidth: 1200}}>
         <ModalContainer triggerText="ADD JOB" />
         {/* DragDropContext has three callbacks. onDragStart, which is called when the drag starts. onDragUpdate is called when something changes during a drag, and onDragEnd, which is called a tht end of a drag. */}
         <DragDropContext onDragEnd={this.onDragEnd}>
@@ -147,7 +147,7 @@ export default class Dashboard extends React.Component {
             )}
           </Droppable>
         </DragDropContext>
-      </>
+      </div>
     );
   }
 }

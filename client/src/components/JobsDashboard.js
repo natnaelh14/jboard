@@ -35,7 +35,6 @@ export default function JobsDashboard() {
     try {
       const initial_state = {...reduceJobsToTask(data.jobs), columnOrder:job_columns_order};
        setState(initial_state);
-       console.log('state is ready', state)
     } catch (error) {
       return <p>jobsDashboard failed to load</p>;
     }
@@ -114,9 +113,7 @@ export default function JobsDashboard() {
     return <p>JobsDashboard failed to load</p>;
   }
 
-
   const showDashboard = (_state) => {
-    console.log(_state);
     if (!!state) {
 		
       return (

@@ -1,10 +1,10 @@
-.buttonWrapper {
+/* .buttonWrapper {
   display: flex;
   justify-content: center;
   margin-top: 10px;
-}
+} */
 
-.modal-button {
+/* .modal-button {
     text-decoration: none;
     text-align: center;
     padding: 10px;
@@ -35,4 +35,4 @@
     color: #000 !important;
     background: #f7ca18;
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-}
+} */

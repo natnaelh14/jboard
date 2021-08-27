@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import AddStatusOption from '../../AddStatusOption';
-import { useMutation } from "@apollo/client";
+import AddStatusOption from "../../AddStatusOption";
+import { fromPromise, useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { ADD_JOB } from "../../../utils/mutations";
-import { MixedCheckbox} from "@reach/checkbox";
+import { MixedCheckbox } from "@reach/checkbox";
 import { QUERY_JOBS } from "../../../utils/queries";
-import './form.css';
+import "./form.css";
 
 export const Form = ({ onSubmit }) => {
   const [companyName, setCompanyName] = useState("");
@@ -18,7 +18,9 @@ export const Form = ({ onSubmit }) => {
   const [offerAmount, setOfferAmount] = useState("");
   const [applicationDate, setApplicationDate] = useState(new Date());
   const [interviewDate, setInterviewDate] = useState(new Date());
-  const [addJob, { error, data }] = useMutation(ADD_JOB, { refetchQueries:[QUERY_JOBS]});
+  const [addJob, { error, data }] = useMutation(ADD_JOB, {
+    refetchQueries: [QUERY_JOBS],
+  });
 
   const formState = {
     company_name: companyName,
@@ -28,7 +30,7 @@ export const Form = ({ onSubmit }) => {
     label: jobLabel,
     offer_amount: offerAmount,
     application_date: applicationDate,
-    interview_date:interviewDate ,
+    interview_date: interviewDate,
     company_logo: "",
     company_url: "",
   };
@@ -39,7 +41,7 @@ export const Form = ({ onSubmit }) => {
       // {(formState.label) ? formState.label="favorite" : formState.label=""}
       const company = formState.company_name;
       let issuesURL = `https://autocomplete.clearbit.com/v1/companies/suggest?query=${company}`;
-      if (!issuesURL) return;
+      // if (!issuesURL) return;
       const response = await fetch(issuesURL);
       const resData = await response.json();
       if (resData) {
@@ -48,17 +50,26 @@ export const Form = ({ onSubmit }) => {
       } else {
         throw Error;
       }
-       await addJob({
+      if (
+        formState.company_name &&
+        formState.job_status &&
+        formState.job_position &&
+        formState.offer_amount
+      ) {
+        await addJob({
           variables: { ...formState },
         });
-      //Pop up message for successfully saving job info
-      await Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Job added",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+        //Pop up message for successfully saving job info
+        await Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Job added",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        throw Error;
+      }
     } catch (error) {
       //Error message on form registration.
       Swal.fire({
@@ -74,7 +85,9 @@ export const Form = ({ onSubmit }) => {
     <form onSubmit={onSubmit}>
       <h1 className="text-center title">ADD JOB</h1>
       <div className="form-group">
-        <label htmlFor="text">Company Name</label>
+        <label className="required" htmlFor="text">
+          Company Name
+        </label>
         <input
           onChange={(e) => setCompanyName(e.target.value)}
           className="form-control border-warning"
@@ -83,7 +96,9 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="text">Job Position</label>
+        <label className="required" htmlFor="text">
+          Job Position
+        </label>
         <input
           onChange={(e) => setJobPosition(e.target.value)}
           className="form-control border-warning"
@@ -91,8 +106,10 @@ export const Form = ({ onSubmit }) => {
           id="name"
         />
       </div>
-      <div className="form-group border-warning" >
-        <label htmlFor="text">Job Status</label>
+      <div className="form-group border-warning">
+        <label className="required" htmlFor="text">
+          Job Status
+        </label>
         <AddStatusOption selectedStatus={setOptionList} />
       </div>
       <div className="form-group">
@@ -105,7 +122,9 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="number">Offer Amount</label>
+        <label className="required" htmlFor="number">
+          Offer Amount
+        </label>
         <input
           onChange={(e) => setOfferAmount(parseInt(e.target.value))}
           type="number"
@@ -135,18 +154,19 @@ export const Form = ({ onSubmit }) => {
       <br />
       <div className="form-group">
         <label htmlFor="fav_input">Favorite</label>&nbsp;&nbsp;
-        <MixedCheckbox id="fav_input"
+        <MixedCheckbox
+          id="fav_input"
           onChange={(event) => {
-            setLabel(event.target.checked ? 'favorite':'');
+            setLabel(event.target.checked ? "favorite" : "");
           }}
         />
       </div>
       <br />
       <div className="form-group">
         <button
-          className="form-control btn"
+          className="form-control rounded-pill btn"
           onClick={handleRegister}
-          style={{"backgroundColor": "rgb(249 143 134)"}}
+          style={{ backgroundColor: "rgb(249 143 134)" }}
           type="submit"
         >
           Submit

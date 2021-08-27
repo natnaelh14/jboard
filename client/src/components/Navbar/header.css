@@ -3,11 +3,19 @@
   top: 0;
   z-index: 10000;
   background-image: linear-gradient(#fadedc, transparent);
+  background: -webkit-linear-gradient(#fadedc, transparent);
+  background: -moz-linear-gradient(#fadedc, transparent);
+  background: -ms-linear-gradient(#fadedc, transparent);
+  background: -o-linear-gradient(#fadedc, transparent);
   padding: 5px 0;
   -webkit-backdrop-filter: blur(8px);
+  -moz-backdrop-filter: blur(8px);
+  -ms-backdrop-filter: blur(8px);
+  -o-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   display: block;
   flex-wrap: wrap;
+  min-width: 1200px;
 }
 
 .navbar-main {
@@ -115,7 +123,7 @@
   background-color: #f9f9f9;
   margin-top: 10px;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 

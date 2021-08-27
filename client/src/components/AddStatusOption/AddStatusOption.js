@@ -32,12 +32,7 @@ export default class AddStatusOption extends Component {
       value: props.selectedOption ?? '',
       label: props.selectedOption ?? '',
     }
-
-    this.setState({selectedOption : _start_option},()=>{
-      console.log(_start_option,this.state.selectedOption,options)
-
-    })
-
+    this.setState({selectedOption : _start_option})
   }
   handleChange = (selectedOption) => {
     this.props.selectedStatus(selectedOption.value)

@@ -38,16 +38,16 @@ export default class Task extends React.Component {
               <div>
                 <p style={{"textAlign": "right", "padding": "0px", "margin": "0px", "fontSize": "1.2rem", "fontWeight": "bold"}} >{this.props.task.company_name.toUpperCase()}</p>
                 <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.job_position}</p>
-                {(this.props.task.label) ? <Badge pill >{this.props.task.label}</Badge> : ""}
+                {(this.props.task.label) ? <Badge className="rounded-pill" >{this.props.task.label}</Badge> : ""}
               </div>
             </div>
             <br />
             <div style={{"display": "flex", "flexDirection": "columns" }}>
-              <DetailModal triggerText="INFO">
+              <DetailModal triggerText="Info">
                 <Form onSubmit={()=>{}} job_details={this.props.task}/>
               </DetailModal>
               &nbsp; &nbsp;
-              <Button variant="outline-danger" className="text-dark" size="sm" onClick={() =>{this.props.task.delete()}} >Remove</Button>
+              <Button variant="outline-danger" className="text-dark rounded-pill" size="sm" onClick={() =>{this.props.task.delete()}} >Remove</Button>
             </div>
           </Container>
         )}

@@ -6,11 +6,9 @@ import Swal from "sweetalert2";
 import "./form.css";
 
 export const Form = ({ onSubmit, job_details }) => {
-  // const [companyName, setCompanyName] = useState(job_details?.company_name?? "");
   const [jobPosition, setJobPosition] = useState(
     job_details?.job_position ?? ""
   );
-  // const [companyLogo, setCompanyLogo] = useState(job_details?.company_logo??"");
   const [companyUrl, setCompanyUrl] = useState(job_details?.company_url ?? "");
   const [optionList, setOptionList] = useState(job_details?.job_status ?? "");
   const [jobComment, setJobComment] = useState(job_details?.job_comment ?? "");
@@ -38,26 +36,26 @@ export const Form = ({ onSubmit, job_details }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      // formState.label
-      //   ? (formState.label = "favorite")
-      //   : (formState.label = "");
-
-      job_details.update(formState);
+      if (formState.job_position && formState.job_status && formState.offer_amount && formState.company_url) {
+        await job_details.update(formState);
+      } else{
+         throw Error
+      }
       //Pop up message for successfully saving job info
       await Swal.fire({
         position: "center",
         icon: "success",
-        title: "Job added",
+        title: "Job updated",
         showConfirmButton: false,
         timer: 1500,
       });
-      // window.location.assign("/dashboard");
+      window.location.assign("/dashboard");
     } catch (error) {
       //Error message on form registration.
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Unable to update job, Please review your input.",
+        title: "Unable to update job, Please complete all required fields.",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -80,7 +78,7 @@ export const Form = ({ onSubmit, job_details }) => {
         <h1 className="text-center title">{formState.company_name}</h1>
       </div>
       <div className="form-group">
-        <label htmlFor="text">Job Position</label>
+        <label className='required' htmlFor="text">Job Position</label>
         <input
           onChange={(e) => setJobPosition(e.target.value)}
           className="form-control border-warning"
@@ -90,7 +88,7 @@ export const Form = ({ onSubmit, job_details }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="text">Job Status</label>
+        <label className='required' htmlFor="text">Job Status</label>
         <StatusOptionList
           placeholder={formState.job_position}
           selectedStatus={setOptionList}
@@ -98,7 +96,7 @@ export const Form = ({ onSubmit, job_details }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="text">Job Url</label>
+        <label className='required' htmlFor="text">Job Url</label>
         <input
           onChange={(e) => setCompanyUrl(e.target.value)}
           className="form-control border-warning"
@@ -118,7 +116,7 @@ export const Form = ({ onSubmit, job_details }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="number">Offer Amount</label>
+        <label className='required' htmlFor="number">Offer Amount</label>
         <input
           onChange={(e) => setOfferAmount(parseInt(e.target.value))}
           type="number"
@@ -164,7 +162,7 @@ export const Form = ({ onSubmit, job_details }) => {
       <br />
       <div className="form-group">
         <button
-          className="form-control btn"
+          className="form-control rounded-pill btn"
           style={{ backgroundColor: "rgb(249 143 134)" }}
           onClick={handleUpdate}
           type="submit"

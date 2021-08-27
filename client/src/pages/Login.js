@@ -36,7 +36,6 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      console.log("unable to sign in", e);
     }
   };
 

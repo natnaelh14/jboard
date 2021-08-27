@@ -49,9 +49,7 @@ export function HomeCard() {
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s,
         </Text>
-        <Link to="/signup"><button class="glow-on-hover" type="button">SIGN UP FOR FREE</button></Link>
-
-        
+        <Link to="/signup"><button className="glow-on-hover" type="button">SIGN UP FOR FREE</button></Link>
       </InnerContainer>
     </DetailsContainer>
   );

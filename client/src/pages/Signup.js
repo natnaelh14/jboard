@@ -57,11 +57,10 @@ const Signup = () => {
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'Unable to sign up, Please review your input.',
+        title: 'Unable to sign up, Please complete all required fields.',
         showConfirmButton: false,
         timer: 1500
       })
-      console.log("unable to sign up", e);
     }
   };
 
@@ -73,7 +72,7 @@ const Signup = () => {
         </Title>
         <form onSubmit={(e) => e.preventDefault()}>
           <InputGroup>
-            <label htmlFor="signup-name">Full Name</label>
+            <label className='required' htmlFor="signup-name">Full Name</label>
             <Input
               type="text"
               placeholder=""
@@ -82,7 +81,7 @@ const Signup = () => {
             ></Input>
           </InputGroup>
           <InputGroup>
-            <label htmlFor="signup-email">Email Address</label>
+            <label className='required' htmlFor="signup-email">Email Address</label>
             <Input
               type="text"
               placeholder=""
@@ -91,7 +90,7 @@ const Signup = () => {
             ></Input>
           </InputGroup>
           <InputGroup>
-            <label htmlFor="signup-username">Username</label>
+            <label className='required' htmlFor="signup-username">Username</label>
             <Input
               type="text"
               placeholder=""
@@ -100,7 +99,7 @@ const Signup = () => {
             ></Input>
           </InputGroup>
           <InputGroup>
-            <label htmlFor="signup-password">Password</label>
+            <label className='required' htmlFor="signup-password">Password</label>
             <Input
               type="password"
               placeholder="Min 8 characters"
@@ -108,12 +107,11 @@ const Signup = () => {
               onChange={(e) => setPassword(e.target.value)}
             ></Input>
           </InputGroup>
-          <p style={{ textAlign: "left" }}>Security Question</p>
-          <br />
+          <p className='required text-secondary' style={{textAlign: "left"}}> Security Question</p>
           <OptionList selectedQuestion={setSecurityQues} />
           <br />
           <InputGroup>
-            <label htmlFor="signup-answer">Answer</label>
+            <label className='required' htmlFor="signup-answer">Answer</label>
             <Input
               type="password"
               placeholder="Answer"
@@ -121,10 +119,9 @@ const Signup = () => {
               onChange={(e) => setSecurityAns(e.target.value)}
             ></Input>
           </InputGroup>
-          <br />
-          <br />
+          <p className='required text-secondary' style={{textAlign: "left"}}>Resume:</p>
           <Upload>
-            <label>Resume:</label>
+            <br />
             <input type="file" onChange={(e) => setImage(e.target.files[0])} />
           </Upload>
           <br />

@@ -37,7 +37,7 @@ const Reset = () => {
       return <Redirect to="/dashboard" />
       }
     } catch (e) {
-      console.log(e);
+      throw e;
     }
   };
 
