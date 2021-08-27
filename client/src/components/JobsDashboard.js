@@ -34,13 +34,10 @@ export default function JobsDashboard() {
 
   const showDashboard = (data) => {
     try {
-      console.log("data from apollo server", data);
-
       const _initial_state = reduceJobsToTask(data.jobs);
 
       return makeDashboard(_initial_state, job_columns_order);
     } catch (error) {
-      console.log("failed to reloadJobs", error);
       return <p>jobsDashboard failed to load</p>;
     }
   };
@@ -90,7 +87,7 @@ export default function JobsDashboard() {
   const updateJob = (job) => {
     //   code to update job
     mu_updateJob({ variables: { ...job } }).then(() => {
-      window.location.assign("/dashboard");
+      // window.location.assign("/dashboard");
     });
   };
   const deleteJob = (_id) => {
@@ -117,12 +114,10 @@ export default function JobsDashboard() {
   };
 
   if (loading) {
-    console.log("jobDashboard loading...");
     return <p>Loading.....</p>;
   }
 
   if (error) {
-    console.log("error loading jobDashboard");
     return <p>JobsDashboard failed to load</p>;
   }
 

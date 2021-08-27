@@ -25,7 +25,6 @@ export default class Dashboard extends React.Component {
   constructor(props, context){
     super(props)
     this.state = {...this.props.initial_state, columnOrder: this.props.columnOrder}
-    console.log('props.initial_state', this.props.initial_state)
   }
   
   //MODAL INFORMATION

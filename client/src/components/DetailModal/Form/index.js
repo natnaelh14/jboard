@@ -21,9 +21,6 @@ export const Form = ({ onSubmit, job_details }) => {
   const [applicationDate, setApplicationDate] = useState(new Date(job_details?.application_date));
   const [interviewDate, setInterviewDate] = useState(new Date(job_details?.interview_date));
 
-  console.log("APP", job_details?.application_date);
-  console.log("int", job_details?.interview_date);
-
   const formState = {
     _id: job_details._id,
     company_name: job_details.company_name,
@@ -44,10 +41,6 @@ export const Form = ({ onSubmit, job_details }) => {
       // formState.label
       //   ? (formState.label = "favorite")
       //   : (formState.label = "");
-      console.log("THIS IS THE ID", job_details._id);
-      console.log("FORMSTATE", formState);
-
-      console.table(formState);
 
       job_details.update(formState);
       //Pop up message for successfully saving job info
@@ -58,9 +51,8 @@ export const Form = ({ onSubmit, job_details }) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      // window.location.assign("/dashboard");
+      window.location.assign("/dashboard");
     } catch (error) {
-      console.log(error);
       //Error message on form registration.
       Swal.fire({
         position: "center",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import StatusOptionList from "../../StatusOptionList";
+import AddStatusOption from '../../AddStatusOption';
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { ADD_JOB } from "../../../utils/mutations";
@@ -32,8 +32,6 @@ export const Form = ({ onSubmit }) => {
     company_url: "",
   };
 
-
-  console.table(formState)
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -95,7 +93,7 @@ export const Form = ({ onSubmit }) => {
       </div>
       <div className="form-group border-warning" >
         <label htmlFor="text">Job Status</label>
-        <StatusOptionList selectedStatus={setOptionList} />
+        <AddStatusOption selectedStatus={setOptionList} />
       </div>
       <div className="form-group">
         <label htmlFor="text">Job Comment</label>
@@ -136,7 +134,7 @@ export const Form = ({ onSubmit }) => {
       </div>
       <br />
       <div className="form-group">
-        <label for="fav_input">Favorite</label>&nbsp;&nbsp;
+        <label htmlFor="fav_input">Favorite</label>&nbsp;&nbsp;
         <MixedCheckbox
           onChange={(event) => {
             setLabel(event.target.checked);

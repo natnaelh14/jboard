@@ -18,7 +18,6 @@ const Container = styled.div`
 
 export default class Task extends React.Component {
   render() {
-    console.log(this.props.task.label)
     return (
       //Draggable takes in two required props, draggableId which we will pass in our task.id and an index.
       <Draggable draggableId={this.props.task._id} index={this.props.index}>
