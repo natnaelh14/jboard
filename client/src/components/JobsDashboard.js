@@ -10,19 +10,18 @@ export default function JobsDashboard() {
       jobsFilters: {},
     },
   });
+  const [state, setState] = useState(null)
 
-  const [md_deleteJob, { md_data, md_loading, md_error }] = useMutation(
-    DELETE_JOB,
-    {
-      refetchQueries: [QUERY_JOBS],
-    }
-  );
-  const [mu_updateJob, { mu_data, mu_loading, mu_error }] = useMutation(
-    UPDATE_JOB,
-    {
-      refetchQueries: [QUERY_JOBS],
-    }
-  );
+  useEffect(() => {
+    prepareProps(data)
+
+  }, [data])
+
+  const [md_deleteJob, { md_data, md_loading, md_error }] = useMutation(DELETE_JOB, {
+		refetchQueries: [QUERY_JOBS],
+	});
+
+  const [mu_updateJob, { mu_data, mu_loading, mu_error }] = useMutation(UPDATE_JOB);
 
   const job_columns_order = [
     "wish list",
@@ -32,11 +31,11 @@ export default function JobsDashboard() {
     "inactive",
   ];
 
-  const showDashboard = (data) => {
+  const prepareProps = (data) => {
     try {
-      const _initial_state = reduceJobsToTask(data.jobs);
-
-      return makeDashboard(_initial_state, job_columns_order);
+      const initial_state = {...reduceJobsToTask(data.jobs), columnOrder:job_columns_order};
+       setState(initial_state);
+       console.log('state is ready', state)
     } catch (error) {
       return <p>jobsDashboard failed to load</p>;
     }
@@ -93,7 +92,7 @@ export default function JobsDashboard() {
   const deleteJob = (_id) => {
     //   code to update job
     md_deleteJob({ variables: { deleteJobId: _id } }).then(() => {
-      window.location.assign("/dashboard");
+      // window.location.assign("/dashboard");
     });
   };
 
@@ -101,17 +100,11 @@ export default function JobsDashboard() {
     ///job details
   };
 
-  const makeDashboard = (initial_state, job_columns_order) => {
-    return (
-      <>
-        <Dashboard
-          initial_state={initial_state}
-          columnOrder={job_columns_order}
-          crud={{ deleteJob, updateJob }}
-        ></Dashboard>
-      </>
-    );
-  };
+  const updateProps = (state_update)=>{
+    setState(state_update)
+  }
+
+  // const makeDashboard = 
 
   if (loading) {
     return <p>Loading.....</p>;
@@ -121,5 +114,24 @@ export default function JobsDashboard() {
     return <p>JobsDashboard failed to load</p>;
   }
 
-  return <>{showDashboard(data)}</>;
+
+  const showDashboard = (_state) => {
+    console.log(_state);
+    if (!!state) {
+		
+      return (
+        <>
+          <Dashboard
+            {..._state}
+            updateProps={updateProps}
+            crud={{ deleteJob, updateJob }}
+          ></Dashboard>
+        </>
+      );
+		}
+
+  };
+
+
+  return <>{showDashboard(state)}</>;
 }
