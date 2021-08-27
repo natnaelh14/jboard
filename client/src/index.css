@@ -20,3 +20,8 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
 } */
+
+[data-rbd-droppable-context-id="1"] {
+    overflow-anchor: initial;
+    overflow-y: auto;
+}
