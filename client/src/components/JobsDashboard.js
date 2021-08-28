@@ -117,13 +117,13 @@ export default function JobsDashboard() {
     if (!!state) {
 		
       return (
-        <>
+        <div style={{minWidth: 1200, 'height': '100%', 'overflow':'auto', marginTop: 120}}>
           <Dashboard
             {..._state}
             updateProps={updateProps}
             crud={{ deleteJob, updateJob }}
           ></Dashboard>
-        </>
+        </div>
       );
 		}
 

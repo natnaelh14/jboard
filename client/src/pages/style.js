@@ -5,6 +5,7 @@ export const EntryPage = styled.div`
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
+    margin-top: 120px;
 `;
 
 export const Title = styled.div`

@@ -80,7 +80,7 @@ const Forgot = () => {
   };
 
   return (
-    <EntryPage>
+    <EntryPage style={{'height': '100%', 'overflow':'auto', marginTop: 120}}>
       <EntryCard>
         <Title>
           <h2>FORGOT PASSWORD</h2>

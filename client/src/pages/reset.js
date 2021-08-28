@@ -33,7 +33,7 @@ const Reset = () => {
   };
 
   return (
-    <EntryPage>
+    <EntryPage style={{'height': '100%', 'overflow':'auto', marginTop: 120}}>
       <EntryCard>
         <Title>
           <h2>RESET PASSWORD</h2>

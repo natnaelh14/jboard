@@ -47,7 +47,7 @@ const Navbar = () => {
             }
           >
             <li>
-              <span>{Auth.getUser().data.full_name}</span>
+              <a href='/dasboard' target="_blank" rel="noopener noreferrer" >{Auth.getUser().data.full_name}</a>
             </li>
             <li>
               <a href={Auth.getUser().data.resume_url} target="_blank" rel="noopener noreferrer" >Resume</a>
@@ -56,7 +56,7 @@ const Navbar = () => {
               <Link to='/reset' >Update Password</Link>
             </li>
             <li>
-              <button onClick={logout} >Logout</button>
+              <a href='/' onClick={logout} >Logout</a>
             </li>
           </ul>
         </>

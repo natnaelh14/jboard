@@ -23,13 +23,12 @@ const Signup = () => {
   const formState = {
     full_name: fullName.toUpperCase(),
     email: email.trim(),
-    username: username.trim(),
+    username: username.toLowerCase().trim(),
     password: password.trim(),
     security_ques: securityQues,
     security_ans: securityAns.toLowerCase().trim(),
     resume_url: "",
   };
-
   //Invoke 'use mutation' hook that was declared in the utils/mutation file.
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -65,7 +64,7 @@ const Signup = () => {
   };
 
   return (
-    <EntryPage>
+    <EntryPage style={{'height': '100%', 'overflow':'auto', marginTop: 120, 'paddingBottom': '100px'}}>
       <EntryCard>
         <Title>
           <h2>CREATE ACCOUNT</h2>

@@ -16,7 +16,7 @@ const Login = () => {
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const formState = {
-    username: username.trim(),
+    username: username.toLowerCase().trim(),
     password: password.trim(),
   };
   const handleLogin = async (e) => {
@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <EntryPage>
+    <EntryPage style={{'height': '100%', 'overflow':'auto', marginTop: 120}}>
       <EntryCard>
         <Title>
           <h2>LOG IN</h2>
