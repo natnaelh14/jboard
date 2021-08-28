@@ -82,7 +82,7 @@ export const ADD_JOB = gql`
     $job_status: String!
     $job_comment: String
     $label: String
-    $offer_amount: Int!
+    $offer_amount: Int
     $application_date: ISODate
     $interview_date: ISODate
     $company_url: String
@@ -123,7 +123,7 @@ export const UPDATE_JOB = gql`
     $job_status: String!
     $job_comment: String
     $label: String
-    $offer_amount: Int!
+    $offer_amount: Int
     $application_date: ISODate
     $interview_date: ISODate
     $company_url: String

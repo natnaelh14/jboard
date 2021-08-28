@@ -9,6 +9,7 @@ import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import Swal from "sweetalert2";
+import { Concast } from "@apollo/client/utilities";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -29,10 +30,12 @@ const Login = () => {
       //this is where we pass the token we created in utils/auth.js
       Auth.login(data.login.token);
     } catch (error) {
+      let errMsg = error.message
+      errMsg = errMsg.substring(errMsg.indexOf(':')+1)
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Unable to sign in, Please try again.",
+        title: 'Unable to sign in, ' + errMsg,
         showConfirmButton: false,
         timer: 1500,
       });

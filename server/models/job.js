@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const jobSchema = new Schema({
   company_name: {
     type: String,
-    required: true,
+    required: [true, "Please provide a company name"],
   },
   job_position: {
     type: String,
-    required: true,
+    required: [true, "Please provide a job position"],
   },
   job_comment: {
     type: String,
@@ -18,7 +18,6 @@ const jobSchema = new Schema({
   },
   offer_amount: {
     type: Number,
-    required: true
   },
   application_date: {
     type: Date,
@@ -37,7 +36,7 @@ const jobSchema = new Schema({
   },
   job_status: {
     type: String,
-    required: true,
+    required: [true, "Please provide a job status"],
   },
   user_id: {
     type: Schema.Types.ObjectId,

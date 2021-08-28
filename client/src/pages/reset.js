@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { UPDATE_PASSWORD } from "../utils/mutations";
+import Swal from "sweetalert2";
 
 const Reset = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -21,14 +22,30 @@ const Reset = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     try {
-      if (newPassword === confirmPassword) {
+      if ((newPassword && confirmPassword) && newPassword === confirmPassword) {
         await updatePassword({
           variables: { password: formState.password, username: Auth.getUser().data.username },
         });
+       await Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Password updated',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       window.location.assign('/dashboard')
+      } else {
+        throw Error
       }
     } catch (e) {
-      throw e;
+       e.message = 'Passwords don\'t match';
+       Swal.fire({
+        position: "center",
+        icon: "error",
+        title: e.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
@@ -48,7 +65,7 @@ const Reset = () => {
             <label htmlFor="reset-password">New Password</label>
             <Input
               type="password"
-              placeholder=""
+              placeholder="Minimum 8 characters."
               id="reset-password"
               onChange={(e) => setNewPassword(e.target.value)}
             ></Input>
@@ -57,7 +74,7 @@ const Reset = () => {
             <label htmlFor="reset-password">Confirm Password</label>
             <Input
               type="password"
-              placeholder=""
+              placeholder="Minimum 8 characters."
               id="reset-confirm"
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Input>

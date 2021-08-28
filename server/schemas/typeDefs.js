@@ -21,7 +21,7 @@ const typeDefs = gql`
     job_status: String!
     job_comment: String
     label: String
-    offer_amount: Int!
+    offer_amount: Int
     application_date: ISODate
     interview_date: ISODate
     company_url: String
@@ -72,7 +72,7 @@ const typeDefs = gql`
       job_status: String!
       job_comment: String
       label: String
-      offer_amount: Int!
+      offer_amount: Int
       application_date: ISODate
       interview_date: ISODate
       company_url: String
@@ -86,7 +86,7 @@ const typeDefs = gql`
       job_status: String!
       job_comment: String
       label: String
-      offer_amount: Int!
+      offer_amount: Int
       application_date: ISODate
       interview_date: ISODate
       company_url: String

@@ -72,12 +72,12 @@ const resolvers = {
         // Look up the user by the provided username. Since the `username` field is unique, we know that only one person will exist with that username
         const user = await User.findOne({ username }).select("+password");
         if (!user) {
-          throw new AuthenticationError("Incorrect credentials");
+          throw new AuthenticationError("Incorrect username");
         }
         //If there is a user found, execute the `isCorrectPassword` instance method and check if the correct password was provided
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) {
-          throw new AuthenticationError("Incorrect credentials");
+          throw new AuthenticationError("Incorrect password");
         }
         const token = signToken(user);
         return { token, user };

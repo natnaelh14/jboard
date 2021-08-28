@@ -53,8 +53,7 @@ export const Form = ({ onSubmit }) => {
       if (
         formState.company_name &&
         formState.job_status &&
-        formState.job_position &&
-        formState.offer_amount
+        formState.job_position
       ) {
         await addJob({
           variables: { ...formState },
@@ -120,7 +119,7 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label className="required" htmlFor="number">
+        <label htmlFor="number">
           Offer Amount
         </label>
         <input
