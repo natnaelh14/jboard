@@ -14,7 +14,6 @@ export const Title = styled.div`
 `;
 
 export const HomeImage = styled.img`
-    height:700px;
     width: 50%;
     @media only screen and (max-width:900px) {
         display: none;
@@ -27,6 +26,7 @@ export const Message = styled.div`
     justify-content: center;
     font-size: 4vh;
     font-weight: 200;
+    min-height: 100vh;
 `;
 
 export const Upload = styled.div`
