@@ -43,22 +43,42 @@ const Signup = () => {
         `https://api.cloudinary.com/v1_1/doalzf6o2/image/upload`,
         resumeData
       );
-      if (resumeRes) {
-        formState.resume_url = resumeRes.data.secure_url;
-      }
+        formState.resume_url = resumeRes.data.secure_url
+    } catch (err) {
+      err.message = 'Unable to upload resume'
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Unable to sign up',
+        text: err.message,
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return;
+    }
+  try {
       //Saving New User
       const { data } = await addUser({
         variables: { ...formState },
       });
       Auth.login(data.addUser.token);
-
     } catch (e) {
+      let errors = {}
+      const errMsg = e.message
+      const allErrors = errMsg.substring(errMsg.indexOf(':') + 1).trim()
+      const allErrorsInArrayFormat = allErrors.split(',').map(err => err.trim())
+      allErrorsInArrayFormat.forEach(error => {
+        const [key, value] = error.split(':').map(err => err.trim())
+        errors[key] = value
+      })
+      let msg = Object.values(errors)
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'Unable to sign up, Please complete all required fields.',
+        title: 'Unable to sign up',
+        html: msg.join('<br>'),
         showConfirmButton: false,
-        timer: 1500
+        timer: 2000
       })
     }
   };

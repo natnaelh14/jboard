@@ -35,7 +35,8 @@ const Login = () => {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: 'Unable to sign in, ' + errMsg,
+        title: 'Unable to sign in',
+        text: errMsg,
         showConfirmButton: false,
         timer: 1500,
       });

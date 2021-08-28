@@ -22,6 +22,9 @@ const Reset = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     try {
+      if(formState.password.length < 8) {
+        throw Error;
+      }
       if ((newPassword && confirmPassword) && newPassword === confirmPassword) {
         await updatePassword({
           variables: { password: formState.password, username: Auth.getUser().data.username },
@@ -38,17 +41,17 @@ const Reset = () => {
         throw Error
       }
     } catch (e) {
-       e.message = 'Passwords don\'t match';
+       e.message = ['Passwords must match', 'Password has to be a minimum of 8 characters'];
        Swal.fire({
         position: "center",
         icon: "error",
-        title: e.message,
+        title: 'Unable to reset password',
+        html: e.message.join('<br>'),
         showConfirmButton: false,
         timer: 1500,
       });
     }
   };
-
   return (
     <EntryPage style={{'height': '100%', 'overflow':'auto', marginTop: 120}}>
       <EntryCard>

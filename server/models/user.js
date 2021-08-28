@@ -5,34 +5,34 @@ const userSchema = new Schema(
   {
     full_name: {
       type: String,
-      required: [true, "Please add a username"],
+      required: [true, "Provide a full name"],
     },
     username: {
       type: String,
-      required: [true, "Please add a username"],
+      required: [true, "Provide a username"],
       unique: true,
     },
     email: {
       type: String,
-      required: [true, "Please add an email"],
+      required: [true, "Provide an e-mail address"],
       trim: true,
       unique: true,
-      match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
+      match: [/.+@.+\..+/, "Provide a valid e-mail address"],
     },
     password: {
       type: String,
       required: [true, "Please add a password"],
-      validate: [({ length }) => length >= 8, "Password should be longer."],
+      validate: [({ length }) => length >= 8, "Password should be minimum of 8 characters"],
       trim: true,
       select: false,
     },
     security_ques: {
       type: String,
-      required: [true, "Please add a security question."],
+      required: [true, "Select a security question"],
     },
     security_ans: {
       type: String,
-      required: [true, "Please add a security answer."],
+      required: [true, "Provide a security answer"],
       // select: false
     },
     resume_url: {
