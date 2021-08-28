@@ -1,5 +1,6 @@
 .navbar {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   z-index: 10000;
   background-image: linear-gradient(#fadedc, transparent);
@@ -15,7 +16,7 @@
   backdrop-filter: blur(8px);
   display: block;
   flex-wrap: wrap;
-  min-width: 1200px;
+  /* min-width: 1200px; */
 }
 
 .navbar-main {

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
 import { EntryPage, Title } from "./style";
 import EntryCard from "../components/EntryCard";
 import InputGroup from "../components/InputGroup";
@@ -8,21 +7,13 @@ import Button from "../components/Button";
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { UPDATE_PASSWORD } from "../utils/mutations";
-import { Redirect } from 'react-router'
-
 
 const Reset = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const formState = {
-    // full_name: Auth.getUser().data.full_name,
-    // username: Auth.getUser().data.username,
-    password: newPassword.toLowerCase(),
-    // email:Auth.getUser().data.email,
-    // security_ques: Auth.getUser().data.security_ques,
-    // security_ans: Auth.getUser().data.security_ans,
-    // resume_url: Auth.getUser().data.resume_url
+    password: newPassword.trim(),
   };
 
   const [updatePassword, { error, data }] = useMutation(UPDATE_PASSWORD);
@@ -34,7 +25,7 @@ const Reset = () => {
         await updatePassword({
           variables: { password: formState.password, username: Auth.getUser().data.username },
         });
-      return <Redirect to="/dashboard" />
+      window.location.assign('/dashboard')
       }
     } catch (e) {
       throw e;

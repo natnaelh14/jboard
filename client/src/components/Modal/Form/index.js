@@ -67,6 +67,7 @@ export const Form = ({ onSubmit }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        window.location.reload();
       } else {
         throw Error;
       }
@@ -92,7 +93,6 @@ export const Form = ({ onSubmit }) => {
           onChange={(e) => setCompanyName(e.target.value)}
           className="form-control border-warning"
           autoComplete="off"
-          id="name"
         />
       </div>
       <div className="form-group">
@@ -103,7 +103,6 @@ export const Form = ({ onSubmit }) => {
           onChange={(e) => setJobPosition(e.target.value)}
           className="form-control border-warning"
           autoComplete="off"
-          id="name"
         />
       </div>
       <div className="form-group border-warning">
@@ -118,7 +117,6 @@ export const Form = ({ onSubmit }) => {
           onChange={(e) => setJobComment(e.target.value)}
           className="form-control border-warning"
           autoComplete="off"
-          id="name"
         />
       </div>
       <div className="form-group">
@@ -130,7 +128,6 @@ export const Form = ({ onSubmit }) => {
           type="number"
           className="form-control border-warning"
           autoComplete="off"
-          id="name"
         />
       </div>
       <div className="form-group">

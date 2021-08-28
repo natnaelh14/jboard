@@ -16,8 +16,8 @@ const Login = () => {
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const formState = {
-    username: username,
-    password: password,
+    username: username.trim(),
+    password: password.trim(),
   };
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const Login = () => {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Unable to sign in, Please review your input.",
+        title: "Unable to sign in, Please try again.",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -47,7 +47,7 @@ const Login = () => {
         </Title>
         <form>
           <InputGroup>
-            <label htmlFor="login-username">Username</label>
+            <label className='required' htmlFor="login-username">Username</label>
             <Input
               type="text"
               placeholder=""
@@ -56,7 +56,7 @@ const Login = () => {
             ></Input>
           </InputGroup>
           <InputGroup>
-            <label htmlFor="login-password">Password</label>
+            <label className='required' htmlFor="login-password">Password</label>
             <Input
               type="password"
               placeholder="Min 8 characters"

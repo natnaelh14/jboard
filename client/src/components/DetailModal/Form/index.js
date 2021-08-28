@@ -16,8 +16,12 @@ export const Form = ({ onSubmit, job_details }) => {
   const [offerAmount, setOfferAmount] = useState(
     job_details?.offer_amount ?? ""
   );
-  const [applicationDate, setApplicationDate] = useState(new Date(job_details?.application_date));
-  const [interviewDate, setInterviewDate] = useState(new Date(job_details?.interview_date));
+  const [applicationDate, setApplicationDate] = useState(
+    new Date(job_details?.application_date)
+  );
+  const [interviewDate, setInterviewDate] = useState(
+    new Date(job_details?.interview_date)
+  );
 
   const formState = {
     _id: job_details._id,
@@ -36,20 +40,25 @@ export const Form = ({ onSubmit, job_details }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      if (formState.job_position && formState.job_status && formState.offer_amount && formState.company_url) {
+      if (
+        formState.job_position &&
+        formState.job_status &&
+        formState.offer_amount &&
+        formState.company_url
+      ) {
         await job_details.update(formState);
-      } else{
-         throw Error
+        //Pop up message for successfully saving job info
+        await Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Job updated",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        window.location.assign("/dashboard");
+      } else {
+        throw Error;
       }
-      //Pop up message for successfully saving job info
-      await Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Job updated",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      window.location.assign("/dashboard");
     } catch (error) {
       //Error message on form registration.
       Swal.fire({
@@ -62,7 +71,6 @@ export const Form = ({ onSubmit, job_details }) => {
     }
   };
 
-  
   return (
     <form onSubmit={onSubmit}>
       <div className="avatar text-center">
@@ -78,17 +86,20 @@ export const Form = ({ onSubmit, job_details }) => {
         <h1 className="text-center title">{formState.company_name}</h1>
       </div>
       <div className="form-group">
-        <label className='required' htmlFor="text">Job Position</label>
+        <label className="required" htmlFor="text">
+          Job Position
+        </label>
         <input
           onChange={(e) => setJobPosition(e.target.value)}
           className="form-control border-warning"
           autoComplete="off"
-          id="name"
           value={formState.job_position}
         />
       </div>
       <div className="form-group">
-        <label className='required' htmlFor="text">Job Status</label>
+        <label className="required" htmlFor="text">
+          Job Status
+        </label>
         <StatusOptionList
           placeholder={formState.job_position}
           selectedStatus={setOptionList}
@@ -96,12 +107,13 @@ export const Form = ({ onSubmit, job_details }) => {
         />
       </div>
       <div className="form-group">
-        <label className='required' htmlFor="text">Job Url</label>
+        <label className="required" htmlFor="text">
+          Job Url
+        </label>
         <input
           onChange={(e) => setCompanyUrl(e.target.value)}
           className="form-control border-warning"
           autoComplete="off"
-          id="name"
           value={formState.company_url}
         />
       </div>
@@ -111,18 +123,18 @@ export const Form = ({ onSubmit, job_details }) => {
           onChange={(e) => setJobComment(e.target.value)}
           className="form-control border-warning"
           autoComplete="off"
-          id="name"
           value={formState.job_comment}
         />
       </div>
       <div className="form-group">
-        <label className='required' htmlFor="number">Offer Amount</label>
+        <label className="required" htmlFor="number">
+          Offer Amount
+        </label>
         <input
           onChange={(e) => setOfferAmount(parseInt(e.target.value))}
           type="number"
           className="form-control border-warning"
           autoComplete="off"
-          id="name"
           value={formState.offer_amount}
         />
       </div>
@@ -148,15 +160,13 @@ export const Form = ({ onSubmit, job_details }) => {
       </div>
       <br />
       <div className="form-group">
-        <label htmlFor="fav_input">
-          Favorite 
-        </label>
+        <label htmlFor="fav_input">Favorite</label>
         &nbsp;&nbsp;
         <input
           id="fav_input"
           type="checkbox"
           checked={jobLabel.trim().includes("favorite")}
-          onChange={(event)=>setLabel(event.target.checked ? "favorite" : "")}
+          onChange={(event) => setLabel(event.target.checked ? "favorite" : "")}
         />
       </div>
       <br />

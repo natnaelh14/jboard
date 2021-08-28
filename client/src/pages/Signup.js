@@ -22,7 +22,7 @@ const Signup = () => {
 
   const formState = {
     full_name: fullName.toUpperCase(),
-    email: email,
+    email: email.trim(),
     username: username.trim(),
     password: password.trim(),
     security_ques: securityQues,
