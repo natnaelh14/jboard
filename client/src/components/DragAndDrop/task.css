@@ -6,7 +6,13 @@
     background-color: #fd7467;
 }
 
+.badge-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .badge {
     color: black;
     background-color: #ff5252;
+    display: inline-block;
 }

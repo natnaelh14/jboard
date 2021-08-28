@@ -6,7 +6,7 @@ import HomeCard from '../components/HomeCard/HomeCard'
 
 function Home() {
   return (
-    <div style={{"display": "flex", 'height': '100%', 'overflow':'auto', marginTop: 120}}>
+    <div style={{"display": "flex", 'height': '100%', 'overflow':'auto'}}>
       <Message>
         <HomeCard />
         <HomeImage src={heroImage} />

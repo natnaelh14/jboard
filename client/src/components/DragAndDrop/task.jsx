@@ -38,7 +38,9 @@ export default class Task extends React.Component {
               <div>
                 <p style={{"textAlign": "right", "padding": "0px", "margin": "0px", "fontSize": "1.2rem", "fontWeight": "bold"}} >{this.props.task.company_name.toUpperCase()}</p>
                 <p style={{"textAlign": "right", "padding": "0px", "margin": "0px"}} >{this.props.task.job_position}</p>
-                {(this.props.task.label) ? <Badge className="rounded-pill" >{this.props.task.label}</Badge> : ""}
+                <div className='badge-container'>
+                  {(this.props.task.label) ? <Badge className="rounded-pill" >{this.props.task.label}</Badge> : ""}
+                </div>
               </div>
             </div>
             <br />
