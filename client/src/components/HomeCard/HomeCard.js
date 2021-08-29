@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import './home.css'
-import {Link} from "react-router-dom";
+import "./home.css";
+import { Link } from "react-router-dom";
 
 const DetailsContainer = styled.div`
   height: 100%;
@@ -45,11 +45,14 @@ export function HomeCard() {
         <Header>Welcome to JBoard</Header>
         <SubHeader>A Job Application Tracker</SubHeader>
         <Text>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s,
+          Jboard empowers job seekers with tools to
+          keep track of job applications.
         </Text>
-        <Link to="/signup"><button className="glow-on-hover" type="button">SIGN UP FOR FREE</button></Link>
+        <Link to="/signup">
+          <button className="glow-on-hover" type="button">
+            SIGN UP FOR FREE
+          </button>
+        </Link>
       </InnerContainer>
     </DetailsContainer>
   );

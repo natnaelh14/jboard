@@ -60,12 +60,14 @@ export const Form = ({ onSubmit, job_details }) => {
       }
     } catch (error) {
       //Error message on form registration.
+      error.message = ['Please provide company status', 'Please provide company url', 'Please provide job position']
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Unable to update job, Please complete all required fields.",
+        title: "Unable to update job",
+        html: error.message.join('<br/>'),
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
       });
     }
   };

@@ -38,7 +38,6 @@ export const Form = ({ onSubmit }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      // {(formState.label) ? formState.label="favorite" : formState.label=""}
       const company = formState.company_name;
       let issuesURL = `https://autocomplete.clearbit.com/v1/companies/suggest?query=${company}`;
       // if (!issuesURL) return;
@@ -50,6 +49,19 @@ export const Form = ({ onSubmit }) => {
       } else {
         throw Error;
       }
+    } catch (e) {
+      e.message = "Provide a company name";
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Unable to add job",
+        text: e.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+    try {
       if (
         formState.company_name &&
         formState.job_status &&
@@ -71,14 +83,16 @@ export const Form = ({ onSubmit }) => {
         throw Error;
       }
     } catch (error) {
-      //Error message on form registration.
+      error.message = 'Please provide job position and job status';
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "Unable to add job, Please review your input.",
+        title: "Unable to add job",
+        text: error.message,
         showConfirmButton: false,
         timer: 1500,
       });
+      return;
     }
   };
   return (
@@ -119,9 +133,7 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="number">
-          Offer Amount
-        </label>
+        <label htmlFor="number">Offer Amount</label>
         <input
           onChange={(e) => setOfferAmount(parseInt(e.target.value))}
           type="number"
