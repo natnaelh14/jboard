@@ -16,7 +16,6 @@
   backdrop-filter: blur(8px);
   display: block;
   flex-wrap: wrap;
-  /* min-width: 1200px; */
 }
 
 .navbar-main {

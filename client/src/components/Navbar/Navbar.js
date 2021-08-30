@@ -30,7 +30,7 @@ const Navbar = () => {
               <a href={Auth.getUser().data.resume_url} target="_blank" rel="noopener noreferrer" >Resume</a>
             </li>
             <li>
-              <span onClick={logout} >Logout</span>
+              <span onClick={logout} >Log out</span>
             </li>
           </ul>
           <span
@@ -56,7 +56,7 @@ const Navbar = () => {
               <Link to='/reset' >Update Password</Link>
             </li>
             <li>
-              <a href='/' onClick={logout} >Logout</a>
+              <a href='/' onClick={logout} >Log out</a>
             </li>
           </ul>
         </>

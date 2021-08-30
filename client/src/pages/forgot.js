@@ -92,6 +92,7 @@ const Forgot = () => {
               type="text"
               placeholder="Enter your e-mail"
               id="forgot-email"
+              autoComplete="off"
               disabled={formState.firstDisabledInput}
               onChange={(e) => setForgotEmail(e.target.value)}
             ></Input>
@@ -119,6 +120,7 @@ const Forgot = () => {
               type="text"
               placeholder="Answer"
               id="security-answer"
+              autoComplete="off"
               disabled={formState.secondDisabledInput}
               onChange={(e) => setForgotAnswer(e.target.value)}
             ></Input>

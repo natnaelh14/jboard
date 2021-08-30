@@ -9,7 +9,6 @@ import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import Swal from "sweetalert2";
-import { Concast } from "@apollo/client/utilities";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -56,6 +55,7 @@ const Login = () => {
               type="text"
               placeholder=""
               id="login-username"
+              autoComplete="off"
               onChange={(e) => setUsername(e.target.value)}
             ></Input>
           </InputGroup>
@@ -65,6 +65,7 @@ const Login = () => {
               type="password"
               placeholder="Min 8 characters"
               id="login-password"
+              autoComplete="off"
               onChange={(e) => setPassword(e.target.value)}
             ></Input>
           </InputGroup>

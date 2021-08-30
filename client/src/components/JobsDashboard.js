@@ -66,8 +66,6 @@ export default function JobsDashboard() {
           job._id
         );
 
-        // initial_state.columnOrder = job_columns_order
-
         return initial_state;
       },
       { tasks: {}, columns }
@@ -89,21 +87,14 @@ export default function JobsDashboard() {
     });
   };
   const deleteJob = (_id) => {
-    //   code to update job
+  //code to update job
     md_deleteJob({ variables: { deleteJobId: _id } }).then(() => {
-      // window.location.assign("/dashboard");
     });
-  };
-
-  const getJobDetail = () => {
-    ///job details
   };
 
   const updateProps = (state_update)=>{
     setState(state_update)
   }
-
-  // const makeDashboard = 
 
   if (loading) {
     return <p>Loading.....</p>;
@@ -115,7 +106,6 @@ export default function JobsDashboard() {
 
   const showDashboard = (_state) => {
     if (!!state) {
-		
       return (
         <div style={{minWidth: 1200, 'height': '100%', 'overflow':'auto', marginTop: 120}}>
           <Dashboard
@@ -126,9 +116,7 @@ export default function JobsDashboard() {
         </div>
       );
 		}
-
   };
-
 
   return <>{showDashboard(state)}</>;
 }

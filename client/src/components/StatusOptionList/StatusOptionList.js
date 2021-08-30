@@ -43,7 +43,6 @@ export default class OptionList extends Component {
     this.setState({ selectedOption });
   };
   render() {
-    // const { selectedOption }  = this.state;
     return (
       <Select
         options={options}

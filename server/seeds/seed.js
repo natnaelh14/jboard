@@ -12,8 +12,8 @@ db.once('open', async () => {
     await Job.deleteMany({});
   
     await User.insertMany(userData);
-    // await Job.insertMany(jobData);
+    await Job.insertMany(jobData);
   
-    console.log('all done!');
+    console.log('seeding successful!');
     process.exit(0);
   });

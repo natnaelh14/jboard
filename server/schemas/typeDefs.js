@@ -40,9 +40,6 @@ const typeDefs = gql`
     job_status: [String],
     job_positions: [String]
     user_ids: [ID]
-    
-    
-
   }
 
   type Query {

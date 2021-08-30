@@ -8,7 +8,6 @@ export const Modal = ({
   modalRef,
   buttonRef,
   closeModal,
-  
   children
 }) => {
   return ReactDOM.createPortal(

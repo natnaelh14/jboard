@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AddStatusOption from "../../AddStatusOption";
-import { fromPromise, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { ADD_JOB } from "../../../utils/mutations";
 import { MixedCheckbox } from "@reach/checkbox";
@@ -38,9 +38,11 @@ export const Form = ({ onSubmit }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      if (formState.offer_amount === '') {
+        formState.offer_amount = 0
+      }
       const company = formState.company_name;
       let issuesURL = `https://autocomplete.clearbit.com/v1/companies/suggest?query=${company}`;
-      // if (!issuesURL) return;
       const response = await fetch(issuesURL);
       const resData = await response.json();
       if (resData) {
@@ -70,7 +72,7 @@ export const Form = ({ onSubmit }) => {
         await addJob({
           variables: { ...formState },
         });
-        //Pop up message for successfully saving job info
+    //Pop up message for successfully saving job info
         await Swal.fire({
           position: "center",
           icon: "success",

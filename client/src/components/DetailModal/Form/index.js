@@ -25,7 +25,7 @@ export const Form = ({ onSubmit, job_details }) => {
 
   const formState = {
     _id: job_details._id,
-    company_name: job_details.company_name,
+    company_name: job_details.company_name.toUpperCase(),
     job_position: jobPosition,
     job_status: optionList,
     job_comment: jobComment,
@@ -40,6 +40,9 @@ export const Form = ({ onSubmit, job_details }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
+      if (formState.offer_amount === '') {
+        formState.offer_amount = 0
+      }
       if (
         formState.job_position &&
         formState.job_status &&

@@ -7,13 +7,8 @@ const Footer = () => {
     <footer className="footer" >
       <section className="contact-info">
         <div>
-          {/* <h1>Call</h1> */}
           <span>COPYRIGHT 2021 / NATNAEL HAILE</span>
         </div>
-        {/* <div id='email-address' >
-          <h1>Email</h1>
-          <a href="mailto:haile.natnael@natnaeldev.com">haile.natnael@natnaeldev.com</a>
-        </div> */}
       </section>
       <section className="contact-link">
         <ul className="footer-social">

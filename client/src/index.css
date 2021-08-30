@@ -4,7 +4,5 @@ html, body {
 }
 
 [data-rbd-droppable-context-id="1"] {
-    /* overflow-anchor: initial !important;
-    overflow-y: auto !important; */
     overflow-y: scroll;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { ButtonsWrapper, Button } from "./style";
-// import Auth from "../../utils/auth";
 
 export default function AddButton () {
   return (

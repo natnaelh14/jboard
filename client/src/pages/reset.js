@@ -70,6 +70,7 @@ const Reset = () => {
               type="password"
               placeholder="Minimum 8 characters."
               id="reset-password"
+              autoComplete="off"
               onChange={(e) => setNewPassword(e.target.value)}
             ></Input>
           </InputGroup>
@@ -79,6 +80,7 @@ const Reset = () => {
               type="password"
               placeholder="Minimum 8 characters."
               id="reset-confirm"
+              autoComplete="off"
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Input>
           </InputGroup>

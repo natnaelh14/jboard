@@ -1,5 +1,4 @@
 import React from 'react';
-import './trigger.css';
 import { Button } from 'react-bootstrap';
 
 const TriggerButton = ({ triggerText, buttonRef, showModal }) => {
@@ -15,7 +14,6 @@ const TriggerButton = ({ triggerText, buttonRef, showModal }) => {
         {triggerText}
       </Button>
     </div>
-
   );
 };
 

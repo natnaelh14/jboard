@@ -96,6 +96,7 @@ const Signup = () => {
               type="text"
               placeholder=""
               id="signup-name"
+              autoComplete="off"
               onChange={(e) => setFullName(e.target.value)}
             ></Input>
           </InputGroup>
@@ -105,6 +106,7 @@ const Signup = () => {
               type="text"
               placeholder=""
               id="signup-email"
+              autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
             ></Input>
           </InputGroup>
@@ -114,6 +116,7 @@ const Signup = () => {
               type="text"
               placeholder=""
               id="signup-username"
+              autoComplete="off"
               onChange={(e) => setUsername(e.target.value)}
             ></Input>
           </InputGroup>
@@ -123,6 +126,7 @@ const Signup = () => {
               type="password"
               placeholder="Min 8 characters"
               id="signup-password"
+              autoComplete="off"
               onChange={(e) => setPassword(e.target.value)}
             ></Input>
           </InputGroup>
@@ -135,6 +139,7 @@ const Signup = () => {
               type="password"
               placeholder="Answer"
               id="signup-answer"
+              autoComplete="off"
               onChange={(e) => setSecurityAns(e.target.value)}
             ></Input>
           </InputGroup>

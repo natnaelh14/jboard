@@ -33,7 +33,6 @@ const userSchema = new Schema(
     security_ans: {
       type: String,
       required: [true, "Provide a security answer"],
-      // select: false
     },
     resume_url: {
       type: String,
