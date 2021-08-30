@@ -1,6 +1,5 @@
 
 ## Jboard
-![alt text](https://img.shields.io/github/last-commit/natnael14/-portfolio-website)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## Description
 Project information
@@ -33,4 +32,5 @@ Copyright (C) 2021 Natnael Haile
 ## Questions
 * If you have any issues, create an issue on the project.
 ## Contact
-* You can contact me directly at haile.natnael@natnaeldev.com. You can also find more of my work at (https://github.com/natnaelh14/)
+* You can contact me directly at haile.natnael@natnaeldev.com. 
+* You can also find more of my work at (https://github.com/natnaelh14/)
