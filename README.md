@@ -2,7 +2,7 @@
 ## Jboard
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## Description
-Project information
+Jboard is a web application that empowers job seekers with tools to · keep track of job applications.
 ## Table of Contents
 * [Installation](#Installation)
 * [Usage](#Usage)
@@ -17,7 +17,9 @@ To run necessary dependencies, run the following command:
 
 * npm i
 ## Usage
-![alt text](/img/screenshot-01.png)
+![alt text](./img/screenshot-01.png)
+![alt text](./img/screenshot-02.png)
+![alt text](./img/screenshot-03.png)
 ## License
 Copyright (C) 2021 Natnael Haile
 
