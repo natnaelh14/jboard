@@ -14,7 +14,6 @@ export default function JobsDashboard() {
 
   useEffect(() => {
     prepareProps(data)
-
   }, [data])
 
   const [md_deleteJob, { md_data, md_loading, md_error }] = useMutation(DELETE_JOB, {
