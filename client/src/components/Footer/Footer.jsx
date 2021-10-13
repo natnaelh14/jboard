@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="footer" >
       <section className="contact-info">
         <div>
-          <span>COPYRIGHT 2021 / NATNAEL HAILE</span>
+          <span>Copyright &copy; Jboard / Natnael Haile</span>
         </div>
       </section>
       <section className="contact-link">
