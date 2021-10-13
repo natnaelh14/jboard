@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 // import initialData from "../initial-data";
 import Column from "../components/DragAndDrop/column";
-import ModalContainer from "../components/Modal/ModalContainer";
+import SearchBox from '../components/SearchBox'
 import "./Modal.css";
 
 //use this container to align the columns
@@ -118,7 +118,7 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <div style={{minWidth: 1200, 'height': '100%', 'overflow': 'auto'}}>
-        <ModalContainer triggerText="ADD JOB" />
+        <SearchBox />
         {/* DragDropContext has three callbacks. onDragStart, which is called when the drag starts. onDragUpdate is called when something changes during a drag, and onDragEnd, which is called a tht end of a drag. */}
         <DragDropContext onDragEnd={this.onDragEnd}>
         {/* This droppable is to move columns horizontally */}

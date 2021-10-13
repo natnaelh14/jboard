@@ -7,7 +7,7 @@ const TriggerButton = ({ triggerText, buttonRef, showModal }) => {
       <Button
         variant="outline-warning" 
         size="sm"
-        className="text-dark rounded-pill"
+        className="text-dark"
         ref={buttonRef}
         onClick={showModal}
       >
