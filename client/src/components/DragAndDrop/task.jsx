@@ -49,7 +49,7 @@ export default class Task extends React.Component {
                 <Form onSubmit={()=>{}} job_details={this.props.task}/>
               </DetailModal>
               &nbsp; &nbsp;
-              <Button variant="outline-danger" className="text-dark rounded-pill" size="sm" onClick={() =>{this.props.task.delete()}} >Remove</Button>
+              <Button variant="outline-danger" className="text-dark" size="sm" onClick={() =>{this.props.task.delete()}} >Remove</Button>
             </div>
           </Container>
         )}

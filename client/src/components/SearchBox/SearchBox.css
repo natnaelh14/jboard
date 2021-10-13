@@ -1,0 +1,8 @@
+.form-control {
+    width: 200px;
+}
+.formContainer {
+    display: flex;
+    flex-direction: row;
+    margin:55px;
+}
