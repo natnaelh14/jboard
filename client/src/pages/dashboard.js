@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 // import initialData from "../initial-data";
 import Column from "../components/DragAndDrop/column";
-import SearchBox from '../components/SearchBox'
+import SearchBox from '../components/SearchBox';
+import ModalContainer from '../components/Modal/ModalContainer';
 import "./Modal.css";
 
 //use this container to align the columns
@@ -21,8 +22,14 @@ class InnerList extends React.PureComponent {
 }
 
 export default class Dashboard extends React.Component {
-  
-  
+    
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     keyword: this.props.match.params.keyword,
+  //   };
+  // }
+
   //MODAL INFORMATION
   //we are setting the initial state to be initial data.
   // state = initialData;
@@ -109,17 +116,29 @@ export default class Dashboard extends React.Component {
         [newForeign.id]: newForeign,
       },
     };
-    
+
+
+
+
     // This is updating the the column that job is removed and added using job-status.
     let temp_task = Object.assign(this.props.tasks[moved_task], {job_status: foreign.title})
     temp_task.update(temp_task)
     this.props.updateProps(newState);
   };
 
+  // componentDidMount() {
+  //   console.log(this.state.keyword)
+  // }
+
+  // componentDidUpdate() {
+  //   console.log(this.state.keyword)
+  // }
+
   render() {
     return (
       <div style={{minWidth: 1200, 'height': '100%', 'overflow': 'auto'}}>
         <SearchBox />
+        <ModalContainer triggerText='+ ADD JOB' />
         {/* DragDropContext has three callbacks. onDragStart, which is called when the drag starts. onDragUpdate is called when something changes during a drag, and onDragEnd, which is called a tht end of a drag. */}
         <DragDropContext onDragEnd={this.onDragEnd}>
         {/* This droppable is to move columns horizontally */}

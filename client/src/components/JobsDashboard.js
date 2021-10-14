@@ -1,39 +1,50 @@
-import React, { useEffect, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_JOBS } from "../utils/queries";
-import Dashboard from "../pages/dashboard";
-import { DELETE_JOB, UPDATE_JOB } from "../utils/mutations";
+import React, { useEffect, useState } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+import { QUERY_JOBS } from '../utils/queries';
+import Dashboard from '../pages/dashboard';
+import { useParams } from 'react-router-dom';
+import { DELETE_JOB, UPDATE_JOB } from '../utils/mutations';
 
 export default function JobsDashboard() {
+  const { keyword } = useParams();
+
   const { error, data, loading } = useQuery(QUERY_JOBS, {
     variables: {
       jobsFilters: {},
     },
   });
-  const [state, setState] = useState(null)
+  const [state, setState] = useState(null);
 
   useEffect(() => {
-    prepareProps(data)
-  }, [data])
+    console.log('keyword', keyword)
+    prepareProps(data);
+  }, [data, keyword]);
 
-  const [md_deleteJob, { md_data, md_loading, md_error }] = useMutation(DELETE_JOB, {
-		refetchQueries: [QUERY_JOBS],
-	});
+  const [md_deleteJob, { md_data, md_loading, md_error }] = useMutation(
+    DELETE_JOB,
+    {
+      refetchQueries: [QUERY_JOBS],
+    }
+  );
 
-  const [mu_updateJob, { mu_data, mu_loading, mu_error }] = useMutation(UPDATE_JOB);
+  const [mu_updateJob, { mu_data, mu_loading, mu_error }] =
+    useMutation(UPDATE_JOB);
 
   const job_columns_order = [
-    "wish list",
-    "applied",
-    "interview",
-    "offer",
-    "inactive",
+    'wish list',
+    'applied',
+    'interview',
+    'offer',
+    'inactive',
   ];
 
   const prepareProps = (data) => {
     try {
-      const initial_state = {...reduceJobsToTask(data.jobs), columnOrder:job_columns_order};
-       setState(initial_state);
+      const initial_state = {
+        ...reduceJobsToTask(data.jobs),
+        columnOrder: job_columns_order,
+      };
+      setState(initial_state);
     } catch (error) {
       return <p>jobsDashboard failed to load</p>;
     }
@@ -86,14 +97,13 @@ export default function JobsDashboard() {
     });
   };
   const deleteJob = (_id) => {
-  //code to update job
-    md_deleteJob({ variables: { deleteJobId: _id } }).then(() => {
-    });
+    //code to update job
+    md_deleteJob({ variables: { deleteJobId: _id } }).then(() => {});
   };
 
-  const updateProps = (state_update)=>{
-    setState(state_update)
-  }
+  const updateProps = (state_update) => {
+    setState(state_update);
+  };
 
   if (loading) {
     return <p>Loading.....</p>;
@@ -106,7 +116,14 @@ export default function JobsDashboard() {
   const showDashboard = (_state) => {
     if (!!state) {
       return (
-        <div style={{minWidth: 1200, 'height': '100%', 'overflow':'auto', marginTop: 120}}>
+        <div
+          style={{
+            minWidth: 1200,
+            height: '100%',
+            overflow: 'auto',
+            marginTop: 120,
+          }}
+        >
           <Dashboard
             {..._state}
             updateProps={updateProps}
@@ -114,7 +131,7 @@ export default function JobsDashboard() {
           ></Dashboard>
         </div>
       );
-		}
+    }
   };
 
   return <>{showDashboard(state)}</>;
