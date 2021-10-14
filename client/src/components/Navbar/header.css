@@ -22,6 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 0.2rem;
 }
 .navbar-logo {
   width: 100px;
@@ -35,14 +36,15 @@
 }
 .navbar-list-desktop li {
   margin: 0 20px;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 .navbar-list-desktop li a {
   color: #000000;
   text-decoration: none;
+
 }
 .dropdown .dropdown-content {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .navbar-list-desktop li::after {
   content: "";
@@ -90,7 +92,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     z-index: 1000;
     background-color: white;
     transition: 0.2s;
