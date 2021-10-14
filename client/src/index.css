@@ -1,8 +1,18 @@
-html, body {
-    font-family: 'Lato', sans-serif !important;
-    height: 100%;
+html,
+body {
+  font-family: 'Lato', sans-serif !important;
+  height: 100%;
 }
 
-[data-rbd-droppable-context-id="1"] {
+/* [data-rbd-droppable-context-id="1"] {
     overflow-y: scroll;
+    overflow: auto;
+} */
+
+.body-item {
+  overflow: auto;
+}
+
+.body-item-scrollable {
+  overflow: auto;
 }
