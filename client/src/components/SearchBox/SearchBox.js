@@ -20,7 +20,7 @@ const SearchBox = () => {
     <Form onSubmit={submitHandler} className='formContainer'>
         <div style={{ display: 'flex' }}>
           <Form.Control
-            type='text'
+            type='search'
             name='q'
             onChange={(e) => setKeyword(e.target.value)}
             placeholder='Search Company...'
