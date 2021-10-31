@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Redirect } from 'react-router'
 import {
   ApolloClient,

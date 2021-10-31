@@ -13,6 +13,17 @@ export const Title = styled.div`
     font-weight: 300;
 `;
 
+export const HomeContainer = styled.div`
+    display: flex;
+    height: 100%;
+    overflow:auto;
+    @media only screen and (max-width:1100px) {
+        display: block;
+}
+`;
+
+
+
 export const HomeImage = styled.img`
     width: 50%;
     @media only screen and (max-width:1100px) {

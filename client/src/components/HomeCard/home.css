@@ -84,4 +84,20 @@ button {
         margin-left: 10%;
         max-width: 80%;
     }
+    .show-gif {
+        display: block;
+    }    
+}
+@media screen and (max-width:700px) {
+    .gif-image {
+        display: none;
+        height: 200px;
+        width: 300px;
+        margin-top: 50px;
+        margin-left: 10%;
+        max-width: 80%;
+    }
+    .show-gif {
+        display: block;
+    }    
 }
