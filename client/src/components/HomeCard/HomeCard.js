@@ -44,10 +44,12 @@ const Text = styled.p`
 export function HomeCard() {
   const [buttonText, setButtonText] = useState('PREVIEW');
   const [buttonRoute, setButtonRoute] = useState('')
+  const [showGif, setShowGIf] = useState();
 
   const handleClick = (e) => {
     setButtonText('SIGN UP FOR FREE')
     setButtonRoute('/signup')
+    setShowGIf('show-gif')
   }
 
   return (
@@ -65,7 +67,9 @@ export function HomeCard() {
           </button>
         </Link>
       </InnerContainer>
-      <GifPlayer autoplay gif={gifImage} still={stillImage} className='gif-image' />
+      <div className='gif-container'>
+        <GifPlayer autoplay gif={gifImage} still={stillImage} className={`gif-image ${showGif}`} />
+      </div>
     </DetailsContainer>
   );
 }

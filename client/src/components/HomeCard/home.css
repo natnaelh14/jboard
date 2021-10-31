@@ -63,7 +63,25 @@ button {
 }
 
 .gif-image {
+    display: none;
     height: 400px;
     width: 600px;
     margin-top: 50px;
+    margin-left: 10%;
+    max-width: 80%;
+}
+
+.show-gif {
+    display: block;
+}
+
+@media screen and (max-width:1000px) {
+    .gif-image {
+        display: none;
+        height: 300px;
+        width: 450px;
+        margin-top: 50px;
+        margin-left: 10%;
+        max-width: 80%;
+    }
 }
