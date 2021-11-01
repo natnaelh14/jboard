@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-// import initialData from "../initial-data";
 import Column from "../components/DragAndDrop/column";
 import SearchBox from '../components/SearchBox';
 import ModalContainer from '../components/Modal/ModalContainer';
@@ -12,6 +11,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-around;
 `;
+
 //We use InnerList to only update the state for tasks/columns involved
 class InnerList extends React.PureComponent {
   render() {
@@ -22,17 +22,7 @@ class InnerList extends React.PureComponent {
 }
 
 export default class Dashboard extends React.Component {
-    
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     keyword: this.props.match.params.keyword,
-  //   };
-  // }
 
-  //MODAL INFORMATION
-  //we are setting the initial state to be initial data.
-  // state = initialData;
   //it is onDragEnd responsibility to synchronously update your state to reflect the drag and drop result.
   onDragEnd = (result) => {
     const { destination, source, draggableId, type } = result;
@@ -117,22 +107,11 @@ export default class Dashboard extends React.Component {
       },
     };
 
-
-
-
     // This is updating the the column that job is removed and added using job-status.
     let temp_task = Object.assign(this.props.tasks[moved_task], {job_status: foreign.title})
     temp_task.update(temp_task)
     this.props.updateProps(newState);
   };
-
-  // componentDidMount() {
-  //   console.log(this.state.keyword)
-  // }
-
-  // componentDidUpdate() {
-  //   console.log(this.state.keyword)
-  // }
 
   render() {
     return (

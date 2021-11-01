@@ -122,6 +122,7 @@ export default function JobsDashboard() {
             height: '100%',
             overflow: 'auto',
             marginTop: 120,
+            marginBottom: 0,
           }}
         >
           <Dashboard

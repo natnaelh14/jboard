@@ -6,7 +6,6 @@
   background-image: linear-gradient(white, #fadedc);
   position:sticky;
   width: 100%;
-  position:sticky;
   left:0;
   right:0;
 }
@@ -38,15 +37,19 @@
   transform: translateY(-5px);
 }
 
-@media (max-width: 1000px){
+@media (max-width: 1200px){
   .contact-info{
     display: flex;
     justify-content: center;
   }
-  
-	.footer {
+  .footer {
     bottom: 0;
     position: fixed;
   }
-
+  .contact-info {
+    font-size: 0.7rem;
+  }
+  .footer-social {
+    margin: 2px 2px 2px 2px;
+  }
 }
