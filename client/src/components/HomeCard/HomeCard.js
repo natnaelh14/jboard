@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import gifImage from './demo.gif';
 import stillImage from './still.png';
 import GifPlayer from 'react-gif-player';
+import { Fade } from 'react-reveal';
 
 const DetailsContainer = styled.div`
   height: 100%;
@@ -13,9 +14,9 @@ const DetailsContainer = styled.div`
   flex: 1;
   align-items: center;
   margin-top: 200px;
-  @media only screen and (max-width:700px) {
+  @media only screen and (max-width: 700px) {
     margin-top: 125px;
-}
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -27,16 +28,16 @@ const InnerContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  `;
+`;
 
 const Header = styled.h1`
   margin: 0;
   color: rgb(249 143 134);
   font-weight: 700;
   font-size: 45px;
-  @media only screen and (max-width:1100px) {
-        text-align: center;
-}
+  @media only screen and (max-width: 1100px) {
+    text-align: center;
+  }
 `;
 
 const SubHeader = styled.h3`
@@ -44,18 +45,18 @@ const SubHeader = styled.h3`
   color: #000;
   font-weight: 700;
   font-size: 24px;
-  @media only screen and (max-width:1100px) {
+  @media only screen and (max-width: 1100px) {
     text-align: center;
-}
+  }
 `;
 
 const Text = styled.p`
   color: #000;
   font-weight: 500;
   font-size: 1.1rem;
-  @media only screen and (max-width:1100px) {
+  @media only screen and (max-width: 1100px) {
     text-align: center;
-}
+  }
 `;
 
 export function HomeCard() {
@@ -90,14 +91,16 @@ export function HomeCard() {
           </Link>
         </ButtonContainer>
       </InnerContainer>
-      <div className='gif-container'>
-        <GifPlayer
-          autoplay
-          gif={gifImage}
-          still={stillImage}
-          className={`gif-image ${showGif}`}
-        />
-      </div>
+      <Fade bottom duration={6000} distance='40px'>
+        <div className='gif-container'>
+          <GifPlayer
+            autoplay
+            gif={gifImage}
+            still={stillImage}
+            className={`gif-image ${showGif}`}
+          />
+        </div>
+      </Fade>
     </DetailsContainer>
   );
 }
