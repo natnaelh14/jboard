@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_JOBS } from '../utils/queries';
+import { QUERY_JOBS, QUERY_JOBS_SEARCH } from '../utils/queries';
 import Dashboard from '../pages/dashboard';
 import { useParams } from 'react-router-dom';
 import { DELETE_JOB, UPDATE_JOB } from '../utils/mutations';
 
 export default function JobsDashboard() {
   const { keyword } = useParams();
-
+  
+  // const { error: searchError, data, loading: searchLoading } = useQuery(QUERY_JOBS_SEARCH, {
+  //   variables: {
+  //       company_name: "Amazon"
+  //   },
+  // });
+  // const searchData = data;
   const { error, data, loading } = useQuery(QUERY_JOBS, {
     variables: {
       jobsFilters: {},
+      companyName: "Amazon"
     },
   });
+
   const [state, setState] = useState(null);
 
   useEffect(() => {
@@ -44,6 +52,7 @@ export default function JobsDashboard() {
         ...reduceJobsToTask(data.jobs),
         columnOrder: job_columns_order,
       };
+      console.log('hey', initial_state)
       setState(initial_state);
     } catch (error) {
       return <p>jobsDashboard failed to load</p>;

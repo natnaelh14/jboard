@@ -1,8 +1,10 @@
-const { AuthenticationError } = require("apollo-server-express");
-const User = require("../models/user");
-const Job = require("../models/job");
-const { signToken } = require("../utils/auth");
-const bcrypt = require("bcrypt");
+const { AuthenticationError } = require('apollo-server-express');
+const User = require('../models/user');
+const Job = require('../models/job');
+const { signToken } = require('../utils/auth');
+const bcrypt = require('bcrypt');
+const _ = require('lodash');
+const mongoose = require('mongoose');
 
 const resolvers = {
   Query: {
@@ -12,7 +14,10 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username });
     },
-    jobs: async (parent, { filters }, context) => {
+    jobsSearch: async (parent, { company_name }) => {
+      return Job.find({ company_name });
+    },
+    jobs: async (parent, { filters, company_name }, context) => {
       //Handling Jobs Filter
       try {
         let _filters = [];
@@ -31,9 +36,10 @@ const resolvers = {
         if (filters?.job_status) {
           _filters.push({ job_status: { $in: filters.job_status } });
         }
-        return Job.find(..._filters);
+        // return Job.find(..._filters);
+        return Job.find(..._filters).then((res) => res.filter(comp => comp.company_name === "Amazon" ))
       } catch (e) {
-        throw e
+        throw e;
       }
     },
     me: (parent, args, context) => {
@@ -70,14 +76,14 @@ const resolvers = {
     login: async (parent, { username, password }) => {
       try {
         // Look up the user by the provided username. Since the `username` field is unique, we know that only one person will exist with that username
-        const user = await User.findOne({ username }).select("+password");
+        const user = await User.findOne({ username }).select('+password');
         if (!user) {
-          throw new AuthenticationError("Incorrect username");
+          throw new AuthenticationError('Incorrect username');
         }
         //If there is a user found, execute the `isCorrectPassword` instance method and check if the correct password was provided
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) {
-          throw new AuthenticationError("Incorrect password");
+          throw new AuthenticationError('Incorrect password');
         }
         const token = signToken(user);
         return { token, user };
@@ -89,7 +95,7 @@ const resolvers = {
       try {
         const user = await User.findOne({ email });
         if (!user) {
-          throw new AuthenticationError("Incorrect credentials");
+          throw new AuthenticationError('Incorrect credentials');
         }
         const token = signToken(user);
         return { token, user };
@@ -142,17 +148,22 @@ const resolvers = {
         return job;
       } catch (error) {}
     },
-    updateJob: async (parent, {company_name,
-      job_position,
-      job_comment,
-      label,
-      offer_amount,
-      application_date,
-      interview_date,
-      company_logo,
-      company_url,
-      job_status,
-      _id}) => {
+    updateJob: async (
+      parent,
+      {
+        company_name,
+        job_position,
+        job_comment,
+        label,
+        offer_amount,
+        application_date,
+        interview_date,
+        company_logo,
+        company_url,
+        job_status,
+        _id,
+      }
+    ) => {
       // Find and update the matching using using the destructured args
       const job = await Job.findOneAndUpdate(
         { _id },
@@ -167,8 +178,7 @@ const resolvers = {
           company_logo,
           company_url,
           job_status,
-        }
-        ,
+        },
         // Return the newly updated object instead of the original
         { new: true }
       );
@@ -177,9 +187,8 @@ const resolvers = {
     deleteJob: async (parent, { _id }) => {
       try {
         return await Job.findOneAndRemove({ _id });
-    
       } catch (e) {
-        return e
+        return e;
       }
     },
   },
