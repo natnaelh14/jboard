@@ -36,8 +36,13 @@ const resolvers = {
         if (filters?.job_status) {
           _filters.push({ job_status: { $in: filters.job_status } });
         }
-        // return Job.find(..._filters);
-        return Job.find(..._filters).then((res) => res.filter(comp => comp.company_name === "Amazon" ))
+        if (company_name) {
+          return Job.find(..._filters).then((res) => res.filter(comp => comp.company_name.toLowerCase() === company_name.toLowerCase() ))
+        } else {
+          return Job.find(..._filters);
+        }
+        
+        
       } catch (e) {
         throw e;
       }

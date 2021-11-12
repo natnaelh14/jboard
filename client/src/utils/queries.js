@@ -15,8 +15,8 @@ export const QUERY_USER = gql`
   }
 `;
 export const QUERY_JOBS= gql`
-query Query($jobsFilters: JobFilterInput, $companyName: String) {
-  jobs(filters: $jobsFilters, company_name: $companyName) {
+query Query($jobsFilters: JobFilterInput, $company_name: String) {
+  jobs(filters: $jobsFilters, company_name: $company_name) {
     _id
     company_name
     job_position

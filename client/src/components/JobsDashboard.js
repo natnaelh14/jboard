@@ -8,16 +8,11 @@ import { DELETE_JOB, UPDATE_JOB } from '../utils/mutations';
 export default function JobsDashboard() {
   const { keyword } = useParams();
   
-  // const { error: searchError, data, loading: searchLoading } = useQuery(QUERY_JOBS_SEARCH, {
-  //   variables: {
-  //       company_name: "Amazon"
-  //   },
-  // });
   // const searchData = data;
   const { error, data, loading } = useQuery(QUERY_JOBS, {
     variables: {
       jobsFilters: {},
-      companyName: "Amazon"
+      company_name: keyword
     },
   });
 
