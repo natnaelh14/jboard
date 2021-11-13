@@ -47,7 +47,7 @@ const typeDefs = gql`
     user(username: String!): User
     me: User
     email: User
-    jobs(filters: JobFilterInput):[Job]
+    jobs(filters: JobFilterInput, company_name: String):[Job]
   }
 
   type Mutation {

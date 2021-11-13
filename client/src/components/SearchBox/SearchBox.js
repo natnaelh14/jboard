@@ -1,29 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+
 import './SearchBox.css';
 
 const SearchBox = () => {
   const history = useHistory();
-  const [keyword, setKeyword] = useState('');
+  const [keywords, setKeyword] = useState('');
+  const { keywords: searchWord } = useParams();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (keyword.trim()) {
-      history.push(`/dashboard/search/${keyword}`);
-    } else {
-      history.push('/');
+  useEffect(() =>{
+    if (keywords) {
+      history.push(`/dashboard/search/${keywords}`);
+    } 
+    else if (!keywords) {
+      history.push(`/dashboard`);
     }
-  };
+    
+  }, [keywords])
 
   return (
-    <Form onSubmit={submitHandler} className='formContainer'>
+    <Form className='formContainer'>
         <div style={{ display: 'flex' }}>
           <Form.Control
             type='search'
             name='q'
+            value={keywords ? keywords : ""}
             onChange={(e) => setKeyword(e.target.value)}
             placeholder='Search Company...'
+            autoFocus
+            // autoFocus = {(keywords || searchWord) ? true : false}
           />
           <Button
             type='submit'

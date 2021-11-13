@@ -7,10 +7,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./App";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <Router>
       <App />
     </Router>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById("root")
 );

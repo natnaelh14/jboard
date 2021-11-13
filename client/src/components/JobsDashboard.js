@@ -7,16 +7,18 @@ import { DELETE_JOB, UPDATE_JOB } from '../utils/mutations';
 
 export default function JobsDashboard() {
   const { keyword } = useParams();
-
+  
+  // const searchData = data;
   const { error, data, loading } = useQuery(QUERY_JOBS, {
     variables: {
       jobsFilters: {},
+      company_name: keyword
     },
   });
+
   const [state, setState] = useState(null);
 
   useEffect(() => {
-    console.log('keyword', keyword)
     prepareProps(data);
   }, [data, keyword]);
 
