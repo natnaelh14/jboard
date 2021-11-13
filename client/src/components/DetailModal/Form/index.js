@@ -123,7 +123,7 @@ export const Form = ({ onSubmit, job_details }) => {
       </div>
       <div className="form-group">
         <label htmlFor="text">Job Comment</label>
-        <input
+        <textarea
           onChange={(e) => setJobComment(e.target.value)}
           className="form-control border-warning"
           autoComplete="off"
