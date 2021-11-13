@@ -48,7 +48,6 @@ const typeDefs = gql`
     me: User
     email: User
     jobs(filters: JobFilterInput, company_name: String):[Job]
-    jobsSearch(company_name: String!):[Job]
   }
 
   type Mutation {

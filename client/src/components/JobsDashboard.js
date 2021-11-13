@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_JOBS, QUERY_JOBS_SEARCH } from '../utils/queries';
+import { QUERY_JOBS } from '../utils/queries';
 import Dashboard from '../pages/dashboard';
 import { useParams } from 'react-router-dom';
 import { DELETE_JOB, UPDATE_JOB } from '../utils/mutations';
@@ -19,7 +19,6 @@ export default function JobsDashboard() {
   const [state, setState] = useState(null);
 
   useEffect(() => {
-    console.log('keyword', keyword)
     prepareProps(data);
   }, [data, keyword]);
 
@@ -47,7 +46,6 @@ export default function JobsDashboard() {
         ...reduceJobsToTask(data.jobs),
         columnOrder: job_columns_order,
       };
-      console.log('hey', initial_state)
       setState(initial_state);
     } catch (error) {
       return <p>jobsDashboard failed to load</p>;

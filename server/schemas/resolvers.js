@@ -14,9 +14,6 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username });
     },
-    jobsSearch: async (parent, { company_name }) => {
-      return Job.find({ company_name });
-    },
     jobs: async (parent, { filters, company_name }, context) => {
       //Handling Jobs Filter
       try {
@@ -37,12 +34,10 @@ const resolvers = {
           _filters.push({ job_status: { $in: filters.job_status } });
         }
         if (company_name) {
-          return Job.find(..._filters).then((res) => res.filter(comp => comp.company_name.toLowerCase() === company_name.toLowerCase() ))
+          return Job.find(..._filters).then((res) => res.filter(comp => comp.company_name.toLowerCase().includes(company_name.toLowerCase()) ))
         } else {
           return Job.find(..._filters);
         }
-        
-        
       } catch (e) {
         throw e;
       }
