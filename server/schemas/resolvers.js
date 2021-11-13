@@ -34,7 +34,7 @@ const resolvers = {
           _filters.push({ job_status: { $in: filters.job_status } });
         }
         if (company_name) {
-          return Job.find(..._filters).then((res) => res.filter(comp => comp.company_name.toLowerCase().includes(company_name.toLowerCase()) ))
+          return Job.find(..._filters).then((res) => res.filter(comp => comp.company_name.toLowerCase().includes(company_name.toLowerCase().trim()) ))
         } else {
           return Job.find(..._filters);
         }
