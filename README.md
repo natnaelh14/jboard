@@ -15,9 +15,9 @@ Jboard is a web application that empowers job seekers with tools to keep track o
 * [Questions](#Questions)
 * [Contact](#Contact)
 ## Installation
-    ```
+    
     npm install
-    ```
+    
 ## Usage
 ![alt text](./img/screenshot-01.png)
 ![alt text](./img/screenshot-02.png)
