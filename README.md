@@ -31,9 +31,9 @@ Copyright (C) 2021 Natnael Haile
 ## Contributing
 * If you want to contribute to this project, you can fork it. After you make necessary modifications, you can create a pull request.
 ## Tests
-    ```
+    
     N/A
-    ```
+    
 ## Questions
 * If you have any questions, create an issue on the project.
 ## Contact
